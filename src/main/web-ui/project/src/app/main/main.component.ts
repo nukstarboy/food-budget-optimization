@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main',
@@ -7,10 +6,4 @@ import {Router} from "@angular/router";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
-  constructor(private readonly router: Router) { }
-
-  onButtonClick() {
-    this.router.navigate(['/quiz']);
-  }
 }

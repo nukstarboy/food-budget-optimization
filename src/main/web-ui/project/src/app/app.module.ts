@@ -11,12 +11,14 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {QuizComponent} from './main/quiz/quiz.component';
+import {HomeComponent} from './main/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    QuizComponent
+    QuizComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
