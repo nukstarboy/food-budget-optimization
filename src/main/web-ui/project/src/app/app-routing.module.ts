@@ -1,28 +1,26 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from "./main/main.component";
-import {QuizComponent} from "./main/quiz/quiz.component";
-import {HomeComponent} from "./main/home/home.component";
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent,
-    children: [
-      {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: 'quiz',
-        component: QuizComponent
-      }
-    ]
+    component: HomeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'quiz',
+    loadChildren: () => import('./quiz-questions/quiz-questions.module').then(m => m.QuizQuestionsModule)
+  },
+  {
+    path: '**',
+    component: HomeComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
