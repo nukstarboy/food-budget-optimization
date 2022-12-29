@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
+import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
+import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
 
 const routes: Routes = [
   {
@@ -8,9 +10,14 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
+  //TODO Not sure if next two paths should be here!
   {
-    path: 'quiz',
-    loadChildren: () => import('./quiz-questions/quiz-questions.module').then(m => m.QuizQuestionsModule)
+    path: 'quiz/questions',
+    component: QuizQuestionsComponent
+  },
+  {
+    path: 'quiz/lose-weight',
+    component: LoseWeightComponent
   },
   {
     path: '**',

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   onButtonClick() {
-    this.router.navigate(['/quiz']);
+    this.router.navigate(['/quiz/questions']);
   }
 
 }

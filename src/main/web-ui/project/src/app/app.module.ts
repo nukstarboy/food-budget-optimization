@@ -10,11 +10,15 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {HomeComponent} from "./home/home.component";
+import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
+import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    QuizQuestionsComponent,
+    LoseWeightComponent
   ],
   imports: [
     BrowserModule,
