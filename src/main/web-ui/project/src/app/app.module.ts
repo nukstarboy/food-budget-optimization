@@ -12,13 +12,20 @@ import {MatMenuModule} from "@angular/material/menu";
 import {HomeComponent} from "./home/home.component";
 import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
 import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
+import {SelfQuestionsComponent} from './home/self-questions/self-questions.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     QuizQuestionsComponent,
-    LoseWeightComponent
+    LoseWeightComponent,
+    SelfQuestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,12 @@ import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

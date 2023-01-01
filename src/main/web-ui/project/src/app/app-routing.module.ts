@@ -3,6 +3,7 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
 import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
+import {SelfQuestionsComponent} from "./home/self-questions/self-questions.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'quiz/lose-weight',
     component: LoseWeightComponent
+  },
+  {
+    path: 'quiz/self-questions',
+    component: SelfQuestionsComponent
   },
   {
     path: '**',

@@ -1,0 +1,65 @@
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select your gender</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="option">Female</mat-option>
+          <mat-option value="option">Male</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Let's check your body measurements</ng-template>
+      <div class="body-measurements">
+        <mat-form-field appearance="fill">
+          <mat-label>Current weight(kg)</mat-label>
+          <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Age(years)</mat-label>
+          <input type="number" max="80" matInput placeholder="0 years" formControlName="age" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Height (cm)</mat-label>
+          <input type="number" max="240" matInput placeholder="0 cm" formControlName="height" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>What is your desired weight?</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Desired weight (kg)</mat-label>
+        <input type="number" max="95" matInput placeholder="0 kg" formControlName="weight" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
