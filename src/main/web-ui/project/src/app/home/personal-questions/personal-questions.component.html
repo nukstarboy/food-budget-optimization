@@ -1,0 +1,146 @@
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+  <mat-step [stepControl]="genderFormGroup">
+    <form [formGroup]="genderFormGroup">
+      <ng-template matStepLabel>Select your gender</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="male">Male</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="personalFormGroup">
+    <form [formGroup]="personalFormGroup">
+      <ng-template matStepLabel>Let's check your body measurements</ng-template>
+      <div class="body-measurements">
+        <mat-form-field appearance="fill">
+          <mat-label>Current weight(kg)</mat-label>
+          <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Age(years)</mat-label>
+          <input type="number" max="80" matInput placeholder="0 years" formControlName="age" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Height (cm)</mat-label>
+          <input type="number" max="240" matInput placeholder="0 cm" formControlName="height" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="bodyTypeFormGroup">
+    <form [formGroup]="bodyTypeFormGroup">
+      <ng-template matStepLabel>What is your body type?</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="bodyType">
+          <mat-option value="lean and long">Lean and long, fast metabolism</mat-option>
+          <mat-option value="muscular">Muscular and well-built, average metabolism</mat-option>
+          <mat-option value="soft">Soft and round, slow metabolism</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="mealsFormGroup">
+    <form [formGroup]="mealsFormGroup">
+      <ng-template matStepLabel>How many meals a day would you like to have?</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="meals">
+          <mat-option value="two">Two(breakfast, dinner, optional snacks)</mat-option>
+          <mat-option value="three">Three(breakfast, lunch, and dinner)</mat-option>
+          <mat-option value="four">Four(breakfast, snack, lunch, and dinner)</mat-option>
+          <mat-option value="five">Five(breakfast, lunch, dinner, and two snacks)</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="workoutFormGroup">
+    <form [formGroup]="workoutFormGroup">
+      <ng-template matStepLabel>Do you workout?</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="workout">
+          <mat-option value="no">No, I don't</mat-option>
+          <mat-option value="walks">Only walks</mat-option>
+          <mat-option value="1-2">1-2 times a week</mat-option>
+          <mat-option value="3-5">3-5 times a week</mat-option>
+          <mat-option value="more than 5">More than 5 times a week</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="sleepFormGroup">
+    <form [formGroup]="sleepFormGroup">
+      <ng-template matStepLabel>How much do you usually sleep?</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="sleep">
+          <mat-option value="up to 5">Up to 5 hours</mat-option>
+          <mat-option value="5-6">5-6 hours</mat-option>
+          <mat-option value="7-8">7-8 hours</mat-option>
+          <mat-option value="more than 8">More than 8 hours</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="dietaryRestrictionsFormGroup">
+    <form [formGroup]="dietaryRestrictionsFormGroup">
+      <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="dietaryRestrictions">
+          <mat-option value="vegetarian">I'm vegetarian</mat-option>
+          <mat-option value="vegan">I'm vegan</mat-option>
+          <mat-option value="none">None of the above</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="onDoneClick()">Done</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>

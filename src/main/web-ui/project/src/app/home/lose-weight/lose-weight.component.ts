@@ -7,15 +7,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./lose-weight.component.scss']
 })
 export class LoseWeightComponent {
-  constructor(private readonly router: Router) { }
+  public constructor(private readonly router: Router) {}
 
-  onYesButtonClick() {
-    this.router.navigate(['/quiz/self-questions']);
+  public onYesButtonClick(): void {
+    this.router.navigate(['/quiz/personal-questions']);
     console.log('Yes, should be save!')
   }
 
-  onNoButtonClick() {
-    this.router.navigate(['/quiz/self-questions']);
+  public onNoButtonClick(): void {
+    this.router.navigate(['/quiz/personal-questions']);
     console.log('No, should be save!')
   }
 }

@@ -12,12 +12,13 @@ import {MatMenuModule} from "@angular/material/menu";
 import {HomeComponent} from "./home/home.component";
 import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
 import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
-import {SelfQuestionsComponent} from './home/self-questions/self-questions.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {PersonalQuestionsComponent} from './home/personal-questions/personal-questions.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatSelectModule} from "@angular/material/select";
     HomeComponent,
     QuizQuestionsComponent,
     LoseWeightComponent,
-    SelfQuestionsComponent
+    PersonalQuestionsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

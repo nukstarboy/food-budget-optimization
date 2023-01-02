@@ -1,11 +1,13 @@
 package algorithm;
 
 // The Stigler diet problem.
+
 import com.google.ortools.Loader;
 import com.google.ortools.linearsolver.MPConstraint;
 import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
 import com.google.ortools.linearsolver.MPVariable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,83 @@ import java.util.List;
 public final class StiglerDiet {
     public static void main(String[] args) {
         Loader.loadNativeLibraries();
+
         // Nutrient minimums.
+        List<Object[]> nutrients = addNutrients();
+
+        // Unit, 1939 price (cents), Calories (kcal), Protein (g), Calcium (g), Iron (mg), Vitamin A (KIU), Thiamine (mg),
+        // Riboflavin (mg), Niacin (mg), Ascorbic Acid (mg)
+        List<Object[]> food = addFoodInfo();
+
+        // Create the linear solver with the GLOP backend.
+        MPSolver solver = MPSolver.createSolver("GLOP");
+        if (solver == null) {
+            System.out.println("Could not create solver GLOP");
+            return;
+        }
+
+        double infinity = Double.POSITIVE_INFINITY;
+        List<MPVariable> foods = new ArrayList<>();
+        for (Object[] objects : food) {
+            foods.add(solver.makeNumVar(0.0, infinity, (String) objects[0]));
+        }
+        System.out.println("Number of variables = " + solver.numVariables());
+
+        MPConstraint[] constraints = new MPConstraint[nutrients.size()];
+        for (int i = 0; i < nutrients.size(); ++i) {
+            constraints[i] = solver.makeConstraint(
+                    (double) nutrients.get(i)[1], infinity, (String) nutrients.get(i)[0]);
+            for (int j = 0; j < food.size(); ++j) {
+                constraints[i].setCoefficient(foods.get(j), ((double[]) food.get(j)[3])[i]);
+            }
+            // constraints.add(constraint);
+        }
+        System.out.println("Number of constraints = " + solver.numConstraints());
+
+        MPObjective objective = solver.objective();
+        for (int i = 0; i < food.size(); ++i) {
+            objective.setCoefficient(foods.get(i), 1);
+        }
+        objective.setMinimization();
+
+        final MPSolver.ResultStatus resultStatus = solver.solve();
+
+        // Check that the problem has an optimal solution.
+        if (resultStatus != MPSolver.ResultStatus.OPTIMAL) {
+            System.err.println("The problem does not have an optimal solution!");
+            if (resultStatus == MPSolver.ResultStatus.FEASIBLE) {
+                System.err.println("A potentially suboptimal solution was found.");
+            } else {
+                System.err.println("The solver could not solve the problem.");
+                return;
+            }
+        }
+
+        // Display the amounts (in dollars) to purchase of each food.
+        double[] nutrientsResult = new double[nutrients.size()];
+        System.out.println("\nAnnual Foods:");
+        for (int i = 0; i < foods.size(); ++i) {
+            if (foods.get(i).solutionValue() > 0.0) {
+                System.out.println(food.get(i)[0] + ": $" + 365 * foods.get(i).solutionValue());
+                for (int j = 0; j < nutrients.size(); ++j) {
+                    nutrientsResult[j] += ((double[]) food.get(i)[3])[j] * foods.get(i).solutionValue();
+                }
+            }
+        }
+        System.out.println("\nOptimal annual price: $" + 365 * objective.value());
+
+        System.out.println("\nNutrients per day:");
+        for (int i = 0; i < nutrients.size(); ++i) {
+            System.out.println(
+                    nutrients.get(i)[0] + ": " + nutrientsResult[i] + " (min " + nutrients.get(i)[1] + ")");
+        }
+
+        System.out.println("\nAdvanced usage:");
+        System.out.println("Problem solved in " + solver.wallTime() + " milliseconds");
+        System.out.println("Problem solved in " + solver.iterations() + " iterations");
+    }
+
+    private static List<Object[]> addNutrients() {
         List<Object[]> nutrients = new ArrayList<>();
         nutrients.add(new Object[] {"Calories (kcal)", 3.0});
         nutrients.add(new Object[] {"Protein (g)", 70.0});
@@ -24,11 +102,12 @@ public final class StiglerDiet {
         nutrients.add(new Object[] {"Vitamin B2 (mg)", 2.7});
         nutrients.add(new Object[] {"Niacin (mg)", 18.0});
         nutrients.add(new Object[] {"Vitamin C (mg)", 75.0});
+        return nutrients;
+    }
 
+    private static List<Object[]> addFoodInfo() {
         List<Object[]> data = new ArrayList<>();
 
-        // Unit, 1939 price (cents), Calories (kcal), Protein (g), Calcium (g), Iron (mg), Vitamin A (KIU), Thiamine (mg),
-        // Riboflavin (mg), Niacin (mg), Ascorbic Acid (mg)
         data.add(new Object[] {"Wheat Flour (Enriched)", "10 lb.", 36,
                 new double[] {44.7, 1411, 2, 365, 0, 55.4, 33.3, 441, 0}});
         data.add(new Object[] {
@@ -179,73 +258,7 @@ public final class StiglerDiet {
         data.add(new Object[] {"Strawberry Preserves", "1 lb.", 20.5,
                 new double[] {6.4, 11, 0.4, 7, 0.2, 0.2, 0.4, 3, 0}});
 
-
-        // Create the linear solver with the GLOP backend.
-        MPSolver solver = MPSolver.createSolver("GLOP");
-        if (solver == null) {
-            System.out.println("Could not create solver GLOP");
-            return;
-        }
-
-        double infinity = java.lang.Double.POSITIVE_INFINITY;
-        List<MPVariable> foods = new ArrayList<>();
-        for (int i = 0; i < data.size(); ++i) {
-            foods.add(solver.makeNumVar(0.0, infinity, (String) data.get(i)[0]));
-        }
-        System.out.println("Number of variables = " + solver.numVariables());
-
-        MPConstraint[] constraints = new MPConstraint[nutrients.size()];
-        for (int i = 0; i < nutrients.size(); ++i) {
-            constraints[i] = solver.makeConstraint(
-                    (double) nutrients.get(i)[1], infinity, (String) nutrients.get(i)[0]);
-            for (int j = 0; j < data.size(); ++j) {
-                constraints[i].setCoefficient(foods.get(j), ((double[]) data.get(j)[3])[i]);
-            }
-            // constraints.add(constraint);
-        }
-        System.out.println("Number of constraints = " + solver.numConstraints());
-
-        MPObjective objective = solver.objective();
-        for (int i = 0; i < data.size(); ++i) {
-            objective.setCoefficient(foods.get(i), 1);
-        }
-        objective.setMinimization();
-
-        final MPSolver.ResultStatus resultStatus = solver.solve();
-
-        // Check that the problem has an optimal solution.
-        if (resultStatus != MPSolver.ResultStatus.OPTIMAL) {
-            System.err.println("The problem does not have an optimal solution!");
-            if (resultStatus == MPSolver.ResultStatus.FEASIBLE) {
-                System.err.println("A potentially suboptimal solution was found.");
-            } else {
-                System.err.println("The solver could not solve the problem.");
-                return;
-            }
-        }
-
-        // Display the amounts (in dollars) to purchase of each food.
-        double[] nutrientsResult = new double[nutrients.size()];
-        System.out.println("\nAnnual Foods:");
-        for (int i = 0; i < foods.size(); ++i) {
-            if (foods.get(i).solutionValue() > 0.0) {
-                System.out.println(data.get(i)[0] + ": $" + 365 * foods.get(i).solutionValue());
-                for (int j = 0; j < nutrients.size(); ++j) {
-                    nutrientsResult[j] += ((double[]) data.get(i)[3])[j] * foods.get(i).solutionValue();
-                }
-            }
-        }
-        System.out.println("\nOptimal annual price: $" + 365 * objective.value());
-
-        System.out.println("\nNutrients per day:");
-        for (int i = 0; i < nutrients.size(); ++i) {
-            System.out.println(
-                    nutrients.get(i)[0] + ": " + nutrientsResult[i] + " (min " + nutrients.get(i)[1] + ")");
-        }
-
-        System.out.println("\nAdvanced usage:");
-        System.out.println("Problem solved in " + solver.wallTime() + " milliseconds");
-        System.out.println("Problem solved in " + solver.iterations() + " iterations");
+        return data;
     }
 
     private StiglerDiet() {}

@@ -3,7 +3,8 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
 import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
-import {SelfQuestionsComponent} from "./home/self-questions/self-questions.component";
+import {PersonalQuestionsComponent} from "./home/personal-questions/personal-questions.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   {
@@ -21,8 +22,12 @@ const routes: Routes = [
     component: LoseWeightComponent
   },
   {
-    path: 'quiz/self-questions',
-    component: SelfQuestionsComponent
+    path: 'quiz/personal-questions',
+    component: PersonalQuestionsComponent
+  },
+  {
+    path: 'account/create',
+    component: LoginComponent
   },
   {
     path: '**',
