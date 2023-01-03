@@ -40,7 +40,7 @@ export class PersonalQuestionsComponent {
   }
 
   public onDoneClick(): void {
-    this.router.navigate(['/account/create']);
+    this.router.navigate(['/quiz/email']);
     console.log(this.genderFormGroup);
     console.log(this.personalFormGroup);
   }

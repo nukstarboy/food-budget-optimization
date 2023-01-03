@@ -19,6 +19,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {PersonalQuestionsComponent} from './home/personal-questions/personal-questions.component';
 import {LoginComponent} from './login/login.component';
+import {EmailComponent} from './home/email/email.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {LoginComponent} from './login/login.component';
     QuizQuestionsComponent,
     LoseWeightComponent,
     PersonalQuestionsComponent,
-    LoginComponent
+    LoginComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

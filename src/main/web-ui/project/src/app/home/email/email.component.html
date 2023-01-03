@@ -1,0 +1,8 @@
+<h1>Enter your email to get your personal meal and workout plan</h1>
+<form [formGroup]="emailFormGroup">
+  <mat-form-field appearance="fill">
+    <mat-label>Your email</mat-label>
+    <input formControlName="email" matInput placeholder="Email" required>
+  </mat-form-field>
+</form>
+<button [disabled]="emailFormGroup.invalid" mat-raised-button color="primary" (click)="onButtonClick()">Submit</button>
