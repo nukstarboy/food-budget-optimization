@@ -22,14 +22,11 @@ export class PersonalQuestionsComponent {
   public bodyTypeFormGroup: FormGroup = this.formBuilder.group({
     bodyType: ['', Validators.required]
   });
-  public mealsFormGroup: FormGroup = this.formBuilder.group({
-    meals: ['', Validators.required]
+  public activityFormGroup: FormGroup = this.formBuilder.group({
+    activity: ['', Validators.required]
   });
   public workoutFormGroup: FormGroup = this.formBuilder.group({
     workout: ['', Validators.required]
-  });
-  public sleepFormGroup: FormGroup = this.formBuilder.group({
-    sleep: ['', Validators.required]
   });
   public dietaryRestrictionsFormGroup: FormGroup = this.formBuilder.group({
     dietaryRestrictions: ['', Validators.required]

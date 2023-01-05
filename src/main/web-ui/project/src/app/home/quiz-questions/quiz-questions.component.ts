@@ -14,7 +14,7 @@ export class QuizQuestionsComponent implements OnInit {
   }
 
   onButtonClick() {
-    this.router.navigate(['/quiz/lose-weight']);
+    this.router.navigate(['/quiz/personal-questions']);
   }
 
 }

@@ -58,16 +58,16 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="mealsFormGroup">
-    <form [formGroup]="mealsFormGroup">
-      <ng-template matStepLabel>How many meals a day would you like to have?</ng-template>
+  <mat-step [stepControl]="activityFormGroup">
+    <form [formGroup]="activityFormGroup">
+      <ng-template matStepLabel>What is your baseline activity level?</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Select me</mat-label>
-        <mat-select formControlName="meals">
-          <mat-option value="two">Two(breakfast, dinner, optional snacks)</mat-option>
-          <mat-option value="three">Three(breakfast, lunch, and dinner)</mat-option>
-          <mat-option value="four">Four(breakfast, snack, lunch, and dinner)</mat-option>
-          <mat-option value="five">Five(breakfast, lunch, dinner, and two snacks)</mat-option>
+        <mat-select formControlName="activity">
+          <mat-option value="not active">Not Active(more sitting)</mat-option>
+          <mat-option value="lightly active">Lightly Active(spend some time on your feet)</mat-option>
+          <mat-option value="active">Active(doing some physical activity)</mat-option>
+          <mat-option value="very active">Very Active(doing heavy physical activity)</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
@@ -97,25 +97,6 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="sleepFormGroup">
-    <form [formGroup]="sleepFormGroup">
-      <ng-template matStepLabel>How much do you usually sleep?</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
-        <mat-select formControlName="sleep">
-          <mat-option value="up to 5">Up to 5 hours</mat-option>
-          <mat-option value="5-6">5-6 hours</mat-option>
-          <mat-option value="7-8">7-8 hours</mat-option>
-          <mat-option value="more than 8">More than 8 hours</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
   <mat-step [stepControl]="dietaryRestrictionsFormGroup">
     <form [formGroup]="dietaryRestrictionsFormGroup">
       <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>
@@ -135,8 +116,8 @@
   </mat-step>
 
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>We're done!</ng-template>
+    <p>You successfully complete your personal quiz!</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="onDoneClick()">Done</button>

@@ -11,7 +11,6 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {HomeComponent} from "./home/home.component";
 import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.component";
-import {LoseWeightComponent} from "./home/lose-weight/lose-weight.component";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -26,7 +25,6 @@ import {EmailComponent} from './home/email/email.component';
     AppComponent,
     HomeComponent,
     QuizQuestionsComponent,
-    LoseWeightComponent,
     PersonalQuestionsComponent,
     LoginComponent,
     EmailComponent
