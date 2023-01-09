@@ -19,6 +19,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {PersonalQuestionsComponent} from './home/personal-questions/personal-questions.component';
 import {LoginComponent} from './login/login.component';
 import {EmailComponent} from './home/email/email.component';
+import {HttpClientModule} from "@angular/common/http";
+import {TestService} from "./service/test.service";
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {EmailComponent} from './home/email/email.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
@@ -44,7 +47,7 @@ import {EmailComponent} from './home/email/email.component';
     MatInputModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

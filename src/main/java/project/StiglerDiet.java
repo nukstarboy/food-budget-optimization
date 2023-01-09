@@ -1,4 +1,4 @@
-package algorithm;
+package project;
 
 // The Stigler diet problem.
 
@@ -7,8 +7,8 @@ import com.google.ortools.linearsolver.MPConstraint;
 import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
 import com.google.ortools.linearsolver.MPVariable;
-import models.Food;
-import models.Nutrient;
+import project.models.Food;
+import project.models.Nutrient;
 
 import java.util.ArrayList;
 import java.util.List;
