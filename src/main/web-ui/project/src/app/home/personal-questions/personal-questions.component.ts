@@ -9,7 +9,7 @@ import {PersonalQuestionsService} from "../../service/personal-questions.service
   styleUrls: ['./personal-questions.component.scss']
 })
 export class PersonalQuestionsComponent implements OnInit {
-  public isLinear: boolean = true;
+  public isStepperLinear: boolean = true;
 
   public personalQuestionsFormGroup: FormGroup<any> = new FormGroup<any>({});
 
@@ -22,8 +22,8 @@ export class PersonalQuestionsComponent implements OnInit {
   }
 
   public onDoneClick(): void {
-    this.router.navigate(['/quiz/email']);
     this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
+    this.router.navigate(['/quiz/email']);
   }
 
   private initializeFormGroup(): void {
