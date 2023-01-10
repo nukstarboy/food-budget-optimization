@@ -1,45 +1,41 @@
-import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {PersonalQuestionsService} from "../../service/personal-questions.service";
 
 @Component({
   selector: 'app-personal-questions',
   templateUrl: './personal-questions.component.html',
   styleUrls: ['./personal-questions.component.scss']
 })
-export class PersonalQuestionsComponent {
+export class PersonalQuestionsComponent implements OnInit {
   public isLinear: boolean = true;
 
-  public genderFormGroup = this.formBuilder.group({
-    gender: ['', Validators.required],
-  });
-  public personalFormGroup = this.formBuilder.group({
-    //TODO Should check the initial value of number ('' or 0)
-    weight: ['', Validators.required],
-    age: ['', Validators.required],
-    height: ['', Validators.required],
-  });
-  public bodyTypeFormGroup: FormGroup = this.formBuilder.group({
-    bodyType: ['', Validators.required]
-  });
-  public activityFormGroup: FormGroup = this.formBuilder.group({
-    activity: ['', Validators.required]
-  });
-  public workoutFormGroup: FormGroup = this.formBuilder.group({
-    workout: ['', Validators.required]
-  });
-  public dietaryRestrictionsFormGroup: FormGroup = this.formBuilder.group({
-    dietaryRestrictions: ['', Validators.required]
-  });
+  public personalQuestionsFormGroup: FormGroup<any> = new FormGroup<any>({});
 
-  public constructor(private formBuilder: FormBuilder,
+  public constructor(private readonly personalQuestionsService: PersonalQuestionsService,
                      private readonly router: Router) {
+  }
+
+  public ngOnInit(): void {
+    this.initializeFormGroup();
   }
 
   public onDoneClick(): void {
     this.router.navigate(['/quiz/email']);
-    console.log(this.genderFormGroup);
-    console.log(this.personalFormGroup);
+    this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
   }
 
+  private initializeFormGroup(): void {
+    this.personalQuestionsFormGroup = new FormGroup<any>({
+      gender: new FormControl(['', Validators.required]),
+      weight: new FormControl(['', Validators.required]),
+      age: new FormControl(['', Validators.required]),
+      height: new FormControl(['', Validators.required]),
+      bodyType: new FormControl(['', Validators.required]),
+      activity: new FormControl(['', Validators.required]),
+      workout: new FormControl(['', Validators.required]),
+      dietaryRestrictions: new FormControl(['', Validators.required])
+    });
+  }
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
+import {PersonalQuestionsService} from "../../service/personal-questions.service";
 
 @Component({
   selector: 'app-email',
@@ -7,18 +8,22 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit {
-  public emailFormGroup: FormGroup = this.formBuilder.group({
-    email: ['', Validators.required]
-  });
+  public emailFormGroup: FormGroup<any> = new FormGroup<any>({});
 
-  constructor(private formBuilder: FormBuilder) { }
+  public constructor(private readonly personalQuestionsService: PersonalQuestionsService) {
+  }
 
   ngOnInit(): void {
     this.initializeFormGroup();
+    this.personalQuestionsService.formArray$.subscribe((formGroup) => {
+      console.log(formGroup);
+    })
   }
 
   private initializeFormGroup() {
-
+    this.emailFormGroup = new FormGroup<any>({
+      email: new FormControl()
+    })
   }
 
   public onButtonClick() {

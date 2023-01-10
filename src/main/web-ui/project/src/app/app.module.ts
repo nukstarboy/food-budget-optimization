@@ -20,7 +20,8 @@ import {PersonalQuestionsComponent} from './home/personal-questions/personal-que
 import {LoginComponent} from './login/login.component';
 import {EmailComponent} from './home/email/email.component';
 import {HttpClientModule} from "@angular/common/http";
-import {TestService} from "./service/test.service";
+import {PlanService} from "./service/plan.service";
+import {PersonalQuestionsService} from "./service/personal-questions.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import {TestService} from "./service/test.service";
     MatInputModule,
     MatSelectModule
   ],
-  providers: [TestService],
+  providers: [PlanService, PersonalQuestionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {TestService} from "../service/test.service";
+import {PlanService} from "../service/plan.service";
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,10 @@ import {TestService} from "../service/test.service";
 export class HomeComponent implements OnInit {
 
   constructor(private readonly router: Router,
-              private readonly testService: TestService) { }
+              private readonly planService: PlanService) { }
 
   ngOnInit(): void {
-    this.testService.getString()
+    this.planService.getString()
       .subscribe((text) => console.log(text))
   }
 

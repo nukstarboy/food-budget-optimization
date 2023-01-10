@@ -3,13 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable()
-export class TestService {
+export class PlanService {
   private url: string = 'http://localhost:8080/';
 
   public constructor(private readonly http: HttpClient) {
   }
 
-  getString(): Observable<any> {
+  public getString(): Observable<any> {
     return this.http.get(this.url, { responseType: "text" });
   }
 }

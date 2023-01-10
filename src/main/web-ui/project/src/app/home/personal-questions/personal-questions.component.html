@@ -1,7 +1,7 @@
 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
 
-  <mat-step [stepControl]="genderFormGroup">
-    <form [formGroup]="genderFormGroup">
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
       <ng-template matStepLabel>Select your gender</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Select me</mat-label>
@@ -16,8 +16,8 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="personalFormGroup">
-    <form [formGroup]="personalFormGroup">
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
       <ng-template matStepLabel>Let's check your body measurements</ng-template>
       <div class="body-measurements">
         <mat-form-field appearance="fill">
@@ -40,8 +40,8 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="bodyTypeFormGroup">
-    <form [formGroup]="bodyTypeFormGroup">
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
       <ng-template matStepLabel>What is your body type?</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Select me</mat-label>
@@ -58,8 +58,8 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="activityFormGroup">
-    <form [formGroup]="activityFormGroup">
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
       <ng-template matStepLabel>What is your baseline activity level?</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Select me</mat-label>
@@ -77,8 +77,8 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="workoutFormGroup">
-    <form [formGroup]="workoutFormGroup">
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
       <ng-template matStepLabel>Do you workout?</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Select me</mat-label>
@@ -97,8 +97,8 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="dietaryRestrictionsFormGroup">
-    <form [formGroup]="dietaryRestrictionsFormGroup">
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
       <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Select me</mat-label>
