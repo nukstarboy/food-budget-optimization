@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="healthy" />
         <module name="eating-healthy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eating-healthy" target="17" />
+      <module name="healthy" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eating-healthy" options="-parameters" />
+      <module name="healthy" options="-parameters" />
     </option>
   </component>
 </project>
