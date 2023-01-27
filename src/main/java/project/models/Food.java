@@ -1,12 +1,15 @@
 package project.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Food {
     @Id
-    public String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public int id;
     public String name;
     public String quantity;
     public double price;

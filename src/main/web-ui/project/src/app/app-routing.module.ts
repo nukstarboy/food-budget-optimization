@@ -5,6 +5,7 @@ import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.compo
 import {PersonalQuestionsComponent} from "./home/personal-questions/personal-questions.component";
 import {LoginComponent} from "./login/login.component";
 import {EmailComponent} from "./home/email/email.component";
+import {SignupComponent} from "./home/signup/signup.component";
 
 const routes: Routes = [
   {
@@ -26,8 +27,12 @@ const routes: Routes = [
     component: EmailComponent
   },
   {
-    path: 'account/create',
+    path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: '**',

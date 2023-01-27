@@ -14,11 +14,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.planService.getString()
-      .subscribe((text) => console.log(text))
+      .subscribe((text) => console.log(text));
+
+    // this.planService.add()
+    //   .subscribe((text) => console.log(text));
   }
 
   onButtonClick() {
-    this.router.navigate(['/quiz/questions']);
+    this.router.navigate(['/login']);
   }
 
 }

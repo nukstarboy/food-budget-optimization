@@ -12,4 +12,8 @@ export class PlanService {
   public getString(): Observable<any> {
     return this.http.get(this.url, { responseType: "text" });
   }
+
+  public add(): Observable<any> {
+    return this.http.post(this.url + "quiz/questions", { responseType: "text" });
+  }
 }

@@ -22,6 +22,7 @@ import {EmailComponent} from './home/email/email.component';
 import {HttpClientModule} from "@angular/common/http";
 import {PlanService} from "./service/plan.service";
 import {PersonalQuestionsService} from "./service/personal-questions.service";
+import {SignupComponent} from './home/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {PersonalQuestionsService} from "./service/personal-questions.service";
     QuizQuestionsComponent,
     PersonalQuestionsComponent,
     LoginComponent,
-    EmailComponent
+    EmailComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

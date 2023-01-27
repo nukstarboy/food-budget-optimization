@@ -1,1 +1,28 @@
-<p>login works!</p>
+<h2>Login form</h2>
+
+<form [formGroup]="form">
+
+  <div class="row">
+    <div class=" col-md-offset-1 col-md-4">
+      <label> Email </label>
+      <input formControlName="email" class="form-control" type="text">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class=" col-md-offset-1 col-md-4">
+      <label> Password </label>
+      <input formControlName="password" class="form-control" type="password">
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 40px;">
+    <div>
+      <button (click)="onLoginButtonClick()">Login</button>
+    </div>
+    <div>
+      <button (click)="onSignupButtonClick()">Signup</button>
+    </div>
+  </div>
+
+</form>
