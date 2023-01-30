@@ -12,36 +12,28 @@ import {AdminService} from '../service/admin-service.service';
 export class LoginComponent implements OnInit {
   private adminDetail: AdminDetail | undefined;
 
-  public constructor(private readonly adminService: AdminService, private readonly router: Router) {}
+  public isPasswordVisible: boolean = true;
+
+  public formGroup: FormGroup = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
+
+  public constructor(private readonly adminService: AdminService, private readonly router: Router) {
+  }
 
   public ngOnInit(): void {
-    if ((this.adminService.isLoggedIn())) {
+    if (this.adminService.isLoggedIn()) {
       this.router.navigate(['/profile']);
     } else {
       this.router.navigate(['/login']);
     }
   }
 
-  // create the form object.
-  form = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
-
-  get Email() {
-    return this.form.get('email');
-  }
-
-  get Password() {
-    return this.form.get('password');
-  }
-
   public onLoginButtonClick(): void {
     this.adminDetail = {
-      name: undefined,
-      emailId: this.form.controls.email.value!,
-      password: this.form.controls.password.value!,
-      role: undefined
+      emailId: this.formGroup!.controls['email'].value,
+      password: this.formGroup!.controls['password'].value
     }
 
     this.adminService.login(this.adminDetail).subscribe((response) => {
@@ -66,4 +58,5 @@ export class LoginComponent implements OnInit {
   public onSignupButtonClick(): void {
     this.router.navigate(['/signup']);
   }
+
 }

@@ -1,46 +1,42 @@
-<h2>SignUp form</h2>
+<h2>Fill your signup form</h2>
 
-<form [formGroup]="form">
+<form [formGroup]="formGroup">
 
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Name </label>
-      <input formControlName="fullName" class="form-control" type="text">
-    </div>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your full name</mat-label>
+      <input formControlName="fullName" matInput placeholder="Stamat Stamatov">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input formControlName="email" matInput placeholder="example@">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input formControlName="password" matInput [type]="isPasswordVisible ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="isPasswordVisible = !isPasswordVisible"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordVisible">
+        <mat-icon>{{isPasswordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Confirm your password</mat-label>
+      <input formControlName="confirmPassword" matInput [type]="isPasswordVisible ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="isPasswordVisible = !isPasswordVisible"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordVisible">
+        <mat-icon>{{isPasswordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Your role</mat-label>
+      <input formControlName="role" matInput placeholder="User">
+    </mat-form-field>
   </div>
 
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Email </label>
-      <input formControlName="email" class="form-control" type="text">
-    </div>
-  </div>
-
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Password </label>
-      <input formControlName="password" class="form-control" type="password">
-    </div>
-  </div>
-
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Confirm Password </label>
-      <input formControlName="confirmPassword" class="form-control" type="password">
-    </div>
-  </div>
-
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Role </label>
-      <input formControlName="role" class="form-control" type="text">
-    </div>
-  </div>
-
-  <div class="row" style="margin-top: 40px;">
-    <div class="col-md-offset-1 col-md-4">
-      <button (click)="onSaveButtonClick()" class="btn btn-md btn-primary btn-style"  >Save</button>
-    </div>
-  </div>
+  <button mat-raised-button [disabled]="formGroup.invalid" (click)="onSaveButtonClick()" class="btn btn-md btn-primary btn-style"  >Save</button>
 
 </form>

@@ -1,28 +1,25 @@
-<h2>Login form</h2>
+<h2>Now you should login in your account</h2>
 
-<form [formGroup]="form">
+<form [formGroup]="formGroup">
+  <div class="example-container">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Enter your email</mat-label>
+      <input type="text" formControlName="email" matInput placeholder="example@">
+    </mat-form-field>
 
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Email </label>
-      <input formControlName="email" class="form-control" type="text">
-    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input formControlName="password" matInput [type]="isPasswordVisible ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="isPasswordVisible = !isPasswordVisible"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordVisible">
+        <mat-icon>{{isPasswordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
 
-  <div class="row">
-    <div class=" col-md-offset-1 col-md-4">
-      <label> Password </label>
-      <input formControlName="password" class="form-control" type="password">
-    </div>
-  </div>
-
-  <div class="row" style="margin-top: 40px;">
-    <div>
-      <button (click)="onLoginButtonClick()">Login</button>
-    </div>
-    <div>
-      <button (click)="onSignupButtonClick()">Signup</button>
-    </div>
+  <div style="display: flex; justify-content: space-around">
+    <button [disabled]="formGroup.invalid" mat-raised-button (click)="onLoginButtonClick()">Login</button>
+    <button mat-raised-button (click)="onSignupButtonClick()">Signup</button>
   </div>
 
 </form>

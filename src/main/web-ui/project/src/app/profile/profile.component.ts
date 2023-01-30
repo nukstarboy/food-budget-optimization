@@ -8,18 +8,13 @@ import {AdminService} from "../service/admin-service.service";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public adminId: any;
-  public data = [];
 
   public constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router) {
   }
 
-  ngOnInit() {
-    if (this.adminService.isLoggedIn()) {
-      this.route.paramMap.subscribe(params => {
-        this.adminId = +params.get('adminId')!;
-      });
-    } else {
+  public ngOnInit(): void {
+    const isNotLoggedIn = !this.adminService.isLoggedIn();
+    if (isNotLoggedIn) {
       this.router.navigate(['/login']);
     }
   }

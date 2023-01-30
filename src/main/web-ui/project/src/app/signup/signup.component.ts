@@ -10,54 +10,28 @@ import {AdminDetail} from "../models/admin-details";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  private adminDetail: AdminDetail;
 
-  private adminDetail: AdminDetail | undefined;
-
-  public constructor(private adminService: AdminService, private router: Router) {}
-
-  // create the form object.
-  form = new FormGroup({
+  public formGroup: FormGroup = new FormGroup({
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', Validators.required),
     role: new FormControl('', Validators.required),
   });
+  public isPasswordVisible: boolean = true;
 
-  get FullName() {
-    return this.form.get('fullName');
+  public constructor(private adminService: AdminService, private router: Router) {
   }
 
-  get Email() {
-    return this.form.get('email');
-  }
-
-  get Password() {
-    return this.form.get('password');
-  }
-
-  get ConfirmPassword() {
-    return this.form.get('confirmPassword');
-  }
-
-  get Role() {
-    return this.form.get('role');
-  }
-
-
-  onSaveButtonClick(): void {
-    let pass = this.form.controls.password.value;
-    let confirmPass = this.form.controls.confirmPassword.value;
+  public onSaveButtonClick(): void {
+    let pass = this.formGroup.controls['password'].value;
+    let confirmPass = this.formGroup.controls['confirmPassword'].value;
 
     if (pass == confirmPass) {
-      this.adminDetail = {
-        name: this.form.controls.fullName.value!,
-        emailId: this.form.controls.email.value!,
-        password: this.form.controls.password.value!,
-        role: this.form.controls.role.value!
-      }
+      this.buildAdminDetail();
 
-      this.adminService.saveAdminDetails(this.adminDetail).subscribe(
+      this.adminService.saveAdminDetails(this.adminDetail!).subscribe(
         () => {
           this.router.navigate(['/login']);
         },
@@ -68,6 +42,15 @@ export class SignupComponent {
 
     } else {
       alert("Password and confirm password not match.");
+    }
+  }
+
+  private buildAdminDetail(): void {
+    this.adminDetail = {
+      name: this.formGroup.controls['fullName'].value,
+      emailId: this.formGroup.controls['email'].value,
+      password: this.formGroup.controls['password'].value,
+      role: this.formGroup.controls['role'].value
     }
   }
 }

@@ -10,7 +10,8 @@ import {Observable} from "rxjs";
 export class AdminService {
   private baseUrl = "http://localhost:8080/";
 
-  public constructor(private readonly http: HttpClient, private readonly router: Router) {}
+  public constructor(private readonly http: HttpClient, private readonly router: Router) {
+  }
 
   public saveAdminDetails(adminDetail: AdminDetail): Observable<any> {
     let url = this.baseUrl + "saveAdmin";
@@ -34,7 +35,6 @@ export class AdminService {
   * Check whether User is loggedIn or not.
   */
   public isLoggedIn(): boolean {
-
     // create an instance of JwtHelper class.
     // let jwtHelper = new JwtHelperService();
 
@@ -44,18 +44,15 @@ export class AdminService {
     // check whether if token have something or it is null.
     if (!token) {
       return false;
+    } else {
+      // get the Expiration date of the token by calling getTokenExpirationDate(String) method of JwtHelper class. this method accepts a string value which is nothing but a token.
+      // let expirationDate = jwtHelper.getTokenExpirationDate(token);
+
+      // check whether the token is expired or not by calling isTokenExpired() method of JwtHelper class.
+      // let isExpired = jwtHelper.isTokenExpired(token);
+
+      return true;
     }
-    return true;
-
-    // get the Expiration date of the token by calling getTokenExpirationDate(String) method of JwtHelper class. this method accepts a string value which is nothing but a token.
-
-    // let expirationDate = jwtHelper.getTokenExpirationDate(token);
-
-    // check whether the token is expired or not by calling isTokenExpired() method of JwtHelper class.
-
-    // let isExpired = jwtHelper.isTokenExpired(token);
-
-    // return !isExpired;
   }
 
 }
