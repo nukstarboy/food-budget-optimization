@@ -19,7 +19,7 @@ export class AdminService {
 
   public login(adminDetail: AdminDetail): Observable<any> {
     let url = this.baseUrl + "login";
-    return  this.http.post(url, adminDetail, {observe: 'response'});
+    return this.http.post(url, adminDetail, {observe: 'response'});
   }
 
   public logout(): void {
@@ -33,7 +33,6 @@ export class AdminService {
   /*
   * Check whether User is loggedIn or not.
   */
-
   public isLoggedIn(): boolean {
 
     // create an instance of JwtHelper class.
@@ -57,25 +56,6 @@ export class AdminService {
     // let isExpired = jwtHelper.isTokenExpired(token);
 
     // return !isExpired;
-  }
-
-
-  public getAdminDetail(adminId: any): Observable<any> {
-    let url = this.baseUrl + "getAdminData/" + adminId;
-
-    // create an instance of Header object.
-    let headers = new Headers();
-
-    // get token from localStorage.
-    let token = localStorage.getItem('token');
-
-    // Append Authorization header.
-    headers.append('Authorization', 'Bearer ' + token);
-
-    // create object of RequestOptions and include that in it.
-    // let options = new RequestOptions({headers: headers});
-
-    return this.http.get(url);
   }
 
 }

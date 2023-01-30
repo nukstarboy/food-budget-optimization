@@ -27,7 +27,6 @@ public class AdminController {
         return this.adminService.login(adminDetail);
     }
 
-
     @GetMapping("/getAdminData/{adminId}")
     public List<AdminDetail> getAdminData(@PathVariable int adminId, @RequestHeader("Authorization") String authorizationToken) {
         return this.adminService.getAdminData(authorizationToken, adminId);

@@ -1,28 +1,3 @@
 <div style="text-align: right ; margin-right: 40px;">
-
-  <h2><a (click)="onLogoutAnchorClick()">Logout</a> <br></h2>
-
-</div>
-
-<div style="text-align: center ; margin-right: 40px;">
-
-  <h2> KZL </h2>
-
-</div>
-
-<div *ngIf="haveData > 0 && dataRequest">
-  <table class="table table-responsive table-striped">
-
-    <tr>
-      <th>Email ID</th>
-      <th>Name</th>
-      <th>Password</th>
-      <th>Role</th>
-    </tr>
-
-  </table>
-</div>
-
-<div *ngIf="haveData == 0 && dataRequest">
-  Don't have Data.
+  <button (click)="onLogoutAnchorClick()">Logout</button>
 </div>
