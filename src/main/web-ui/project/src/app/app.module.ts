@@ -22,7 +22,8 @@ import {EmailComponent} from './home/email/email.component';
 import {HttpClientModule} from "@angular/common/http";
 import {PlanService} from "./service/plan.service";
 import {PersonalQuestionsService} from "./service/personal-questions.service";
-import {SignupComponent} from './home/signup/signup.component';
+import {SignupComponent} from './signup/signup.component';
+import {ProfileComponent} from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {SignupComponent} from './home/signup/signup.component';
     PersonalQuestionsComponent,
     LoginComponent,
     EmailComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

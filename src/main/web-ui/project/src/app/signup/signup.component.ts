@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {AdminService} from "../../service/admin-service.service";
+import {AdminService} from "../service/admin-service.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AdminDetail} from "../../models/admin-details";
+import {AdminDetail} from "../models/admin-details";
 
 @Component({
   selector: 'app-signup',

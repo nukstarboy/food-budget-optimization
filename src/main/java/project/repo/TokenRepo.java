@@ -1,11 +1,12 @@
 package project.repo;
 
-public interface TokenRepo {
-    void saveUserEmail(String email, int adminId);
+import org.springframework.data.repository.CrudRepository;
+import project.models.Token;
 
-    Boolean updateToken(String email, String authenticationToken, String secretKey);
+public interface TokenRepo extends CrudRepository<Token, Integer> {
+    Token getTokenByEmailId(String emailId);
 
-    Integer getTokenDetail(String email);
+    boolean existsTokenByEmailId(String emailId);
 
-    Integer tokenAuthentication(String token, int emailId);
+    Token getTokenByUserIDAndAndAuthenticationToken(int userId, String authenticationToken);
 }

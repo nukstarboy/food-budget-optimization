@@ -8,13 +8,9 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class AdminService {
-
-  // Base URL
   private baseUrl = "http://localhost:8080/";
 
-
-  public constructor(private readonly http: HttpClient, private readonly router: Router) {
-  }
+  public constructor(private readonly http: HttpClient, private readonly router: Router) {}
 
   public saveAdminDetails(adminDetail: AdminDetail): Observable<any> {
     let url = this.baseUrl + "saveAdmin";
@@ -23,10 +19,10 @@ export class AdminService {
 
   public login(adminDetail: AdminDetail): Observable<any> {
     let url = this.baseUrl + "login";
-    return this.http.post(url, adminDetail);
+    return  this.http.post(url, adminDetail, {observe: 'response'});
   }
 
-  logout() {
+  public logout(): void {
     // Remove the token from the localStorage.
     localStorage.removeItem('token');
 

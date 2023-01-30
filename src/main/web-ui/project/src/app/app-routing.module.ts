@@ -5,7 +5,8 @@ import {QuizQuestionsComponent} from "./home/quiz-questions/quiz-questions.compo
 import {PersonalQuestionsComponent} from "./home/personal-questions/personal-questions.component";
 import {LoginComponent} from "./login/login.component";
 import {EmailComponent} from "./home/email/email.component";
-import {SignupComponent} from "./home/signup/signup.component";
+import {SignupComponent} from "./signup/signup.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: '**',

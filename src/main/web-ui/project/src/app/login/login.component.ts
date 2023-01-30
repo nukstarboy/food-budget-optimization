@@ -10,15 +10,13 @@ import {AdminService} from '../service/admin-service.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   private adminDetail: AdminDetail | undefined;
 
-  constructor(private readonly adminService: AdminService, private readonly router: Router) {
-  }
+  public constructor(private readonly adminService: AdminService, private readonly router: Router) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     if ((this.adminService.isLoggedIn())) {
-      this.router.navigate(['/profile', localStorage.getItem('id')]);
+      this.router.navigate(['/profile']);
     } else {
       this.router.navigate(['/login']);
     }
@@ -38,7 +36,7 @@ export class LoginComponent implements OnInit {
     return this.form.get('password');
   }
 
-  onLoginButtonClick() {
+  public onLoginButtonClick(): void {
     this.adminDetail = {
       name: undefined,
       emailId: this.form.controls.email.value!,
@@ -47,28 +45,25 @@ export class LoginComponent implements OnInit {
     }
 
     this.adminService.login(this.adminDetail).subscribe((response) => {
-        let result = response.json();
-
-        if (result > 0) {
+        if (response.status === 200) {
+          //TODO It's not working...
           let token = response.headers.get("Authorization");
-
           localStorage.setItem("token", token);
-          localStorage.setItem("id", result);
 
-          this.router.navigate(['/profile', result]);
+          this.router.navigate(['/profile']);
         }
-        if (result == -1) {
-          alert("please register before login Or Invalid combination of Email and password");
-        }
-
       },
-      () => {
-        console.log("Error in authentication");
+      (response) => {
+        if (response.status === 404) {
+          alert("please register before login Or Invalid combination of Email and password");
+        } else {
+          console.log("Error in authentication");
+        }
       }
     );
   }
 
-  onSignupButtonClick() {
+  public onSignupButtonClick(): void {
     this.router.navigate(['/signup']);
   }
 }
