@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import project.models.AdminDetail;
 import project.models.Token;
 import project.repo.AdminRepo;
+import project.utils.GenerateToken;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
@@ -24,12 +24,10 @@ public class AdminService {
         this.tokenService = tokenService;
     }
 
-    @Transactional
     public AdminDetail saveAdminDetail(AdminDetail adminDetail) {
         return adminRepo.save(adminDetail);
     }
 
-    @Transactional
     public AdminDetail adminLogin(String emailId, String password) {
         return adminRepo.getAdminDetailByEmailIdAndPassword(emailId, password);
     }
@@ -79,7 +77,6 @@ public class AdminService {
         }
     }
 
-    @Transactional
     public List<AdminDetail> getAdminData(String authorizationToken, int adminId) {
         String token[] = authorizationToken.split(" ");
         Token getToken = tokenService.tokenAuthentication(adminId, token[1]);

@@ -1,4 +1,4 @@
-package project.service;
+package project.utils;
 
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
