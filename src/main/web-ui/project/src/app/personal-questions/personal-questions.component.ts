@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {PersonalQuestionsService} from "../../service/personal-questions.service";
+import {PersonalQuestions} from '../models/personal-questions';
+import {PersonalQuestionsService} from "../service/personal-questions.service";
+import {PlanService} from "../service/plan.service";
 
 @Component({
   selector: 'app-personal-questions',
@@ -14,6 +16,7 @@ export class PersonalQuestionsComponent implements OnInit {
   public personalQuestionsFormGroup: FormGroup<any> = new FormGroup<any>({});
 
   public constructor(private readonly personalQuestionsService: PersonalQuestionsService,
+                     private readonly planService: PlanService,
                      private readonly router: Router) {
   }
 
@@ -22,8 +25,27 @@ export class PersonalQuestionsComponent implements OnInit {
   }
 
   public onDoneClick(): void {
-    this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
-    this.router.navigate(['/quiz/email']);
+    const personalQuestions = this.buildPersonalQuestions();
+    this.planService.savePersonalPlan(personalQuestions).subscribe(() => {
+      console.log(personalQuestions);
+      this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
+      this.router.navigate(['/quiz/email']);
+    });
+  }
+
+  private buildPersonalQuestions(): PersonalQuestions {
+    const emailId = localStorage.getItem("username");
+    return {
+      gender: this.personalQuestionsFormGroup.controls['gender'].value,
+      weight: this.personalQuestionsFormGroup.controls['weight'].value,
+      age: this.personalQuestionsFormGroup.controls['age'].value,
+      height: this.personalQuestionsFormGroup.controls['height'].value,
+      bodyType: this.personalQuestionsFormGroup.controls['bodyType'].value,
+      activity: this.personalQuestionsFormGroup.controls['activity'].value,
+      workout: this.personalQuestionsFormGroup.controls['workout'].value,
+      dietaryRestrictions: this.personalQuestionsFormGroup.controls['dietaryRestrictions'].value,
+      planOwner: emailId
+    }
   }
 
   private initializeFormGroup(): void {

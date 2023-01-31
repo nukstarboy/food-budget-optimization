@@ -22,4 +22,8 @@ export class ProfileComponent implements OnInit {
   public onLogoutAnchorClick(): void {
     this.adminService.logout()
   }
+
+  public onCreateNewMealDietButtonClick(): void {
+    this.router.navigate(['/quiz/questions']);
+  }
 }

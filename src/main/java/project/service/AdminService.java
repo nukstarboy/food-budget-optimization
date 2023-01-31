@@ -37,7 +37,7 @@ public class AdminService {
         HttpHeaders httpHeader = null;
 
         // Authenticate User.
-        AdminDetail loginUser = adminLogin(adminDetail.getEmailId(), adminDetail.getPassword());
+        AdminDetail loginUser = this.adminLogin(adminDetail.getEmailId(), adminDetail.getPassword());
 
         if (loginUser != null) {
             /*

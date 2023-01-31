@@ -1,6 +1,6 @@
 export class AdminDetail {
-  emailId: string | undefined;
-  name?: string | undefined;
-  password: string | undefined;
-  role?: string | undefined;
+  emailId: string;
+  name?: string;
+  password: string;
+  role?: string;
 }

@@ -10,7 +10,7 @@ import {AdminService} from '../service/admin-service.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private adminDetail: AdminDetail | undefined;
+  private adminDetail: AdminDetail;
 
   public isPasswordVisible: boolean = true;
 
@@ -32,15 +32,16 @@ export class LoginComponent implements OnInit {
 
   public onLoginButtonClick(): void {
     this.adminDetail = {
-      emailId: this.formGroup!.controls['email'].value,
-      password: this.formGroup!.controls['password'].value
-    }
+      emailId: this.formGroup.controls['email'].value,
+      password: this.formGroup.controls['password'].value
+    };
 
     this.adminService.login(this.adminDetail).subscribe((response) => {
         if (response.status === 200) {
           //TODO It's not working...
           let token = response.headers.get("Authorization");
           localStorage.setItem("token", token);
+          localStorage.setItem("username", this.adminDetail?.emailId!);
 
           this.router.navigate(['/profile']);
         }
