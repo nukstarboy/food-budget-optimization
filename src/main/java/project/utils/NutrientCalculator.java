@@ -8,15 +8,15 @@ import java.util.List;
 
 @Service
 public class NutrientCalculator {
-    public List<Nutrient> addNutrients() {
+    public List<Nutrient> addNutrients(int age, String gender, double weight, double height, String activity) {
         List<Nutrient> nutrients = new ArrayList<>();
-        double calculateCalories = getCalories(26, "male", 80, 197, "3") / 1000;
+        double calculateCalories = getCalories(age, gender, weight, height, activity) / 1000;
         double calculateProtein = (calculateCalories * 0.23) / 10;
-        double calculateIron = getIron(26, "male");
-        double calculateVitaminB1 = getVitaminB1(26, "male");
-        double calculateVitaminB2 = getVitaminB2(26, "male");
-        double calculateVitaminC = getVitaminC(26, "male");
-        double calculateNiacin = getNiacin(26, "male");
+        double calculateIron = getIron(age, gender);
+        double calculateVitaminB1 = getVitaminB1(age, gender);
+        double calculateVitaminB2 = getVitaminB2(age, gender);
+        double calculateVitaminC = getVitaminC(age, gender);
+        double calculateNiacin = getNiacin(age, gender);
         nutrients.add(new Nutrient("Calories (kcal)", calculateCalories));
         nutrients.add(new Nutrient("Protein (g)", calculateProtein));
         nutrients.add(new Nutrient("Calcium (g)", 0.8));
@@ -121,7 +121,7 @@ public class NutrientCalculator {
         }
     }
 
-    private double getCalories(int age, String gender, int weight, int height, String activity) {
+    private double getCalories(int age, String gender, double weight, double height, String activity) {
         if (age == 0 || weight == 0 || height == 0 || 80 < age || age < 15) {
             return 0;
         }
@@ -149,11 +149,11 @@ public class NutrientCalculator {
         }
     }
 
-    private double calculateMaleCalories(int weight, int height, int age) {
+    private double calculateMaleCalories(double weight, double height, int age) {
         return (66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * age));
     }
 
-    private double calculateFemaleCalories(int weight, int height, int age) {
+    private double calculateFemaleCalories(double weight, double height, int age) {
         return (655 + (9.563 * weight) + (1.850 * height) - (4.676 * age));
     }
 }

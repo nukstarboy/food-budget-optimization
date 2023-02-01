@@ -27,7 +27,6 @@ export class PersonalQuestionsComponent implements OnInit {
   public onDoneClick(): void {
     const personalQuestions = this.buildPersonalQuestions();
     this.planService.savePersonalPlan(personalQuestions).subscribe(() => {
-      console.log(personalQuestions);
       this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
       this.router.navigate(['/quiz/email']);
     });
