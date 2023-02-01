@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {PlanService} from "../service/plan.service";
 
 @Component({
   selector: 'app-home',
@@ -9,18 +8,13 @@ import {PlanService} from "../service/plan.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private readonly router: Router,
-              private readonly planService: PlanService) { }
-
-  ngOnInit(): void {
-    this.planService.getString()
-      .subscribe((text) => console.log(text));
-
-    // this.planService.add()
-    //   .subscribe((text) => console.log(text));
+  public constructor(private readonly router: Router) {
   }
 
-  onButtonClick() {
+  ngOnInit(): void {
+  }
+
+  public onButtonClick(): void {
     this.router.navigate(['/login']);
   }
 

@@ -24,6 +24,11 @@ import {PlanService} from "./service/plan.service";
 import {PersonalQuestionsService} from "./service/personal-questions.service";
 import {SignupComponent} from './signup/signup.component';
 import {ProfileComponent} from './profile/profile.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {FoodPriceComponent} from './profile/food-price/food-price.component';
+import {NutrientsComponent} from './profile/nutrients/nutrients.component';
+import {SolveTimeComponent} from './profile/solve-time/solve-time.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import {ProfileComponent} from './profile/profile.component';
     LoginComponent,
     EmailComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    FoodPriceComponent,
+    NutrientsComponent,
+    SolveTimeComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +58,12 @@ import {ProfileComponent} from './profile/profile.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [PlanService, PersonalQuestionsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

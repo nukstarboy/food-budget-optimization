@@ -14,6 +14,10 @@ public class FoodPriceService {
         this.foodPriceRepo = foodPriceRepo;
     }
 
+    public List<FoodPrice> getAllFoodPricesByOwner(String owner) {
+        return this.foodPriceRepo.getFoodPricesByOwner(owner);
+    }
+
     public void saveAll(List<FoodPrice> foodPrices) {
         this.foodPriceRepo.saveAll(foodPrices);
     }

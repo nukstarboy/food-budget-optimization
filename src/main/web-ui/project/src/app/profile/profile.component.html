@@ -1,4 +1,13 @@
 <div style="text-align: right ; margin-right: 40px;">
-  <button mat-raised-button (click)="onCreateNewMealDietButtonClick()">Meal Diet</button>
-  <button mat-raised-button (click)="onLogoutAnchorClick()">Logout</button>
+  <div *ngIf="allFoodsWithPricesForLoginInOwner;then displayContent else displayCreateButton"></div>
+  <ng-template #displayContent>
+    <button mat-raised-button (click)="displayNutrientsInfo()">Check Food Prices</button>
+    <button mat-raised-button (click)="displayNutrientsInfo()">Check Nutrients</button>
+    <button mat-raised-button (click)="displayNutrientsInfo()">Check Solve Time</button>
+    <app-food-price [dataSource]="dataSource"></app-food-price>
+    <button mat-raised-button (click)="onCreateNewDietButtonClick()">Create New Diet</button>
+  </ng-template>
+  <ng-template #displayCreateButton>
+    <button mat-raised-button (click)="onCreateNewMealDietButtonClick()">Meal Diet</button>
+  </ng-template>
 </div>

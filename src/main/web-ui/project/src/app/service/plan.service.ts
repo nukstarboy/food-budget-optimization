@@ -5,7 +5,7 @@ import {PersonalQuestions} from "../models/personal-questions";
 
 @Injectable()
 export class PlanService {
-  private url: string = 'http://localhost:8080/';
+  private url: string = 'http://localhost:8080/plan';
 
   public constructor(private readonly http: HttpClient) {
   }
@@ -16,9 +16,5 @@ export class PlanService {
 
   public savePersonalPlan(personalQuestions: PersonalQuestions): Observable<any> {
     return this.http.post(this.url + "save-plan", personalQuestions);
-  }
-
-  public add(): Observable<any> {
-    return this.http.post(this.url + "quiz/questions", { responseType: "text" });
   }
 }

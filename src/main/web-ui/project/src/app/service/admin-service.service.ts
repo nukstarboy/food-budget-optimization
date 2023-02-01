@@ -18,6 +18,10 @@ export class AdminService {
     return this.http.post(url, adminDetail);
   }
 
+  public getLoginInUserEmailId(): string| null {
+    return localStorage.getItem("username");
+  }
+
   public login(adminDetail: AdminDetail): Observable<any> {
     let url = this.baseUrl + "login";
     return this.http.post(url, adminDetail, {observe: 'response'});
