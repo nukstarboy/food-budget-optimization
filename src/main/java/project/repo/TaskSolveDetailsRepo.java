@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TaskSolveDetailsRepo extends CrudRepository<TaskSolveDetails, Integer> {
     List<TaskSolveDetails> getAllByOwner(String owner);
+
+    void deleteAllByOwner(String owner);
 }

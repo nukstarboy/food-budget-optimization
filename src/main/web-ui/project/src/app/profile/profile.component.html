@@ -1,21 +1,15 @@
 <div style="text-align: right ; margin-right: 40px;">
-  <div *ngIf="allFoodsWithPricesForLoginInOwner;then displayContent else displayCreateButton"></div>
-  <ng-template #displayContent>
-    <button mat-raised-button (click)="displayFoodPriceTable()">Check Food Prices</button>
-    <button mat-raised-button (click)="displayNutrientsTable()">Check Nutrients</button>
-    <button mat-raised-button (click)="displayTaskDetailsTable()">Check Solve Time</button>
-    <app-food-price [isTableVisible]="shouldDisplayFoodPriceTable"
-                    [dataSource]="foodPriceDataSource">
-    </app-food-price>
-    <app-nutrients [isTableVisible]="shouldDisplayNutrientsTable"
-                   [dataSource]="nutrientsQuantityDataSource">
-    </app-nutrients>
-    <app-solve-time [isTableVisible]="shouldDisplayTaskDetailsTable"
-                    [dataSource]="taskDetailsDataSource">
-    </app-solve-time>
-    <button mat-raised-button (click)="onCreateNewDietButtonClick()">Create New Diet</button>
-  </ng-template>
-  <ng-template #displayCreateButton>
-    <button mat-raised-button (click)="onCreateNewMealDietButtonClick()">Meal Diet</button>
-  </ng-template>
+  <button mat-raised-button (click)="displayFoodPriceTable()">Check Food Prices</button>
+  <button mat-raised-button (click)="displayNutrientsTable()">Check Nutrients</button>
+  <button mat-raised-button (click)="displayTaskDetailsTable()">Check Solve Time</button>
+  <app-food-price [isTableVisible]="shouldDisplayFoodPriceTable"
+                  [dataSource]="foodPriceDataSource">
+  </app-food-price>
+  <app-nutrients [isTableVisible]="shouldDisplayNutrientsTable"
+                 [dataSource]="nutrientsQuantityDataSource">
+  </app-nutrients>
+  <app-solve-time [isTableVisible]="shouldDisplayTaskDetailsTable"
+                  [dataSource]="taskDetailsDataSource">
+  </app-solve-time>
+  <button mat-raised-button (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
 </div>

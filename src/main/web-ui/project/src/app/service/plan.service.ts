@@ -10,11 +10,7 @@ export class PlanService {
   public constructor(private readonly http: HttpClient) {
   }
 
-  public getString(): Observable<any> {
-    return this.http.get(this.url, { responseType: "text" });
-  }
-
   public savePersonalPlan(personalQuestions: PersonalQuestions): Observable<any> {
-    return this.http.post(this.url + "save-plan", personalQuestions);
+    return this.http.post(this.url + "/save-plan", personalQuestions);
   }
 }

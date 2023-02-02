@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from "./service/admin-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,22 @@ import {AdminService} from "./service/admin-service.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public isLoginButtonVisible: boolean = false;
+  public isUserLoggedIn: boolean = false;
 
-  public constructor(private readonly adminService: AdminService) {
+  public constructor(private readonly adminService: AdminService,
+                     private readonly router: Router) {
   }
 
   public ngOnInit(): void {
-    this.isLoginButtonVisible = this.adminService.isLoggedIn();
+    this.isUserLoggedIn = this.adminService.isLoggedIn();
+  }
+
+  public onHomeAnchorClick(): void {
+    this.router.navigate(['/']);
+  }
+
+  public onProfileAnchorClick(): void {
+    this.router.navigate(['/profile']);
   }
 
   public onLogoutAnchorClick(): void {

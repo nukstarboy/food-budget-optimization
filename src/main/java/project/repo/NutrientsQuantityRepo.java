@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface NutrientsQuantityRepo extends CrudRepository<NutrientsQuantity, Integer> {
     List<NutrientsQuantity> getAllByOwner(String owner);
+
+    void deleteAllByOwner(String owner);
 }

@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  public onCreateNewMealDietButtonClick(): void {
+  public onNewMealDietButtonClick(): void {
     this.router.navigate(['/quiz/questions']);
   }
 
@@ -63,10 +63,6 @@ export class ProfileComponent implements OnInit {
     this.shouldDisplayFoodPriceTable = false;
     this.shouldDisplayNutrientsTable = false;
     this.shouldDisplayTaskDetailsTable = true
-  }
-
-  public onCreateNewDietButtonClick(): void {
-
   }
 
   private buildFoodPrice(emailId: string) {

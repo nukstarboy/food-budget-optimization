@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import project.models.NutrientsQuantity;
 import project.repo.NutrientsQuantityRepo;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -20,5 +21,10 @@ public class NutrientsQuantityService {
 
     public void saveAll(List<NutrientsQuantity> nutrientsQuantities) {
         this.nutrientsQuantityRepo.saveAll(nutrientsQuantities);
+    }
+
+    @Transactional
+    public void deleteAll(String owner) {
+        this.nutrientsQuantityRepo.deleteAllByOwner(owner);
     }
 }

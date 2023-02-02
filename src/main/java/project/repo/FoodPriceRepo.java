@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface FoodPriceRepo extends CrudRepository<FoodPrice, Integer> {
     List<FoodPrice> getFoodPricesByOwner(String owner);
+
+    void deleteAllByOwner(String owner);
 }

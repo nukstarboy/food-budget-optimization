@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import project.models.TaskSolveDetails;
 import project.repo.TaskSolveDetailsRepo;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -20,5 +21,10 @@ public class TaskSolveDetailsService {
 
     public void save(TaskSolveDetails taskSolveDetails) {
         this.taskSolveDetailsRepo.save(taskSolveDetails);
+    }
+
+    @Transactional
+    public void delete(String owner) {
+        this.taskSolveDetailsRepo.deleteAllByOwner(owner);
     }
 }
