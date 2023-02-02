@@ -4,12 +4,18 @@ import org.springframework.stereotype.Service;
 import project.models.TaskSolveDetails;
 import project.repo.TaskSolveDetailsRepo;
 
+import java.util.List;
+
 @Service
 public class TaskSolveDetailsService {
     private final TaskSolveDetailsRepo taskSolveDetailsRepo;
 
     public TaskSolveDetailsService(TaskSolveDetailsRepo taskSolveDetailsRepo) {
         this.taskSolveDetailsRepo = taskSolveDetailsRepo;
+    }
+
+    public List<TaskSolveDetails> getTaskSolveDetails(String owner) {
+        return this.taskSolveDetailsRepo.getAllByOwner(owner);
     }
 
     public void save(TaskSolveDetails taskSolveDetails) {

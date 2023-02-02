@@ -9,6 +9,8 @@ import {MatPaginator} from "@angular/material/paginator";
 export class FoodPriceComponent implements AfterViewInit {
   @Input()
   public dataSource: any;
+  @Input()
+  public isTableVisible: boolean;
 
   @ViewChild(MatPaginator)
   public paginator: MatPaginator;

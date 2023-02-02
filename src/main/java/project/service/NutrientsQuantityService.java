@@ -14,6 +14,10 @@ public class NutrientsQuantityService {
         this.nutrientsQuantityRepo = nutrientsQuantityRepo;
     }
 
+    public List<NutrientsQuantity> getAllNutrientsQuantityByOwner(String owner) {
+        return this.nutrientsQuantityRepo.getAllByOwner(owner);
+    }
+
     public void saveAll(List<NutrientsQuantity> nutrientsQuantities) {
         this.nutrientsQuantityRepo.saveAll(nutrientsQuantities);
     }

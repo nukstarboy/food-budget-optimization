@@ -1,15 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-solve-time',
   templateUrl: './solve-time.component.html',
   styleUrls: ['./solve-time.component.scss']
 })
-export class SolveTimeComponent implements OnInit {
+export class SolveTimeComponent implements AfterViewInit {
+  @Input()
+  public dataSource: any;
+  @Input()
+  public isTableVisible: boolean;
+
+  @ViewChild(MatPaginator)
+  public paginator: MatPaginator;
+
+  public displayedColumns: string[] = ['id', 'optimal annual price', 'problem solved time', 'problem solved iterations', 'owner'];
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
-
 }
