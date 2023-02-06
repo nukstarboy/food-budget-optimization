@@ -16,8 +16,7 @@ public class TokenService {
         this.tokenRepo = tokenRepo;
     }
 
-    public void saveUserEmail(String email, int adminId) {
-        Token token = new Token(adminId, email);
+    public void saveUserEmail(Token token) {
         tokenRepo.save(token);
     }
 

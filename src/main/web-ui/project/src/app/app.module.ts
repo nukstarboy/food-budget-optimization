@@ -29,6 +29,7 @@ import {MatTableModule} from "@angular/material/table";
 import {FoodPriceComponent} from './profile/food-price/food-price.component';
 import {NutrientsComponent} from './profile/nutrients/nutrients.component';
 import {SolveTimeComponent} from './profile/solve-time/solve-time.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -44,24 +45,25 @@ import {SolveTimeComponent} from './profile/solve-time/solve-time.component';
     NutrientsComponent,
     SolveTimeComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    MatSlideToggleModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        MatSlideToggleModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatTabsModule
+    ],
   providers: [PlanService, PersonalQuestionsService],
   bootstrap: [AppComponent]
 })

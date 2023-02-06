@@ -31,8 +31,7 @@ export class AdminService {
     // Remove the token from the localStorage.
     localStorage.removeItem('token');
 
-    this.router.navigate(['']);
-
+    this.router.navigate(['/login']);
   }
 
   /*

@@ -21,9 +21,6 @@ export class ProfileComponent implements OnInit {
   public foodPriceDataSource = new MatTableDataSource<FoodPrices>();
   public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>();
   public taskDetailsDataSource = new MatTableDataSource<TaskDetails>();
-  public shouldDisplayFoodPriceTable: boolean = true;
-  public shouldDisplayNutrientsTable: boolean = false;
-  public shouldDisplayTaskDetailsTable: boolean = false;
 
   public constructor(private readonly adminService: AdminService,
                      private readonly foodPriceService: FoodPriceService,
@@ -45,24 +42,6 @@ export class ProfileComponent implements OnInit {
 
   public onNewMealDietButtonClick(): void {
     this.router.navigate(['/quiz/questions']);
-  }
-
-  public displayFoodPriceTable(): void {
-    this.shouldDisplayFoodPriceTable = true;
-    this.shouldDisplayNutrientsTable = false;
-    this.shouldDisplayTaskDetailsTable = false
-  }
-
-  public displayNutrientsTable(): void {
-    this.shouldDisplayFoodPriceTable = false;
-    this.shouldDisplayNutrientsTable = true;
-    this.shouldDisplayTaskDetailsTable = false
-  }
-
-  public displayTaskDetailsTable(): void {
-    this.shouldDisplayFoodPriceTable = false;
-    this.shouldDisplayNutrientsTable = false;
-    this.shouldDisplayTaskDetailsTable = true
   }
 
   private buildFoodPrice(emailId: string) {

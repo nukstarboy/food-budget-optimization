@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   public onLogoutAnchorClick(): void {
-    this.adminService.logout()
+    this.adminService.logout();
+    // window.location.reload();
   }
 }

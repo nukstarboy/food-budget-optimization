@@ -26,14 +26,7 @@ public class Token {
     public Token() {
     }
 
-    public Token(int userID, String emailId) {
-        this.userID = userID;
-        this.emailId = emailId;
-    }
-
-    public Token(int tokenID, int userID, String authenticationToken, String secretKey, String emailId) {
-        super();
-        this.tokenID = tokenID;
+    public Token(int userID, String authenticationToken, String secretKey, String emailId) {
         this.userID = userID;
         this.authenticationToken = authenticationToken;
         this.secretKey = secretKey;
