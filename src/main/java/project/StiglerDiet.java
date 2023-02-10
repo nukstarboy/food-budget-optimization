@@ -246,6 +246,8 @@ public final class StiglerDiet {
         List<Food> data = new ArrayList<>();
 
         // Average prices
+
+//        Calories (kcal) Protein (g) Calcium (g) Iron (mg) Vitamin A (KIU)	Thiamine (mg) Riboflavin (mg) Niacin (mg) Ascorbic Acid (mg)
         data.add(new Food("Wheat Flour (Enriched)",
                 "10 lb.",
                 36,
