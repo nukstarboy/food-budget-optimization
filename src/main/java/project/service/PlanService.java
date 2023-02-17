@@ -27,7 +27,12 @@ public class PlanService {
 
     public void savePersonalPlan(PersonalQuestions personalQuestions) {
         clearPlanIfExists(personalQuestions);
-        List<Nutrient> nutrients = nutrientCalculator.addNutrients(personalQuestions.age, personalQuestions.gender, personalQuestions.weight, personalQuestions.height, personalQuestions.activity);
+        List<Nutrient> nutrients = nutrientCalculator.addNutrients(personalQuestions.age,
+                personalQuestions.gender,
+                personalQuestions.weight,
+                personalQuestions.height,
+                personalQuestions.activity,
+                personalQuestions.bodyType);
         saveFoodPrices(personalQuestions, nutrients);
         saveNutrientsQuantities(personalQuestions, nutrients);
         saveTaskSolveDetails(personalQuestions, nutrients);
@@ -49,20 +54,21 @@ public class PlanService {
     }
 
     private void saveFoodPrices(PersonalQuestions personalQuestions, List<Nutrient> nutrients) {
-        List<FoodPrice> foodPrices = this.stiglerDiet.foodPrices(nutrients, personalQuestions.planOwner);
+        List<FoodPrice> foodPrices = this.stiglerDiet.foodPrices(nutrients, personalQuestions);
         this.foodPriceService.saveAll(foodPrices);
     }
 
     private void saveNutrientsQuantities(PersonalQuestions personalQuestions, List<Nutrient> nutrients) {
-        List<NutrientsQuantity> nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, personalQuestions.planOwner);
+        List<NutrientsQuantity> nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, personalQuestions);
         this.nutrientsQuantityService.saveAll(nutrientsQuantities);
     }
 
     private void saveTaskSolveDetails(PersonalQuestions personalQuestions, List<Nutrient> nutrients) {
-        double optimalAnnualPrice = this.stiglerDiet.optimalAnnualPrice(nutrients);
+        double optimalAnnualPrice = this.stiglerDiet.optimalPrice(nutrients, personalQuestions.planPeriod);
         double problemSolvedTime = this.stiglerDiet.problemSolvedTime(nutrients);
         long problemSolvedIterations = this.stiglerDiet.problemSolvedIterations(nutrients);
-        TaskSolveDetails taskSolveDetails = new TaskSolveDetails(optimalAnnualPrice, problemSolvedTime, problemSolvedIterations, personalQuestions.planOwner);
+        String planPeriod = this.stiglerDiet.setPlanPeriod(personalQuestions.planPeriod);
+        TaskSolveDetails taskSolveDetails = new TaskSolveDetails(optimalAnnualPrice, problemSolvedTime, problemSolvedIterations, personalQuestions.planOwner, planPeriod);
         this.taskSolveDetailsService.save(taskSolveDetails);
     }
 }

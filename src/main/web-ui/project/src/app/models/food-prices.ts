@@ -1,6 +1,7 @@
 export class FoodPrices {
   id: number;
   food: string;
-  optimalAnnualPrice: number;
+  optimalPrice: number;
+  planPeriod: string;
   owner: string
 }

@@ -6,10 +6,7 @@ import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
 import com.google.ortools.linearsolver.MPVariable;
 import org.springframework.stereotype.Service;
-import project.models.Food;
-import project.models.FoodPrice;
-import project.models.Nutrient;
-import project.models.NutrientsQuantity;
+import project.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,7 @@ public class StiglerDiet {
         this.foodInfo = foodInfo;
     }
 
-    public List<FoodPrice> foodPrices(List<Nutrient> nutrients, String owner) {
+    public List<FoodPrice> foodPrices(List<Nutrient> nutrients, PersonalQuestions personalQuestions) {
         Loader.loadNativeLibraries();
         List<Food> food = foodInfo.addFoodInfo();
 
@@ -69,18 +66,27 @@ public class StiglerDiet {
         }
 
         List<FoodPrice> foodPrices = new ArrayList<>();
-        System.out.println("\nAnnual Foods:");
+//        System.out.println("\nAnnual Foods:");
         for (int i = 0; i < foods.size(); ++i) {
             if (foods.get(i).solutionValue() > 0.0) {
-                foodPrices.add(new FoodPrice(food.get(i).name, 365 * foods.get(i).solutionValue(), owner));
-                System.out.println(food.get(i).name + ": $" + 365 * foods.get(i).solutionValue());
+                foodPrices.add(new FoodPrice(food.get(i).name, personalQuestions.planPeriod * foods.get(i).solutionValue(), setPlanPeriod(personalQuestions.planPeriod), personalQuestions.planOwner));
+                System.out.println(food.get(i).name + ": $" + personalQuestions.planPeriod * foods.get(i).solutionValue());
             }
         }
 
         return foodPrices;
     }
 
-    public List<NutrientsQuantity> nutrientsQuantities(List<Nutrient> nutrients, String owner) {
+    public String setPlanPeriod(int planPeriod) {
+        if (planPeriod == 1) {
+            return "Daily";
+        } else if (planPeriod == 7) {
+            return "Weekly";
+        }
+        return "Yearly";
+    }
+
+    public List<NutrientsQuantity> nutrientsQuantities(List<Nutrient> nutrients, PersonalQuestions personalQuestions) {
         Loader.loadNativeLibraries();
         List<Food> food = foodInfo.addFoodInfo();
 
@@ -130,7 +136,7 @@ public class StiglerDiet {
         System.out.println("\nAnnual Foods:");
         for (int i = 0; i < foods.size(); ++i) {
             if (foods.get(i).solutionValue() > 0.0) {
-                System.out.println(food.get(i).name + ": $" + 365 * foods.get(i).solutionValue());
+                System.out.println(food.get(i).name + ": $" + personalQuestions.planPeriod * foods.get(i).solutionValue());
                 for (int j = 0; j < nutrients.size(); ++j) {
                     nutrientsResult[j] += (food.get(i).ingredients)[j] * foods.get(i).solutionValue();
                 }
@@ -140,7 +146,7 @@ public class StiglerDiet {
         List<NutrientsQuantity> nutrientsQuantities = new ArrayList<>();
         System.out.println("\nNutrients per day:");
         for (int i = 0; i < nutrients.size(); ++i) {
-            NutrientsQuantity nutrientsQuantity = new NutrientsQuantity(nutrients.get(i).name, nutrientsResult[i], nutrients.get(i).quantity, owner);
+            NutrientsQuantity nutrientsQuantity = new NutrientsQuantity(nutrients.get(i).name, nutrientsResult[i], nutrients.get(i).quantity, personalQuestions.planOwner);
             nutrientsQuantities.add(nutrientsQuantity);
             System.out.println(
                     nutrients.get(i).name + ": " + nutrientsResult[i] + " (min " + nutrients.get(i).quantity + ")");
@@ -149,7 +155,7 @@ public class StiglerDiet {
         return nutrientsQuantities;
     }
 
-    public double optimalAnnualPrice(List<Nutrient> nutrients) {
+    public double optimalPrice(List<Nutrient> nutrients, int planPeriod) {
         Loader.loadNativeLibraries();
         List<Food> food = foodInfo.addFoodInfo();
 
@@ -196,10 +202,9 @@ public class StiglerDiet {
         }
 
         double[] nutrientsResult = new double[nutrients.size()];
-        System.out.println("\nAnnual Foods:");
         for (int i = 0; i < foods.size(); ++i) {
             if (foods.get(i).solutionValue() > 0.0) {
-                System.out.println(food.get(i).name + ": $" + 365 * foods.get(i).solutionValue());
+                System.out.println(food.get(i).name + ": $" + planPeriod * foods.get(i).solutionValue());
                 for (int j = 0; j < nutrients.size(); ++j) {
                     nutrientsResult[j] += (food.get(i).ingredients)[j] * foods.get(i).solutionValue();
                 }
@@ -212,9 +217,7 @@ public class StiglerDiet {
                     nutrients.get(i).name + ": " + nutrientsResult[i] + " (min " + nutrients.get(i).quantity + ")");
         }
 
-        System.out.println("\nOptimal annual price: $" + 365 * objective.value());
-
-        return 365 * objective.value();
+        return planPeriod * objective.value();
     }
 
     public double problemSolvedTime(List<Nutrient> nutrients) {

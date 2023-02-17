@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {AdminDetail} from '../models/admin-details';
 import {AdminService} from '../service/admin-service.service';
+import {HomePageService} from "../service/home-page.service";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  public constructor(private readonly adminService: AdminService, private readonly router: Router) {
+  public constructor(private readonly adminService: AdminService,
+                     private readonly router: Router,
+                     private readonly emitState: HomePageService) {
   }
 
   public ngOnInit(): void {
@@ -37,23 +40,22 @@ export class LoginComponent implements OnInit {
     };
 
     this.adminService.login(this.adminDetail).subscribe((response) => {
-        if (response.status === 200) {
-          //TODO It's not working...
-          let token = response.headers.get("Authorization");
-          localStorage.setItem("token", token);
-          localStorage.setItem("username", this.adminDetail?.emailId!);
+      if (response.status === 200) {
+        //TODO It's not working...
+        let token = response.headers.get("Authorization");
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", this.adminDetail?.emailId!);
 
-          this.router.navigate(['/profile']);
-        }
-      },
-      (response) => {
-        if (response.status === 404) {
-          alert("please register before login Or Invalid combination of Email and password");
-        } else {
-          console.log("Error in authentication");
-        }
+        this.emitState.emitValue('login');
+        this.router.navigate(['/profile']);
       }
-    );
+    }, (error) => {
+      if (error.status === 404) {
+        alert("please register before login Or Invalid combination of Email and password");
+      } else {
+        console.log("Error in authentication");
+      }
+    });
   }
 
   public onSignupButtonClick(): void {

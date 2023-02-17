@@ -11,4 +11,5 @@ public class PersonalQuestions {
     public String workout;
     public String dietaryRestrictions;
     public String planOwner;
+    public int planPeriod;
 }

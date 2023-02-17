@@ -13,7 +13,7 @@ import {PlanService} from "../service/plan.service";
 export class PersonalQuestionsComponent implements OnInit {
   public isStepperLinear: boolean = true;
 
-  public personalQuestionsFormGroup: FormGroup<any> = new FormGroup<any>({});
+  public personalQuestionsFormGroup: FormGroup = new FormGroup<any>({});
 
   public constructor(private readonly personalQuestionsService: PersonalQuestionsService,
                      private readonly planService: PlanService,
@@ -43,6 +43,7 @@ export class PersonalQuestionsComponent implements OnInit {
       activity: this.personalQuestionsFormGroup.controls['activity'].value,
       workout: this.personalQuestionsFormGroup.controls['workout'].value,
       dietaryRestrictions: this.personalQuestionsFormGroup.controls['dietaryRestrictions'].value,
+      planPeriod: this.personalQuestionsFormGroup.controls['planPeriod'].value,
       planOwner: emailId
     }
   }
@@ -56,7 +57,8 @@ export class PersonalQuestionsComponent implements OnInit {
       bodyType: new FormControl(['', Validators.required]),
       activity: new FormControl(['', Validators.required]),
       workout: new FormControl(['', Validators.required]),
-      dietaryRestrictions: new FormControl(['', Validators.required])
+      dietaryRestrictions: new FormControl(['', Validators.required]),
+      planPeriod: new FormControl(['', Validators.required])
     });
   }
 }

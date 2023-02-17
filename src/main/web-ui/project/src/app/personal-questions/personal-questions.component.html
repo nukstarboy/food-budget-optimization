@@ -1,4 +1,4 @@
-<mat-stepper orientation="vertical" [linear]="isStepperLinear" #stepper>
+<mat-stepper class="stepper" orientation="vertical" [linear]="isStepperLinear" #stepper>
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
@@ -106,6 +106,24 @@
           <mat-option value="vegetarian">I'm vegetarian</mat-option>
           <mat-option value="vegan">I'm vegan</mat-option>
           <mat-option value="none">None of the above</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="personalQuestionsFormGroup">
+    <form [formGroup]="personalQuestionsFormGroup">
+      <ng-template matStepLabel>Plan period</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select me</mat-label>
+        <mat-select formControlName="planPeriod">
+          <mat-option value=1>Daily</mat-option>
+          <mat-option value=7>Weekly</mat-option>
+          <mat-option value=365>Yearly</mat-option>
         </mat-select>
       </mat-form-field>
       <div>

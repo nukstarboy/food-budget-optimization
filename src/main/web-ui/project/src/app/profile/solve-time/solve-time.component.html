@@ -1,16 +1,10 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
+    <ng-container matColumnDef="optimal price">
+      <th mat-header-cell *matHeaderCellDef>{{this.optimalPriceHeader}}</th>
       <td mat-cell
-          *matCellDef="let taskDetailsForLoginInOwner"> {{taskDetailsForLoginInOwner.id}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="optimal annual price">
-      <th mat-header-cell *matHeaderCellDef>Optimal Annual Price</th>
-      <td mat-cell
-          *matCellDef="let taskDetailsForLoginInOwner"> {{taskDetailsForLoginInOwner.optimalAnnualPrice}} </td>
+          *matCellDef="let taskDetailsForLoginInOwner"> {{taskDetailsForLoginInOwner.optimalPrice | number}} $</td>
     </ng-container>
 
     <ng-container matColumnDef="problem solved time">

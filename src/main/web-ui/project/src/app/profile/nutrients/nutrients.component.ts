@@ -13,7 +13,7 @@ export class NutrientsComponent implements AfterViewInit {
   @ViewChild(MatPaginator)
   public paginator: MatPaginator;
 
-  public displayedColumns: string[] = ['id', 'nutrient name', 'normal quantity per day', 'minimum quantity per day', 'owner'];
+  public displayedColumns: string[] = ['nutrient name', 'normal quantity per day', 'minimum quantity per day', 'owner'];
 
   constructor() {
   }

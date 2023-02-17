@@ -1,29 +1,15 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
+<div class="toolbar">
+  <div>
     <a href="">HealthyEating</a>
-    <span class="spacer-between-icon"></span>
-
-    <button mat-raised-button (click)="onHomeAnchorClick()">Home</button>
-    <button *ngIf="isUserLoggedIn" mat-raised-button (click)="onProfileAnchorClick()">Profile</button>
-    <button mat-raised-button>Settings</button>
-    <button mat-raised-button>Help</button>
-    <button *ngIf="isUserLoggedIn" mat-raised-button (click)="onLogoutAnchorClick()">Logout</button>
-
-<!--    <mat-menu #appMenu="matMenu">-->
-<!--      <ng-template matMenuContent>-->
-<!--        <button mat-menu-item (click)="onHomeAnchorClick()">Home</button>-->
-<!--        <button *ngIf="isUserLoggedIn" mat-menu-item (click)="onProfileAnchorClick()">Profile</button>-->
-<!--        <button mat-menu-item>Settings</button>-->
-<!--        <button mat-menu-item>Help</button>-->
-<!--        <button *ngIf="isUserLoggedIn" mat-menu-item (click)="onLogoutAnchorClick()">Logout</button>-->
-<!--      </ng-template>-->
-<!--    </mat-menu>-->
-<!--    <button mat-icon-button [matMenuTriggerFor]="appMenu">-->
-<!--      <mat-icon>menu</mat-icon>-->
-<!--    </button>-->
-
-  </mat-toolbar-row>
-</mat-toolbar>
+  </div>
+  <div style="">
+    <button mat-stroked-button (click)="onHomeAnchorClick()">Home</button>
+    <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onProfileAnchorClick()">Profile</button>
+    <button mat-stroked-button>Settings</button>
+    <button mat-stroked-button>Help</button>
+    <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onLogoutAnchorClick()">Logout</button>
+  </div>
+</div>
 
 <div class="content" role="main">
   <router-outlet></router-outlet>

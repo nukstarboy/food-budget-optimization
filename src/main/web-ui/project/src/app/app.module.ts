@@ -30,6 +30,7 @@ import {FoodPriceComponent} from './profile/food-price/food-price.component';
 import {NutrientsComponent} from './profile/nutrients/nutrients.component';
 import {SolveTimeComponent} from './profile/solve-time/solve-time.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import {HomePageService} from "./service/home-page.service";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import {MatTabsModule} from "@angular/material/tabs";
         MatTableModule,
         MatTabsModule
     ],
-  providers: [PlanService, PersonalQuestionsService],
+  providers: [PlanService, PersonalQuestionsService, HomePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from "./service/admin-service.service";
 import {Router} from "@angular/router";
+import {HomePageService} from "./service/home-page.service";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,20 @@ export class AppComponent implements OnInit {
   public isUserLoggedIn: boolean = false;
 
   public constructor(private readonly adminService: AdminService,
-                     private readonly router: Router) {
+                     private readonly router: Router,
+                     private readonly emit: HomePageService) {
   }
 
   public ngOnInit(): void {
-    this.isUserLoggedIn = this.adminService.isLoggedIn();
+    this.emit.value$.subscribe((value) => {
+      if (value === 'login') {
+        this.isUserLoggedIn = this.adminService.isLoggedIn();
+      } else if (value === 'logout'){
+        this.isUserLoggedIn = false;
+        this.adminService.logout();
+      }
+      this.isUserLoggedIn = this.adminService.isLoggedIn();
+    })
   }
 
   public onHomeAnchorClick(): void {
@@ -27,7 +37,6 @@ export class AppComponent implements OnInit {
   }
 
   public onLogoutAnchorClick(): void {
-    this.adminService.logout();
-    // window.location.reload();
+    this.emit.emitValue('logout')
   }
 }

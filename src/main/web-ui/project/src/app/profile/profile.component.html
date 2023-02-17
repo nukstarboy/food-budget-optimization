@@ -1,21 +1,23 @@
 <div style="text-align: right ; margin-right: 40px;">
-  <mat-tab-group>
-    <mat-tab label="Food Prices">
-      <ng-template matTabContent>
-        <app-food-price [dataSource]="foodPriceDataSource"></app-food-price>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="Nutrients">
-      <ng-template matTabContent>
-        <app-nutrients [dataSource]="nutrientsQuantityDataSource"></app-nutrients>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="Solve Time">
-      <ng-template matTabContent>
-        <app-solve-time [dataSource]="taskDetailsDataSource"></app-solve-time>
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
+  <div *ngIf="allFoodsWithPricesForLoginInOwner.length">
+    <mat-tab-group>
+      <mat-tab label="Food Prices">
+        <ng-template matTabContent>
+          <app-food-price [dataSource]="foodPriceDataSource"></app-food-price>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Nutrients">
+        <ng-template matTabContent>
+          <app-nutrients [dataSource]="nutrientsQuantityDataSource"></app-nutrients>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Solve Time">
+        <ng-template matTabContent>
+          <app-solve-time [dataSource]="taskDetailsDataSource"></app-solve-time>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
   <h2>If you want to try new plan click on the button below!</h2>
   <button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
 </div>

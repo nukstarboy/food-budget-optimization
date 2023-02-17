@@ -1,7 +1,8 @@
 export class TaskDetails {
   id: number;
-  optimalAnnualPrice: number;
+  optimalPrice: number;
   problemSolvedTime: number;
   problemSolvedIterations: number;
+  planPeriod: string;
   owner: string;
 }
