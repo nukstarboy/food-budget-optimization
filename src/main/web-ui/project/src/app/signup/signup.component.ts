@@ -17,7 +17,8 @@ export class SignupComponent {
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    confirmPassword: new FormControl('', Validators.required)
+    confirmPassword: new FormControl('', Validators.required),
+    role: new FormControl('', Validators.required)
   });
   public isPasswordVisible: boolean = true;
   public isCheckboxChecked: boolean = false;
@@ -52,7 +53,8 @@ export class SignupComponent {
       name: this.formGroup.controls['fullName'].value,
       emailId: this.formGroup.controls['email'].value,
       password: this.formGroup.controls['password'].value,
-      dueOn: sevenDaysAgo.toLocaleDateString()
+      dueOn: sevenDaysAgo.toLocaleDateString(),
+      role: this.formGroup.controls['role'].value
     }
   }
 

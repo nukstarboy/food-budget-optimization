@@ -3,4 +3,5 @@ export class AdminDetail {
   name?: string;
   password: string;
   dueOn?: string;
+  role?: string
 }

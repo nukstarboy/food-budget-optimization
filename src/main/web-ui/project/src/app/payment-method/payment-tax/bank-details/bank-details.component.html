@@ -1,0 +1,18 @@
+<div>
+  <h2>You choose {{ plan }} plan.</h2>
+  <p>Now enter your bank details</p>
+</div>
+
+<form class="example-form" [formGroup]="formGroup">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter full name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>IBAN</mat-label>
+    <input matInput formControlName="iban">
+  </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" [disabled]="formGroup.invalid" (click)="onSubmitButtonClick()">Submit</button>

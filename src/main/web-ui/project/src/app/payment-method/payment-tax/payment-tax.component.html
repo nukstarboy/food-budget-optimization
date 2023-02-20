@@ -1,0 +1,12 @@
+<mat-radio-group [disabled]="isRadioGroupDisabled" class="radio-group" (change)="onPlanChange($event)" aria-label="Select an option">
+  <mat-radio-button value="weekly">Weekly plan</mat-radio-button>
+  <mat-radio-button value="monthly">Monthly plan</mat-radio-button>
+  <mat-radio-button value="yearly">Yearly plan</mat-radio-button>
+  <mat-radio-button value="eternal">Еternal plan</mat-radio-button>
+</mat-radio-group>
+
+<button mat-raised-button color="primary" [disabled]="isButtonDisabled" (click)="onPlanChoose()">Choose</button>
+
+<div *ngIf="openBankDetailsScreen">
+  <app-bank-details [plan]="plan"></app-bank-details>
+</div>
