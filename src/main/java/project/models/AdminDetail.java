@@ -23,16 +23,20 @@ public class AdminDetail {
     @Column(name = "role")
     public String role;
 
+    @Column(name = "dueOn")
+    public String dueOn;
+
     public AdminDetail() {
     }
 
-    public AdminDetail(int adminID, String emailId, String name, String password, String role) {
+    public AdminDetail(int adminID, String emailId, String name, String password, String role, String dueOn) {
         super();
         this.adminID = adminID;
         this.emailId = emailId;
         this.name = name;
         this.password = password;
         this.role = role;
+        this.dueOn = dueOn;
     }
 
     public int getAdminID() {
@@ -75,11 +79,12 @@ public class AdminDetail {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "AdminDetail [adminID=" + adminID + ", emailId=" + emailId + ", name=" + name + ", password=" + password
-                + ", role=" + role + "]";
+    public String getDueOn() {
+        return dueOn;
     }
 
+    public void setDueOn(String dueOn) {
+        this.dueOn = dueOn;
+    }
 
 }

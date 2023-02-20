@@ -1,4 +1,7 @@
-<div style="text-align: right ; margin-right: 40px;">
+<div>
+  Your trial mode is due on: {{dueOn}}
+</div>
+<div *ngIf="isStillTrialTime" style="text-align: right ; margin-right: 40px;">
   <div *ngIf="allFoodsWithPricesForLoginInOwner.length">
     <mat-tab-group>
       <mat-tab label="Food Prices">
@@ -20,4 +23,8 @@
   </div>
   <h2>If you want to try new plan click on the button below!</h2>
   <button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
+</div>
+
+<div *ngIf="!isStillTrialTime">
+  <app-payment-method></app-payment-method>
 </div>

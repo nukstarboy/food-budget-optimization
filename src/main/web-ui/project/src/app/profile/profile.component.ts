@@ -18,9 +18,11 @@ export class ProfileComponent implements OnInit {
   public allFoodsWithPricesForLoginInOwner: FoodPrices[] = [];
   public allNutrientsForLoginInOwner: NutrientsQuantity[] = [];
   public taskDetailsForLoginInOwner: TaskDetails[] = [];
+  public isStillTrialTime: boolean = false;
   public foodPriceDataSource = new MatTableDataSource<FoodPrices>();
   public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>();
   public taskDetailsDataSource = new MatTableDataSource<TaskDetails>();
+  public dueOn: string;
 
   public constructor(private readonly adminService: AdminService,
                      private readonly foodPriceService: FoodPriceService,
@@ -32,9 +34,13 @@ export class ProfileComponent implements OnInit {
   public ngOnInit(): void {
     if (this.adminService.isLoggedIn()) {
       const emailId = this.adminService.getLoginInUserEmailId()!;
-      this.buildFoodPrice(emailId);
-      this.buildNutrientsQuantity(emailId);
-      this.buildTaskSolver(emailId);
+      this.adminService.getLoggedInUser(emailId).subscribe((response) => {
+        this.isStillTrialTime = new Date(response.dueOn) > new Date(Date.now());
+        this.dueOn = response.dueOn;
+        this.buildFoodPrice(emailId);
+        this.buildNutrientsQuantity(emailId);
+        this.buildTaskSolver(emailId);
+      });
     } else {
       this.router.navigate(['/login']);
     }

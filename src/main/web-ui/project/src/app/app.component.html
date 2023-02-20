@@ -2,11 +2,11 @@
   <div>
     <a href="">HealthyEating</a>
   </div>
-  <div style="">
+  <div class="toolbar-buttons">
     <button mat-stroked-button (click)="onHomeAnchorClick()">Home</button>
+    <button *ngIf="!isUserLoggedIn" mat-stroked-button (click)="onLoginAnchorClick()">Login</button>
     <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onProfileAnchorClick()">Profile</button>
-    <button mat-stroked-button>Settings</button>
-    <button mat-stroked-button>Help</button>
+    <button mat-stroked-button (click)="onHelpAnchorClick()">Help</button>
     <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onLogoutAnchorClick()">Logout</button>
   </div>
 </div>

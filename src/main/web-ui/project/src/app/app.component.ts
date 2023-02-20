@@ -39,4 +39,12 @@ export class AppComponent implements OnInit {
   public onLogoutAnchorClick(): void {
     this.emit.emitValue('logout')
   }
+
+  public onLoginAnchorClick(): void {
+    this.router.navigate(['/login']);
+  }
+
+  public onHelpAnchorClick(): void {
+    this.router.navigate(['/help']);
+  }
 }

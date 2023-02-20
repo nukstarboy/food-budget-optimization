@@ -3,6 +3,7 @@ import {AdminService} from "../service/admin-service.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AdminDetail} from "../models/admin-details";
+import {MatCheckboxChange} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-signup',
@@ -16,10 +17,10 @@ export class SignupComponent {
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    confirmPassword: new FormControl('', Validators.required),
-    role: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required)
   });
   public isPasswordVisible: boolean = true;
+  public isCheckboxChecked: boolean = false;
 
   public constructor(private adminService: AdminService, private router: Router) {
   }
@@ -46,11 +47,16 @@ export class SignupComponent {
   }
 
   private buildAdminDetail(): void {
+    const sevenDaysAgo = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
     this.adminDetail = {
       name: this.formGroup.controls['fullName'].value,
       emailId: this.formGroup.controls['email'].value,
       password: this.formGroup.controls['password'].value,
-      role: this.formGroup.controls['role'].value
+      dueOn: sevenDaysAgo.toLocaleDateString()
     }
+  }
+
+  public onCheckboxStateChange(matCheckboxChange: MatCheckboxChange): void {
+    this.isCheckboxChecked = matCheckboxChange.checked;
   }
 }

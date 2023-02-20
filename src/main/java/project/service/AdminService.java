@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import project.models.AdminDetail;
 import project.models.Token;
+import project.models.TrialMode;
 import project.repo.AdminRepo;
 import project.utils.GenerateToken;
 
@@ -22,6 +23,10 @@ public class AdminService {
     public AdminService(AdminRepo adminRepo, TokenService tokenService) {
         this.adminRepo = adminRepo;
         this.tokenService = tokenService;
+    }
+
+    public AdminDetail get(String emailId) {
+        return adminRepo.getAdminDetailByEmailId(emailId);
     }
 
     public AdminDetail saveAdminDetail(AdminDetail adminDetail) {
@@ -60,7 +65,8 @@ public class AdminService {
                         new Token(loginUser.getAdminID(), token, tokenData[1], loginUser.getEmailId());
                 tokenService.saveUserEmail(buildToken);
             }
-            return new ResponseEntity<Integer>(1, httpHeader, HttpStatus.OK);
+            return ResponseEntity.ok().headers(httpHeader).body(1);
+//            return new ResponseEntity<Integer>(1, httpHeader, HttpStatus.OK);
         } else {
             return new ResponseEntity<Integer>(-1, httpHeader, HttpStatus.NOT_FOUND);
         }
@@ -77,4 +83,9 @@ public class AdminService {
         }
     }
 
+    public AdminDetail updateDueOn(TrialMode trialMode) {
+        AdminDetail adminDetail = this.get(trialMode.getEmailId());
+        adminDetail.setDueOn(trialMode.getDueOn());
+        return this.adminRepo.save(adminDetail);
+    }
 }

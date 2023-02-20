@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.models.AdminDetail;
+import project.models.TrialMode;
 import project.service.AdminService;
 
 import java.util.List;
@@ -15,6 +16,16 @@ public class AdminController {
     @Autowired
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
+    }
+
+    @GetMapping("/{emailId}")
+    public AdminDetail get(@PathVariable String emailId) {
+        return this.adminService.get(emailId);
+    }
+
+    @PostMapping("/dueOn")
+    public AdminDetail updateDueOn(@RequestBody TrialMode trialMode) {
+        return this.adminService.updateDueOn(trialMode);
     }
 
     @PostMapping("/saveAdmin")

@@ -1,4 +1,5 @@
-<h2>Fill your signup form</h2>
+<h1>Start a 7-day free trial</h1>
+<h3>Fill signup form</h3>
 
 <form [formGroup]="formGroup">
 
@@ -30,13 +31,14 @@
         <mat-icon>{{isPasswordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Your role</mat-label>
-      <input formControlName="role" matInput placeholder="User">
-    </mat-form-field>
   </div>
-
-  <button mat-raised-button [disabled]="formGroup.invalid" (click)="onSaveButtonClick()" class="btn btn-md btn-primary btn-style"  >Save</button>
+  <div>
+    <div>
+    <mat-checkbox class="example-margin" (change)="onCheckboxStateChange($event)">I've read and agreed to the terms of use, privacy notice and offer details</mat-checkbox>
+    </div>
+    <button mat-raised-button [disabled]="formGroup.invalid || !isCheckboxChecked" (click)="onSaveButtonClick()"
+            class="btn btn-md btn-primary btn-style">Save
+    </button>
+  </div>
 
 </form>

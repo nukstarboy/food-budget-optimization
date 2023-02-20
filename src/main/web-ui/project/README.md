@@ -26,9 +26,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-// Payment method
-// Change prices - done
+// Payment method, expose final date - done
 // Family package
+// When type some food, pick from some api info for the food and create your own food database
+// Authorization - fail
+// Change prices - done
 // Choose period -> annual, monthly, weekly - done
 // Mobile app -> chatgpt
 // Storage idea

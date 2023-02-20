@@ -7,6 +7,8 @@ import {LoginComponent} from "./login/login.component";
 import {EmailComponent} from "./email/email.component";
 import {SignupComponent} from "./signup/signup.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {HelpStaticComponent} from "./help-static/help-static.component";
+import {PaymentTaxComponent} from "./payment-method/payment-tax/payment-tax.component";
 
 const routes: Routes = [
   {
@@ -30,6 +32,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'payment',
+    component: PaymentTaxComponent
+  },
+  {
+    path: 'help',
+    component: HelpStaticComponent
   },
   {
     path: 'signup',

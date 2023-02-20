@@ -31,6 +31,13 @@ import {NutrientsComponent} from './profile/nutrients/nutrients.component';
 import {SolveTimeComponent} from './profile/solve-time/solve-time.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {HomePageService} from "./service/home-page.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {HelpStaticComponent} from './help-static/help-static.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {PaymentMethodComponent} from './payment-method/payment-method.component';
+import {PaymentTaxComponent} from './payment-method/payment-tax/payment-tax.component';
+import {MatRadioModule} from "@angular/material/radio";
+import {BankDetailsComponent} from './payment-method/payment-tax/bank-details/bank-details.component';
 
 @NgModule({
   declarations: [
@@ -44,28 +51,34 @@ import {HomePageService} from "./service/home-page.service";
     ProfileComponent,
     FoodPriceComponent,
     NutrientsComponent,
-    SolveTimeComponent
+    SolveTimeComponent,
+    HelpStaticComponent,
+    PaymentMethodComponent,
+    PaymentTaxComponent,
+    BankDetailsComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        MatSlideToggleModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatMenuModule,
-        MatStepperModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatSelectModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatTabsModule
-    ],
-  providers: [PlanService, PersonalQuestionsService, HomePageService],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule
+  ],
+  providers: [PlanService, PersonalQuestionsService, HomePageService, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

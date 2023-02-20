@@ -27,7 +27,6 @@ public class GenerateToken {
 
         Key signingKey = null;
         try{
-
             signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
         }
         catch(Exception e)
@@ -51,6 +50,5 @@ public class GenerateToken {
 
         String[] tokenInfo = {builder.compact() , secretKey};
         return tokenInfo;
-
     }
 }
