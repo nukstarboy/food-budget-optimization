@@ -11,8 +11,6 @@ import {PlanService} from "../service/plan.service";
   styleUrls: ['./personal-questions.component.scss']
 })
 export class PersonalQuestionsComponent implements OnInit {
-  public isStepperLinear: boolean = true;
-
   public personalQuestionsFormGroup: FormGroup = new FormGroup<any>({});
 
   public constructor(private readonly personalQuestionsService: PersonalQuestionsService,

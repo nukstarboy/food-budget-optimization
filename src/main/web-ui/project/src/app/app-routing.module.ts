@@ -9,6 +9,7 @@ import {SignupComponent} from "./signup/signup.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {HelpStaticComponent} from "./help-static/help-static.component";
 import {PaymentTaxComponent} from "./payment-method/payment-tax/payment-tax.component";
+import {FamilyPackageQuestionsComponent} from "./family-package-questions/family-package-questions.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'payment',
     component: PaymentTaxComponent
+  },
+  {
+    path: 'quiz/family-package',
+    component: FamilyPackageQuestionsComponent
   },
   {
     path: 'help',

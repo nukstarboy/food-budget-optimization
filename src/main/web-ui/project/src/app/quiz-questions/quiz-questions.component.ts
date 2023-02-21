@@ -13,8 +13,11 @@ export class QuizQuestionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onButtonClick() {
+  public onButtonClick(): void {
     this.router.navigate(['/quiz/personal-questions']);
   }
 
+  public onFamilyPackageButtonClick(): void {
+    this.router.navigate(['/quiz/family-package']);
+  }
 }
