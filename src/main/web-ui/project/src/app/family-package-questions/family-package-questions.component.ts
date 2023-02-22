@@ -1,21 +1,31 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PersonalQuestions} from "../models/personal-questions";
+import {MatStepper} from "@angular/material/stepper";
 
 @Component({
   selector: 'app-family-package-questions',
   templateUrl: './family-package-questions.component.html',
   styleUrls: ['./family-package-questions.component.scss']
 })
-export class FamilyPackageQuestionsComponent implements OnInit {
+export class FamilyPackageQuestionsComponent implements OnInit, AfterViewInit {
+  @ViewChild('focusable')
+  focusable: ElementRef;
+
+  @ViewChild('stepper') public myStepper: MatStepper;
+
   public array: number[] = [];
   public familyPackage: PersonalQuestions[] = [];
+  public memberNumber: number = 1;
 
   public familyQuestionsFormGroup: FormGroup = new FormGroup<any>({});
   public isSelectionDisabled: boolean = false;
-  public isButtonDisabled: boolean = false;
 
-  constructor() {
+  constructor(private cdRef: ChangeDetectorRef) {
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.myStepper);
   }
 
   public ngOnInit(): void {
@@ -23,16 +33,15 @@ export class FamilyPackageQuestionsComponent implements OnInit {
   }
 
   public onValueChange(value: number) {
-    this.array = [];
-    for (let i = 0; i < value; i++) {
-      this.array = [...this.array, i];
-    }
     this.isSelectionDisabled = true;
   }
 
-  onDoneClick() {
+  onDoneClick(stepper: MatStepper) {
     this.familyPackage = [...this.familyPackage, this.familyQuestionsFormGroup.value];
-    this.isButtonDisabled = true;
+    this.memberNumber++;
+    this.familyQuestionsFormGroup.reset();
+    this.cdRef.detectChanges();
+    this.focusable.nativeElement.focus();
   }
 
   private initializeFormGroup(): void {

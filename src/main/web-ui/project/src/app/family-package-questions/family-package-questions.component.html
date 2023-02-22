@@ -9,12 +9,12 @@
 </mat-form-field>
 <form class="questions">
 
-  <ng-container *ngFor="let member of array">
+  <ng-container *ngIf="isSelectionDisabled">
+    <p>{{memberNumber}} person</p>
     <mat-stepper class="stepper" orientation="vertical" [linear]="true" #stepper>
-
-      <mat-step [stepControl]="familyQuestionsFormGroup">
+      <mat-step id="step" [stepControl]="familyQuestionsFormGroup">
         <form [formGroup]="familyQuestionsFormGroup">
-          <ng-template matStepLabel>Select your gender</ng-template>
+          <ng-template #focusable matStepLabel>Select your gender</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Select me</mat-label>
             <mat-select formControlName="gender">
@@ -52,98 +52,98 @@
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="familyQuestionsFormGroup">
-        <form [formGroup]="familyQuestionsFormGroup">
-          <ng-template matStepLabel>What is your body type?</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Select me</mat-label>
-            <mat-select formControlName="bodyType">
-              <mat-option value="lean and long">Lean and long, fast metabolism</mat-option>
-              <mat-option value="muscular">Muscular and well-built, average metabolism</mat-option>
-              <mat-option value="soft">Soft and round, slow metabolism</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+<!--      <mat-step [stepControl]="familyQuestionsFormGroup">-->
+<!--        <form [formGroup]="familyQuestionsFormGroup">-->
+<!--          <ng-template matStepLabel>What is your body type?</ng-template>-->
+<!--          <mat-form-field appearance="fill">-->
+<!--            <mat-label>Select me</mat-label>-->
+<!--            <mat-select formControlName="bodyType">-->
+<!--              <mat-option value="lean and long">Lean and long, fast metabolism</mat-option>-->
+<!--              <mat-option value="muscular">Muscular and well-built, average metabolism</mat-option>-->
+<!--              <mat-option value="soft">Soft and round, slow metabolism</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <div>-->
+<!--            <button mat-button matStepperPrevious>Back</button>-->
+<!--            <button mat-button matStepperNext>Next</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </mat-step>-->
 
-      <mat-step [stepControl]="familyQuestionsFormGroup">
-        <form [formGroup]="familyQuestionsFormGroup">
-          <ng-template matStepLabel>What is your baseline activity level?</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Select me</mat-label>
-            <mat-select formControlName="activity">
-              <mat-option value="1">Not Active(more sitting)</mat-option>
-              <mat-option value="2">Lightly Active(spend some time on your feet)</mat-option>
-              <mat-option value="3">Active(doing some physical activity)</mat-option>
-              <mat-option value="4">Very Active(doing heavy physical activity)</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+<!--      <mat-step [stepControl]="familyQuestionsFormGroup">-->
+<!--        <form [formGroup]="familyQuestionsFormGroup">-->
+<!--          <ng-template matStepLabel>What is your baseline activity level?</ng-template>-->
+<!--          <mat-form-field appearance="fill">-->
+<!--            <mat-label>Select me</mat-label>-->
+<!--            <mat-select formControlName="activity">-->
+<!--              <mat-option value="1">Not Active(more sitting)</mat-option>-->
+<!--              <mat-option value="2">Lightly Active(spend some time on your feet)</mat-option>-->
+<!--              <mat-option value="3">Active(doing some physical activity)</mat-option>-->
+<!--              <mat-option value="4">Very Active(doing heavy physical activity)</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <div>-->
+<!--            <button mat-button matStepperPrevious>Back</button>-->
+<!--            <button mat-button matStepperNext>Next</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </mat-step>-->
 
-      <mat-step [stepControl]="familyQuestionsFormGroup">
-        <form [formGroup]="familyQuestionsFormGroup">
-          <ng-template matStepLabel>Do you workout?</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Select me</mat-label>
-            <mat-select formControlName="workout">
-              <mat-option value="no">No, I don't</mat-option>
-              <mat-option value="walks">Only walks</mat-option>
-              <mat-option value="1-2">1-2 times a week</mat-option>
-              <mat-option value="3-5">3-5 times a week</mat-option>
-              <mat-option value="more than 5">More than 5 times a week</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+<!--      <mat-step [stepControl]="familyQuestionsFormGroup">-->
+<!--        <form [formGroup]="familyQuestionsFormGroup">-->
+<!--          <ng-template matStepLabel>Do you workout?</ng-template>-->
+<!--          <mat-form-field appearance="fill">-->
+<!--            <mat-label>Select me</mat-label>-->
+<!--            <mat-select formControlName="workout">-->
+<!--              <mat-option value="no">No, I don't</mat-option>-->
+<!--              <mat-option value="walks">Only walks</mat-option>-->
+<!--              <mat-option value="1-2">1-2 times a week</mat-option>-->
+<!--              <mat-option value="3-5">3-5 times a week</mat-option>-->
+<!--              <mat-option value="more than 5">More than 5 times a week</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <div>-->
+<!--            <button mat-button matStepperPrevious>Back</button>-->
+<!--            <button mat-button matStepperNext>Next</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </mat-step>-->
 
-      <mat-step [stepControl]="familyQuestionsFormGroup">
-        <form [formGroup]="familyQuestionsFormGroup">
-          <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Select me</mat-label>
-            <mat-select formControlName="dietaryRestrictions">
-              <mat-option value="vegetarian">I'm vegetarian</mat-option>
-              <mat-option value="vegan">I'm vegan</mat-option>
-              <mat-option value="none">None of the above</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+<!--      <mat-step [stepControl]="familyQuestionsFormGroup">-->
+<!--        <form [formGroup]="familyQuestionsFormGroup">-->
+<!--          <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>-->
+<!--          <mat-form-field appearance="fill">-->
+<!--            <mat-label>Select me</mat-label>-->
+<!--            <mat-select formControlName="dietaryRestrictions">-->
+<!--              <mat-option value="vegetarian">I'm vegetarian</mat-option>-->
+<!--              <mat-option value="vegan">I'm vegan</mat-option>-->
+<!--              <mat-option value="none">None of the above</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <div>-->
+<!--            <button mat-button matStepperPrevious>Back</button>-->
+<!--            <button mat-button matStepperNext>Next</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </mat-step>-->
 
-      <mat-step [stepControl]="familyQuestionsFormGroup">
-        <form [formGroup]="familyQuestionsFormGroup">
-          <ng-template matStepLabel>Plan period</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Select me</mat-label>
-            <mat-select formControlName="planPeriod">
-              <mat-option value=1>Daily</mat-option>
-              <mat-option value=7>Weekly</mat-option>
-              <mat-option value=365>Yearly</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+<!--      <mat-step [stepControl]="familyQuestionsFormGroup">-->
+<!--        <form [formGroup]="familyQuestionsFormGroup">-->
+<!--          <ng-template matStepLabel>Plan period</ng-template>-->
+<!--          <mat-form-field appearance="fill">-->
+<!--            <mat-label>Select me</mat-label>-->
+<!--            <mat-select formControlName="planPeriod">-->
+<!--              <mat-option value=1>Daily</mat-option>-->
+<!--              <mat-option value=7>Weekly</mat-option>-->
+<!--              <mat-option value=365>Yearly</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <div>-->
+<!--            <button mat-button matStepperPrevious>Back</button>-->
+<!--            <button mat-button matStepperNext>Next</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </mat-step>-->
 
       <mat-step>
         <ng-template matStepLabel>We're done!</ng-template>
@@ -151,10 +151,10 @@
         <p>You can continue with others or click on completed button!</p>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button type="button" [disabled]="isButtonDisabled" mat-button (click)="onDoneClick()">Done</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
       </mat-step>
     </mat-stepper>
+    <button type="button" (click)="onDoneClick(stepper)">Done</button>
   </ng-container>
 </form>
