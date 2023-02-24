@@ -10,6 +10,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {HelpStaticComponent} from "./help-static/help-static.component";
 import {PaymentTaxComponent} from "./payment-method/payment-tax/payment-tax.component";
 import {FamilyPackageQuestionsComponent} from "./family-package-questions/family-package-questions.component";
+import {FamilyQuestionsComponent} from "./family-package-questions/family-questions/family-questions.component";
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'quiz/family-package',
     component: FamilyPackageQuestionsComponent
+  },
+  {
+    path: 'quiz/family-questions',
+    component: FamilyQuestionsComponent
   },
   {
     path: 'help',

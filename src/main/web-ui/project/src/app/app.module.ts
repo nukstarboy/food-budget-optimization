@@ -39,6 +39,7 @@ import {PaymentTaxComponent} from './payment-method/payment-tax/payment-tax.comp
 import {MatRadioModule} from "@angular/material/radio";
 import {BankDetailsComponent} from './payment-method/payment-tax/bank-details/bank-details.component';
 import {FamilyPackageQuestionsComponent} from './family-package-questions/family-package-questions.component';
+import {FamilyQuestionsComponent} from './family-package-questions/family-questions/family-questions.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {FamilyPackageQuestionsComponent} from './family-package-questions/family
     PaymentMethodComponent,
     PaymentTaxComponent,
     BankDetailsComponent,
-    FamilyPackageQuestionsComponent
+    FamilyPackageQuestionsComponent,
+    FamilyQuestionsComponent
   ],
   imports: [
     BrowserModule,
