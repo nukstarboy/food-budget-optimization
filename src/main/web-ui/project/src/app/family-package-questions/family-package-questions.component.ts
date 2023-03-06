@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./family-package-questions.component.scss']
 })
 export class FamilyPackageQuestionsComponent implements OnInit {
-  public isSelectionDisabled: boolean = false;
+  private selectedMembers: number;
 
   constructor(private readonly router: Router) {
   }
@@ -15,10 +15,12 @@ export class FamilyPackageQuestionsComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  public onValueChange() {
-    this.isSelectionDisabled = true;
+  public onValueChange(selectedMembers: number) {
+    this.selectedMembers = selectedMembers;
   }
 
-  onButtonChange() {
+  public onDoneClick(): void {
+    localStorage.setItem('selectedMembers', String(this.selectedMembers))
+    this.router.navigate(['/quiz/family-questions']);
   }
 }

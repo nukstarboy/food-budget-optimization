@@ -1,6 +1,8 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PersonalQuestions} from "../../models/personal-questions";
+import {Router} from "@angular/router";
+import {PlanService} from "../../service/plan.service";
 
 @Component({
   selector: 'app-family-questions',
@@ -8,33 +10,52 @@ import {PersonalQuestions} from "../../models/personal-questions";
   styleUrls: ['./family-questions.component.scss']
 })
 export class FamilyQuestionsComponent implements OnInit {
-  @ViewChild('focus')
-  child: ElementRef;
-
-  @Input()
-  public isSelectionDisabled: boolean = false;
-
-  @Output()
-  public buttonChange: EventEmitter<void> = new EventEmitter<void>();
-
   public familyQuestionsFormGroup: FormGroup = new FormGroup<any>({});
-  public familyPackage: PersonalQuestions[] = [];
   public memberNumber: number = 1;
+  public selectedMembers: number;
 
-  constructor() { }
+  public constructor(private router: Router,
+                     private readonly planService: PlanService) {
+  }
 
   ngOnInit(): void {
     this.initializeFormGroup();
+    if (localStorage.getItem('onMember') !== null) {
+      this.memberNumber = Number(localStorage.getItem('onMember'));
+    }
+    this.selectedMembers = Number(localStorage.getItem('selectedMembers'));
   }
 
   public onDoneClick(): void {
-    this.familyPackage = [...this.familyPackage, this.familyQuestionsFormGroup.value];
-    this.memberNumber++;
-    // this.child.nativeElement.focus();
-    this.child.nativeElement.childNodes[1].focus()
-    console.log(this.child.nativeElement.childNodes[1]);
-    this.familyQuestionsFormGroup.reset();
-    this.buttonChange.emit();
+    const familyQuestions = this.buildFamilyQuestions();
+    if (localStorage.getItem('onMember') !== null) {
+      this.memberNumber = Number(localStorage.getItem('onMember'));
+    }
+    if (this.selectedMembers > this.memberNumber) {
+      this.memberNumber++;
+      localStorage.setItem('onMember', String(this.memberNumber));
+      this.familyQuestionsFormGroup.reset();
+    } else {
+      localStorage.removeItem('onMember');
+      localStorage.removeItem('selectedMembers');
+      this.router.navigate(['/']);
+    }
+  }
+
+  private buildFamilyQuestions(): PersonalQuestions {
+    const emailId = localStorage.getItem("username");
+    return {
+      gender: this.familyQuestionsFormGroup.controls['gender'].value,
+      weight: this.familyQuestionsFormGroup.controls['weight'].value,
+      age: this.familyQuestionsFormGroup.controls['age'].value,
+      height: this.familyQuestionsFormGroup.controls['height'].value,
+      bodyType: this.familyQuestionsFormGroup.controls['bodyType'].value,
+      activity: this.familyQuestionsFormGroup.controls['activity'].value,
+      workout: this.familyQuestionsFormGroup.controls['workout'].value,
+      dietaryRestrictions: this.familyQuestionsFormGroup.controls['dietaryRestrictions'].value,
+      planPeriod: this.familyQuestionsFormGroup.controls['planPeriod'].value,
+      planOwner: emailId
+    }
   }
 
   private initializeFormGroup(): void {
@@ -50,5 +71,4 @@ export class FamilyQuestionsComponent implements OnInit {
       planPeriod: new FormControl(['', Validators.required])
     });
   }
-
 }

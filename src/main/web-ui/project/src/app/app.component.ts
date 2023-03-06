@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from "./service/admin-service.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {HomePageService} from "./service/home-page.service";
 
 @Component({
@@ -14,6 +14,12 @@ export class AppComponent implements OnInit {
   public constructor(private readonly adminService: AdminService,
                      private readonly router: Router,
                      private readonly emit: HomePageService) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url !== '/quiz/family-questions') {
+        localStorage.removeItem('onMember');
+        localStorage.removeItem('selectedMembers');
+      }
+    })
   }
 
   public ngOnInit(): void {

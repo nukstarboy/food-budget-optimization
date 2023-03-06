@@ -1,11 +1,10 @@
 <h2>Select your family members (2-4)</h2>
 <mat-form-field class="input" appearance="fill">
   <mat-label>Select an option</mat-label>
-  <mat-select [disabled]="isSelectionDisabled" (valueChange)="onValueChange()">
-    <mat-option value=2>2 members</mat-option>
-    <mat-option value=3>3 members</mat-option>
-    <mat-option value=4>4 members</mat-option>
+  <mat-select (valueChange)="onValueChange($event)">
+    <mat-option value="2">2 members</mat-option>
+    <mat-option value="3">3 members</mat-option>
+    <mat-option value="4">4 members</mat-option>
   </mat-select>
 </mat-form-field>
-
-<app-family-questions [isSelectionDisabled]="isSelectionDisabled" (buttonChange)="onButtonChange()"></app-family-questions>
+<button mat-raised-button type="submit" (click)="onDoneClick()">Continue</button>
