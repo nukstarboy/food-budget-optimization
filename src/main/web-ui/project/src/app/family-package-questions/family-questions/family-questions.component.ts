@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PersonalQuestions} from "../../models/personal-questions";
 import {Router} from "@angular/router";
-import {PlanService} from "../../service/plan.service";
 
 @Component({
   selector: 'app-family-questions',
@@ -14,8 +13,7 @@ export class FamilyQuestionsComponent implements OnInit {
   public memberNumber: number = 1;
   public selectedMembers: number;
 
-  public constructor(private router: Router,
-                     private readonly planService: PlanService) {
+  public constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,10 +30,20 @@ export class FamilyQuestionsComponent implements OnInit {
       this.memberNumber = Number(localStorage.getItem('onMember'));
     }
     if (this.selectedMembers > this.memberNumber) {
+      const key = 'famMember' + Number(this.memberNumber)
+      localStorage.setItem(key, JSON.stringify([this.familyQuestionsFormGroup.value]))
       this.memberNumber++;
       localStorage.setItem('onMember', String(this.memberNumber));
       this.familyQuestionsFormGroup.reset();
     } else {
+      const key = 'famMember' + Number(this.memberNumber)
+      localStorage.setItem(key, JSON.stringify([this.familyQuestionsFormGroup.value]))
+      let memberValues: any[] = [];
+      for (let i = 1; i <= this.memberNumber; i++) {
+        const getKey = 'famMember' + i;
+        memberValues = [ ...memberValues, localStorage.getItem(getKey) ]
+        localStorage.removeItem(getKey);
+      }
       localStorage.removeItem('onMember');
       localStorage.removeItem('selectedMembers');
       this.router.navigate(['/']);
