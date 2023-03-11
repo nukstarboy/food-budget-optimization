@@ -1,7 +1,9 @@
 package project.service;
 
 import org.springframework.stereotype.Service;
+import project.models.FamilyNutrientsQuantity;
 import project.models.NutrientsQuantity;
+import project.repo.FamilyNutrientsQuantityRepo;
 import project.repo.NutrientsQuantityRepo;
 
 import javax.transaction.Transactional;
@@ -10,9 +12,12 @@ import java.util.List;
 @Service
 public class NutrientsQuantityService {
     private final NutrientsQuantityRepo nutrientsQuantityRepo;
+    private final FamilyNutrientsQuantityRepo familyNutrientsQuantityRepo;
 
-    public NutrientsQuantityService(NutrientsQuantityRepo nutrientsQuantityRepo) {
+    public NutrientsQuantityService(NutrientsQuantityRepo nutrientsQuantityRepo,
+                                    FamilyNutrientsQuantityRepo familyNutrientsQuantityRepo) {
         this.nutrientsQuantityRepo = nutrientsQuantityRepo;
+        this.familyNutrientsQuantityRepo = familyNutrientsQuantityRepo;
     }
 
     public List<NutrientsQuantity> getAllNutrientsQuantityByOwner(String owner) {
@@ -21,6 +26,10 @@ public class NutrientsQuantityService {
 
     public void saveAll(List<NutrientsQuantity> nutrientsQuantities) {
         this.nutrientsQuantityRepo.saveAll(nutrientsQuantities);
+    }
+
+    public void saveAllFamilyNutrients(List<FamilyNutrientsQuantity> familyNutrientsQuantities) {
+        this.familyNutrientsQuantityRepo.saveAll(familyNutrientsQuantities);
     }
 
     @Transactional

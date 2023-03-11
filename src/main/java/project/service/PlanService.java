@@ -38,6 +38,43 @@ public class PlanService {
         saveTaskSolveDetails(personalQuestions, nutrients);
     }
 
+    public void saveFamilyPlan(List<FamilyQuestions> familyQuestions) {
+        familyQuestions.forEach(questions -> {
+            List<Nutrient> nutrients = nutrientCalculator.addNutrients(questions.age,
+                    questions.gender,
+                    questions.weight,
+                    questions.height,
+                    questions.activity,
+                    questions.bodyType);
+            saveFamilyFoodPrices(questions, nutrients);
+            saveFamilyNutrientsQuantities(questions, nutrients);
+        });
+    }
+
+    private void saveFamilyNutrientsQuantities(FamilyQuestions familyQuestions, List<Nutrient> nutrients) {
+        List<NutrientsQuantity> nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, familyQuestions.planPeriod, familyQuestions.planOwner);
+        List<FamilyNutrientsQuantity> familyNutrientsQuantities = nutrientsQuantities.stream().map((nutrient -> new FamilyNutrientsQuantity(
+                familyQuestions.memberName,
+                nutrient.nutrientName,
+                nutrient.normalQuantityPerDay,
+                nutrient.minimumQuantityPerDay,
+                familyQuestions.planOwner))
+        ).toList();
+        this.nutrientsQuantityService.saveAllFamilyNutrients(familyNutrientsQuantities);
+    }
+
+    private void saveFamilyFoodPrices(FamilyQuestions familyQuestions, List<Nutrient> nutrients) {
+        List<FoodPrice> foodPrices = this.stiglerDiet.foodPrices(nutrients, familyQuestions.planPeriod, familyQuestions.planOwner);
+        List<FamilyFoodPrice> familyFoodPrices = foodPrices.stream().map((foodPrice -> new FamilyFoodPrice(
+                familyQuestions.memberName,
+                foodPrice.food,
+                foodPrice.optimalPrice,
+                foodPrice.planPeriod,
+                familyQuestions.planOwner))
+        ).toList();
+        this.foodPriceService.saveAllFamilyFoodPrices(familyFoodPrices);
+    }
+
     private void clearPlanIfExists(PersonalQuestions personalQuestions) {
         List<FoodPrice> allFoodPricesByOwner = this.foodPriceService.getAllFoodPricesByOwner(personalQuestions.planOwner);
         if (allFoodPricesByOwner.size() > 0) {
@@ -54,12 +91,12 @@ public class PlanService {
     }
 
     private void saveFoodPrices(PersonalQuestions personalQuestions, List<Nutrient> nutrients) {
-        List<FoodPrice> foodPrices = this.stiglerDiet.foodPrices(nutrients, personalQuestions);
+        List<FoodPrice> foodPrices = this.stiglerDiet.foodPrices(nutrients, personalQuestions.planPeriod, personalQuestions.planOwner);
         this.foodPriceService.saveAll(foodPrices);
     }
 
     private void saveNutrientsQuantities(PersonalQuestions personalQuestions, List<Nutrient> nutrients) {
-        List<NutrientsQuantity> nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, personalQuestions);
+        List<NutrientsQuantity> nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, personalQuestions.planPeriod, personalQuestions.planOwner);
         this.nutrientsQuantityService.saveAll(nutrientsQuantities);
     }
 

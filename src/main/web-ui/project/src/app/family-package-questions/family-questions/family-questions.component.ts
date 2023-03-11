@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {PersonalQuestions} from "../../models/personal-questions";
 import {Router} from "@angular/router";
+import {PlanService} from "../../service/plan.service";
+import {FamilyQuestions} from "../../models/family-questions";
 
 @Component({
   selector: 'app-family-questions',
@@ -13,7 +14,8 @@ export class FamilyQuestionsComponent implements OnInit {
   public memberNumber: number = 1;
   public selectedMembers: number;
 
-  public constructor(private router: Router) {
+  public constructor(private router: Router,
+                     private readonly planService: PlanService) {
   }
 
   ngOnInit(): void {
@@ -25,7 +27,6 @@ export class FamilyQuestionsComponent implements OnInit {
   }
 
   public onDoneClick(): void {
-    const familyQuestions = this.buildFamilyQuestions();
     if (localStorage.getItem('onMember') !== null) {
       this.memberNumber = Number(localStorage.getItem('onMember'));
     }
@@ -46,29 +47,22 @@ export class FamilyQuestionsComponent implements OnInit {
       }
       localStorage.removeItem('onMember');
       localStorage.removeItem('selectedMembers');
+      const parsedMembers: FamilyQuestions[] = memberValues.flatMap((value) => {
+        let member = JSON.parse(value);
+        member[0].planOwner = localStorage.getItem('username');
+        return member;
+      });
+      this.planService.saveFamilyPlan(parsedMembers).subscribe(() => {
+        console.log('stana')
+      })
       this.router.navigate(['/']);
-    }
-  }
-
-  private buildFamilyQuestions(): PersonalQuestions {
-    const emailId = localStorage.getItem("username");
-    return {
-      gender: this.familyQuestionsFormGroup.controls['gender'].value,
-      weight: this.familyQuestionsFormGroup.controls['weight'].value,
-      age: this.familyQuestionsFormGroup.controls['age'].value,
-      height: this.familyQuestionsFormGroup.controls['height'].value,
-      bodyType: this.familyQuestionsFormGroup.controls['bodyType'].value,
-      activity: this.familyQuestionsFormGroup.controls['activity'].value,
-      workout: this.familyQuestionsFormGroup.controls['workout'].value,
-      dietaryRestrictions: this.familyQuestionsFormGroup.controls['dietaryRestrictions'].value,
-      planPeriod: this.familyQuestionsFormGroup.controls['planPeriod'].value,
-      planOwner: emailId
     }
   }
 
   private initializeFormGroup(): void {
     this.familyQuestionsFormGroup = new FormGroup<any>({
       gender: new FormControl(['', Validators.required]),
+      memberName: new FormControl(['']),
       weight: new FormControl(['', Validators.required]),
       age: new FormControl(['', Validators.required]),
       height: new FormControl(['', Validators.required]),

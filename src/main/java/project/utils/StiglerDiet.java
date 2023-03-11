@@ -6,7 +6,10 @@ import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
 import com.google.ortools.linearsolver.MPVariable;
 import org.springframework.stereotype.Service;
-import project.models.*;
+import project.models.Food;
+import project.models.FoodPrice;
+import project.models.Nutrient;
+import project.models.NutrientsQuantity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,7 @@ public class StiglerDiet {
         this.foodInfo = foodInfo;
     }
 
-    public List<FoodPrice> foodPrices(List<Nutrient> nutrients, PersonalQuestions personalQuestions) {
+    public List<FoodPrice> foodPrices(List<Nutrient> nutrients, int planPeriod, String planOwner) {
         Loader.loadNativeLibraries();
         List<Food> food = foodInfo.addFoodInfo();
 
@@ -69,8 +72,8 @@ public class StiglerDiet {
 //        System.out.println("\nAnnual Foods:");
         for (int i = 0; i < foods.size(); ++i) {
             if (foods.get(i).solutionValue() > 0.0) {
-                foodPrices.add(new FoodPrice(food.get(i).name, personalQuestions.planPeriod * foods.get(i).solutionValue(), setPlanPeriod(personalQuestions.planPeriod), personalQuestions.planOwner));
-                System.out.println(food.get(i).name + ": $" + personalQuestions.planPeriod * foods.get(i).solutionValue());
+                foodPrices.add(new FoodPrice(food.get(i).name, planPeriod * foods.get(i).solutionValue(), setPlanPeriod(planPeriod), planOwner));
+                System.out.println(food.get(i).name + ": $" + planPeriod * foods.get(i).solutionValue());
             }
         }
 
@@ -86,7 +89,7 @@ public class StiglerDiet {
         return "Yearly";
     }
 
-    public List<NutrientsQuantity> nutrientsQuantities(List<Nutrient> nutrients, PersonalQuestions personalQuestions) {
+    public List<NutrientsQuantity> nutrientsQuantities(List<Nutrient> nutrients, int planPeriod, String planOwner) {
         Loader.loadNativeLibraries();
         List<Food> food = foodInfo.addFoodInfo();
 
@@ -136,7 +139,7 @@ public class StiglerDiet {
         System.out.println("\nAnnual Foods:");
         for (int i = 0; i < foods.size(); ++i) {
             if (foods.get(i).solutionValue() > 0.0) {
-                System.out.println(food.get(i).name + ": $" + personalQuestions.planPeriod * foods.get(i).solutionValue());
+                System.out.println(food.get(i).name + ": $" + planPeriod * foods.get(i).solutionValue());
                 for (int j = 0; j < nutrients.size(); ++j) {
                     nutrientsResult[j] += (food.get(i).ingredients)[j] * foods.get(i).solutionValue();
                 }
@@ -146,7 +149,7 @@ public class StiglerDiet {
         List<NutrientsQuantity> nutrientsQuantities = new ArrayList<>();
         System.out.println("\nNutrients per day:");
         for (int i = 0; i < nutrients.size(); ++i) {
-            NutrientsQuantity nutrientsQuantity = new NutrientsQuantity(nutrients.get(i).name, nutrientsResult[i], nutrients.get(i).quantity, personalQuestions.planOwner);
+            NutrientsQuantity nutrientsQuantity = new NutrientsQuantity(nutrients.get(i).name, nutrientsResult[i], nutrients.get(i).quantity, planOwner);
             nutrientsQuantities.add(nutrientsQuantity);
             System.out.println(
                     nutrients.get(i).name + ": " + nutrientsResult[i] + " (min " + nutrients.get(i).quantity + ")");

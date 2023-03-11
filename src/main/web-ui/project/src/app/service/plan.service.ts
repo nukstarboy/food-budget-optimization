@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PersonalQuestions} from "../models/personal-questions";
+import {FamilyQuestions} from "../models/family-questions";
 
 @Injectable()
 export class PlanService {
@@ -12,5 +13,9 @@ export class PlanService {
 
   public savePersonalPlan(personalQuestions: PersonalQuestions): Observable<any> {
     return this.http.post(this.url + "/save-plan", personalQuestions);
+  }
+
+  public saveFamilyPlan(personalQuestions: FamilyQuestions[]): Observable<any> {
+    return this.http.post(this.url + "/save-family-plan", personalQuestions);
   }
 }
