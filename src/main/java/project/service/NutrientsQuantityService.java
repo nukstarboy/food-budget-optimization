@@ -24,6 +24,10 @@ public class NutrientsQuantityService {
         return this.nutrientsQuantityRepo.getAllByOwner(owner);
     }
 
+    public List<FamilyNutrientsQuantity> getFamilyNutrientsQuantityByOwner(String owner) {
+        return this.familyNutrientsQuantityRepo.getFamilyNutrientsQuantitiesByOwner(owner);
+    }
+
     public void saveAll(List<NutrientsQuantity> nutrientsQuantities) {
         this.nutrientsQuantityRepo.saveAll(nutrientsQuantities);
     }
@@ -35,5 +39,10 @@ public class NutrientsQuantityService {
     @Transactional
     public void deleteAll(String owner) {
         this.nutrientsQuantityRepo.deleteAllByOwner(owner);
+    }
+
+    @Transactional
+    public void deleteFamilyNutrientsQuantity(String owner) {
+        this.familyNutrientsQuantityRepo.deleteAllByOwner(owner);
     }
 }

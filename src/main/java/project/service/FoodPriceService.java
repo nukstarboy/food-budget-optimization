@@ -32,8 +32,21 @@ public class FoodPriceService {
         this.familyFoodPriceRepo.saveAll(familyFoodPrices);
     }
 
+    public List<FamilyFoodPrice> getByMemberName(String memberName) {
+        return this.familyFoodPriceRepo.getByMemberName(memberName);
+    }
+
+    public List<FamilyFoodPrice> getFamilyFoodPricesByOwner(String owner) {
+        return this.familyFoodPriceRepo.getFamilyFoodPricesByOwner(owner);
+    }
+
     @Transactional
     public void deleteAll(String owner) {
         this.foodPriceRepo.deleteAllByOwner(owner);
+    }
+
+    @Transactional
+    public void deleteFamilyFoodPrices(String owner) {
+        this.familyFoodPriceRepo.deleteAllByOwner(owner);
     }
 }

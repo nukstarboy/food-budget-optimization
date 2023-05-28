@@ -26,10 +26,13 @@ public class AdminDetail {
     @Column(name = "dueOn")
     public String dueOn;
 
+    @Column(name = "familyMembers")
+    public String familyMembers;
+
     public AdminDetail() {
     }
 
-    public AdminDetail(int adminID, String emailId, String name, String password, String role, String dueOn) {
+    public AdminDetail(int adminID, String emailId, String name, String password, String role, String dueOn, String familyMembers) {
         super();
         this.adminID = adminID;
         this.emailId = emailId;
@@ -37,6 +40,7 @@ public class AdminDetail {
         this.password = password;
         this.role = role;
         this.dueOn = dueOn;
+        this.familyMembers = familyMembers;
     }
 
     public int getAdminID() {
@@ -87,4 +91,11 @@ public class AdminDetail {
         this.dueOn = dueOn;
     }
 
+    public String getFamilyMembers() {
+        return familyMembers;
+    }
+
+    public void setFamilyMembers(String familyMembers) {
+        this.familyMembers = familyMembers;
+    }
 }

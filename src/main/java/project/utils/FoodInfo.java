@@ -30,7 +30,6 @@ public class FoodInfo {
         data.add(new Food("Fried Rice", new double[]{116.5, 2.5, 13, 9.5, 20.5, 0.5, 0.5, 2.5}));
         data.add(new Food("Hamburger", new double[]{33.167, 2.167, 11.5, 8.67, 0, 0, 0, 3.33}));
         data.add(new Food("Hummus", new double[]{84.667, 2, 0, 258.667, 12.667, 3.33, 2, 4}));
-        data.add(new Food("Lasagna", new double[]{128, 5.25, 34.5, 268.75, 10.25, 1, 3, 10}));
         data.add(new Food("Meatballs", new double[]{77.667, 4.33, 25.33, 32.667, 1.33, 0.33, 0.33, 7}));
         data.add(new Food("Pork Roast", new double[]{41.8, 3, 13.4, 10.4, 0, 0, 0, 3.6}));
         data.add(new Food("Tuna Salad", new double[]{50.667, 1, 10, 70, 2, 0.33, 1.667, 8}));
@@ -39,7 +38,6 @@ public class FoodInfo {
         data.add(new Food("Baked Sweet Potato", new double[]{124, 0, 0, 50, 29, 5, 9, 3}));
         data.add(new Food("Baked Tater Tots", new double[]{82.25, 3.75, 0, 198.25, 11.75, 0.75, 0, 1}));
         data.add(new Food("Egg Noodles", new double[]{39.4, 0.6, 8.2, 2.4, 7.2, 0.4, 0.2, 1.2}));
-        data.add(new Food("French Fries", new double[]{185.33, 9, 0, 6.33, 25, 2.667, 1, 2}));
         data.add(new Food("Italian Pasta Salad", new double[]{69.75, 2.75, 0, 89, 9.5, 0.75, 0.5, 1.75}));
         data.add(new Food("Pesto Pasta", new double[]{69.75, 2.75, 0, 89, 9.5, 0.75, 0.5, 1.75}));
         data.add(new Food("Potato Chips", new double[]{75.5, 5, 0, 74.5, 7.5, 1, 0.5, 0.5}));
@@ -47,7 +45,6 @@ public class FoodInfo {
         data.add(new Food("Tortilla Chips", new double[]{67, 3, 0, 46.5, 9.5, 1, 0, 1}));
 
         data.add(new Food("Bran Cereal", new double[]{90, 0.5, 0, 202.5, 23.5, 5, 5, 3}));
-        data.add(new Food("Breakfast Cake", new double[]{169.5, 9.5, 13.5, 51, 19, 0.5, 10, 2.5}));
         data.add(new Food("French Toast", new double[]{101.5, 2.5, 52.5, 151, 14, 1.5, 3, 5.5}));
         data.add(new Food("Pancakes", new double[]{102.5, 2, 22.5, 220.5, 17, 0.5, 2.5, 3.5}));
 

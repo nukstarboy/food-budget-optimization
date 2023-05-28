@@ -6,6 +6,7 @@ import project.models.*;
 import project.utils.NutrientCalculator;
 import project.utils.StiglerDiet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,18 +16,20 @@ public class PlanService {
     private final FoodPriceService foodPriceService;
     private final NutrientsQuantityService nutrientsQuantityService;
     private final TaskSolveDetailsService taskSolveDetailsService;
+    private final AdminService adminService;
 
     @Autowired
-    public PlanService(StiglerDiet stiglerDiet, NutrientCalculator nutrientCalculator, FoodPriceService foodPriceService, NutrientsQuantityService nutrientsQuantityService, TaskSolveDetailsService taskSolveDetailsService) {
+    public PlanService(StiglerDiet stiglerDiet, NutrientCalculator nutrientCalculator, FoodPriceService foodPriceService, NutrientsQuantityService nutrientsQuantityService, TaskSolveDetailsService taskSolveDetailsService, AdminService adminService) {
         this.stiglerDiet = stiglerDiet;
         this.nutrientCalculator = nutrientCalculator;
         this.foodPriceService = foodPriceService;
         this.nutrientsQuantityService = nutrientsQuantityService;
         this.taskSolveDetailsService = taskSolveDetailsService;
+        this.adminService = adminService;
     }
 
     public void savePersonalPlan(PersonalQuestions personalQuestions) {
-        clearPlanIfExists(personalQuestions);
+        clearPersonalPlanIfExists(personalQuestions.planOwner);
         List<Nutrient> nutrients = nutrientCalculator.addNutrients(personalQuestions.age,
                 personalQuestions.gender,
                 personalQuestions.weight,
@@ -39,6 +42,8 @@ public class PlanService {
     }
 
     public void saveFamilyPlan(List<FamilyQuestions> familyQuestions) {
+        clearFamilyPlanIfExists(familyQuestions.get(0).planOwner);
+        List<String> familyMembers = new ArrayList<>();
         familyQuestions.forEach(questions -> {
             List<Nutrient> nutrients = nutrientCalculator.addNutrients(questions.age,
                     questions.gender,
@@ -46,9 +51,13 @@ public class PlanService {
                     questions.height,
                     questions.activity,
                     questions.bodyType);
+            familyMembers.add(questions.memberName);
             saveFamilyFoodPrices(questions, nutrients);
             saveFamilyNutrientsQuantities(questions, nutrients);
         });
+        AdminDetail adminDetail = adminService.get(familyQuestions.get(0).planOwner);
+        adminDetail.setFamilyMembers(String.join(", ", familyMembers));
+        adminService.saveAdminDetail(adminDetail);
     }
 
     private void saveFamilyNutrientsQuantities(FamilyQuestions familyQuestions, List<Nutrient> nutrients) {
@@ -75,18 +84,29 @@ public class PlanService {
         this.foodPriceService.saveAllFamilyFoodPrices(familyFoodPrices);
     }
 
-    private void clearPlanIfExists(PersonalQuestions personalQuestions) {
-        List<FoodPrice> allFoodPricesByOwner = this.foodPriceService.getAllFoodPricesByOwner(personalQuestions.planOwner);
+    private void clearPersonalPlanIfExists(String planOwner) {
+        List<FoodPrice> allFoodPricesByOwner = this.foodPriceService.getAllFoodPricesByOwner(planOwner);
         if (allFoodPricesByOwner.size() > 0) {
-            this.foodPriceService.deleteAll(personalQuestions.planOwner);
+            this.foodPriceService.deleteAll(planOwner);
         }
-        List<NutrientsQuantity> allNutrientsQuantityByOwner = this.nutrientsQuantityService.getAllNutrientsQuantityByOwner(personalQuestions.planOwner);
+        List<NutrientsQuantity> allNutrientsQuantityByOwner = this.nutrientsQuantityService.getAllNutrientsQuantityByOwner(planOwner);
         if (allNutrientsQuantityByOwner.size() > 0) {
-            this.nutrientsQuantityService.deleteAll(personalQuestions.planOwner);
+            this.nutrientsQuantityService.deleteAll(planOwner);
         }
-        List<TaskSolveDetails> taskSolveDetails = this.taskSolveDetailsService.getTaskSolveDetails(personalQuestions.planOwner);
+        List<TaskSolveDetails> taskSolveDetails = this.taskSolveDetailsService.getTaskSolveDetails(planOwner);
         if (taskSolveDetails.size() > 0) {
-            this.taskSolveDetailsService.delete(personalQuestions.planOwner);
+            this.taskSolveDetailsService.delete(planOwner);
+        }
+    }
+
+    private void clearFamilyPlanIfExists(String planOwner) {
+        List<FamilyFoodPrice> allFoodPricesByOwner = this.foodPriceService.getFamilyFoodPricesByOwner(planOwner);
+        if (allFoodPricesByOwner.size() > 0) {
+            this.foodPriceService.deleteFamilyFoodPrices(planOwner);
+        }
+        List<FamilyNutrientsQuantity> allNutrientsQuantityByOwner = this.nutrientsQuantityService.getFamilyNutrientsQuantityByOwner(planOwner);
+        if (allNutrientsQuantityByOwner.size() > 0) {
+            this.nutrientsQuantityService.deleteFamilyNutrientsQuantity(planOwner);
         }
     }
 
