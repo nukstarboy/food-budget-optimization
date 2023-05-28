@@ -36,6 +36,7 @@ export class SignupComponent {
       this.adminService.saveAdminDetails(this.adminDetail!).subscribe(
         () => {
           this.router.navigate(['/login']);
+          alert("You got 7 days right trial period")
         },
         () => {
           alert("error occur while registring User. please try after sometime.")

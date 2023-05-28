@@ -47,7 +47,6 @@ public class AdminService {
             String tokenData[] = generateToken.createJWT(adminDetail.getEmailId(),
                     "JavaTpoint",
                     "JWT Token",
-                    adminDetail.getRole(),
                     43200000);
             String token = tokenData[0];
 

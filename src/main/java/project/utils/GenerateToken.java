@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class GenerateToken {
 
-    public String[] createJWT(String id, String issuer, String subject, String role , long ttlMillis) {
+    public String[] createJWT(String id, String issuer, String subject, long ttlMillis) {
 
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -38,7 +38,6 @@ public class GenerateToken {
                 .setIssuedAt(now)
                 .setSubject(subject)
                 .setIssuer(issuer)
-                .setPayload(role)
                 .signWith(signatureAlgorithm, signingKey);
 
         //if it has been specified, let's add the expiration

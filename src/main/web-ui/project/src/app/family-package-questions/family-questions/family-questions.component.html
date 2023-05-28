@@ -21,6 +21,20 @@
 
     <mat-step [stepControl]="familyQuestionsFormGroup">
       <form [formGroup]="familyQuestionsFormGroup">
+        <ng-template matStepLabel>Type member name</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="memberName">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="familyQuestionsFormGroup">
+      <form [formGroup]="familyQuestionsFormGroup">
         <ng-template matStepLabel>Let's check your body measurements</ng-template>
         <div class="body-measurements">
           <mat-form-field appearance="fill">
