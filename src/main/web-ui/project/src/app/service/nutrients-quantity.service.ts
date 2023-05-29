@@ -14,4 +14,9 @@ export class NutrientsQuantityService {
   public getNutrients(owner: string): Observable<any> {
     return this.http.post(this.url, owner);
   }
+
+  public getFamilyNutrients(members: string): Observable<any> {
+    let url = this.url + "/get-all-family-nutrients";
+    return this.http.post(url, members);
+  }
 }

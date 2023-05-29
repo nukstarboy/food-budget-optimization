@@ -7,6 +7,8 @@ import project.repo.FamilyNutrientsQuantityRepo;
 import project.repo.NutrientsQuantityRepo;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -22,6 +24,16 @@ public class NutrientsQuantityService {
 
     public List<NutrientsQuantity> getAllNutrientsQuantityByOwner(String owner) {
         return this.nutrientsQuantityRepo.getAllByOwner(owner);
+    }
+
+    public List<FamilyNutrientsQuantity> getAllFamilyNutrientsQuantityByMembers(String members) {
+        String[] memberNames = members.split(", ");
+        List<FamilyNutrientsQuantity> combineNutrients = new ArrayList<>();
+        Arrays.stream(memberNames).forEach(member -> {
+            List<FamilyNutrientsQuantity> nutrientsByMember = this.familyNutrientsQuantityRepo.getAllByMemberName(member);
+            combineNutrients.addAll(nutrientsByMember);
+        });
+        return combineNutrients;
     }
 
     public List<FamilyNutrientsQuantity> getFamilyNutrientsQuantityByOwner(String owner) {

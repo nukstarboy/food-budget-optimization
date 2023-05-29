@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import project.models.FamilyNutrientsQuantity;
 import project.models.NutrientsQuantity;
 import project.service.NutrientsQuantityService;
 
@@ -19,7 +20,12 @@ public class NutrientsQuantityController {
     }
 
     @PostMapping
-    public List<NutrientsQuantity> getAllFoodPricesByOwner(@RequestBody String owner) {
+    public List<NutrientsQuantity> getAllNutrientsQuantityByOwner(@RequestBody String owner) {
         return this.nutrientsQuantityService.getAllNutrientsQuantityByOwner(owner);
+    }
+
+    @PostMapping("/get-all-family-nutrients")
+    public List<FamilyNutrientsQuantity> getAllFamilyNutrientsQuantityByMembers(@RequestBody String members) {
+        return this.nutrientsQuantityService.getAllFamilyNutrientsQuantityByMembers(members);
     }
 }

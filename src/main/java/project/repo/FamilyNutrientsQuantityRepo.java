@@ -9,4 +9,6 @@ public interface FamilyNutrientsQuantityRepo extends CrudRepository<FamilyNutrie
     List<FamilyNutrientsQuantity> getFamilyNutrientsQuantitiesByOwner(String owner);
 
     void deleteAllByOwner(String owner);
+
+    List<FamilyNutrientsQuantity> getAllByMemberName(String memberName);
 }

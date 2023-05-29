@@ -43,6 +43,7 @@ import {FamilyQuestionsComponent} from './family-package-questions/family-questi
 import {PersonalFoodComponent} from './profile/personal-food/personal-food.component';
 import {FamilyFoodComponent} from './profile/family-food/family-food.component';
 import {FamilyFoodPriceComponent} from "./profile/family-food-price/family-food-price.component";
+import {FamilyNutrientsComponent} from "./profile/family-nutrients/family-nutrients.component";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {FamilyFoodPriceComponent} from "./profile/family-food-price/family-food-
     FamilyQuestionsComponent,
     PersonalFoodComponent,
     FamilyFoodComponent,
-    FamilyFoodPriceComponent
+    FamilyFoodPriceComponent,
+    FamilyNutrientsComponent
   ],
   imports: [
     BrowserModule,

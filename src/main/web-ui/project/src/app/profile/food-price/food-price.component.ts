@@ -14,7 +14,7 @@ export class FoodPriceComponent implements OnInit, AfterViewInit {
   public paginator: MatPaginator;
 
   public optimalPriceHeader: string;
-  public displayedColumns: string[] = ['food', 'optimal price', 'owner'];
+  public displayedColumns: string[] = ['food', 'optimal price', 'owner', 'plan period'];
 
   constructor() {
   }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {AdminService} from "../service/admión-service.service";
 import {FoodPriceService} from "../service/food-price.service";
 import {FoodPrices} from "../models/food-prices";
 import {MatTableDataSource} from "@angular/material/table";
@@ -8,6 +7,8 @@ import {NutrientsQuantityService} from "../service/nutrients-quantity.service";
 import {NutrientsQuantity} from "../models/nutrients-quantity";
 import {TaskSolveService} from "../service/task-solve.service";
 import {TaskDetails} from "../models/task-details";
+import {AdminService} from "../service/admin-service.service";
+import {FamilyNutrientsQuantity} from "../models/family-nutrients-quantity";
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +20,9 @@ export class ProfileComponent implements OnInit {
   public foodPriceDataSource = new MatTableDataSource<FoodPrices>([]);
   public familyFoodPriceDataSource = new MatTableDataSource<FoodPrices>([]);
   public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>([]);
+  public familyNutrientsQuantityDataSource = new MatTableDataSource<FamilyNutrientsQuantity>([]);
   public taskDetailsDataSource = new MatTableDataSource<TaskDetails>([]);
   public dueOn: string;
-  public familyFood: any[] = [];
 
   public constructor(private readonly adminService: AdminService,
                      private readonly foodPriceService: FoodPriceService,
@@ -33,13 +34,14 @@ export class ProfileComponent implements OnInit {
   public ngOnInit(): void {
     if (this.adminService.isLoggedIn()) {
       const emailId = this.adminService.getLoginInUserEmailId()!;
-      this.adminService.getLoggedInUser(emailId).subscribe((response) => {
+      this.adminService.getLoggedInUser(emailId).subscribe((response: any) => {
         this.isStillTrialTime = new Date(response.dueOn) > new Date(Date.now());
         this.dueOn = response.dueOn;
         this.buildPersonalFoodPrice(emailId);
         this.buildNutrientsQuantity(emailId);
         this.buildTaskSolver(emailId);
         this.buildFamilyFoodPrice(response.familyMembers);
+        this.buildFamilyNutrientsQuantity(response.familyMembers);
       });
     } else {
       this.router.navigate(['/login']);
@@ -71,6 +73,12 @@ export class ProfileComponent implements OnInit {
   private buildFamilyFoodPrice(familyMembers: string) {
     this.foodPriceService.getFamilyFoodPricesByMembers(familyMembers).subscribe((foodPrices) => {
       this.familyFoodPriceDataSource.data = [...foodPrices];
+    });
+  }
+
+  private buildFamilyNutrientsQuantity(familyMembers: string) {
+    this.nutrientsQuantityService.getFamilyNutrients(familyMembers).subscribe((nutrients) => {
+      this.familyNutrientsQuantityDataSource.data = [...nutrients];
     });
   }
 }

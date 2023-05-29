@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {FoodPrices} from "../../models/food-prices";
-import {NutrientsQuantity} from "../../models/nutrients-quantity";
+import {FamilyNutrientsQuantity} from "../../models/family-nutrients-quantity";
 
 @Component({
   selector: 'app-family-food',
@@ -17,6 +17,6 @@ export class FamilyFoodComponent {
   public foodPriceDataSource = new MatTableDataSource<FoodPrices>();
 
   @Input()
-  public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>();
+  public nutrientsQuantityDataSource = new MatTableDataSource<FamilyNutrientsQuantity>();
 
 }
