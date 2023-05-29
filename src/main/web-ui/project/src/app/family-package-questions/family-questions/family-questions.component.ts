@@ -42,7 +42,7 @@ export class FamilyQuestionsComponent implements OnInit {
       let memberValues: any[] = [];
       for (let i = 1; i <= this.memberNumber; i++) {
         const getKey = 'famMember' + i;
-        memberValues = [ ...memberValues, localStorage.getItem(getKey) ]
+        memberValues = [...memberValues, localStorage.getItem(getKey)]
         localStorage.removeItem(getKey);
       }
       localStorage.removeItem('onMember');
@@ -53,7 +53,6 @@ export class FamilyQuestionsComponent implements OnInit {
         return member;
       });
       this.planService.saveFamilyPlan(parsedMembers).subscribe(() => {
-        console.log('stana')
       })
       this.router.navigate(['/']);
     }
