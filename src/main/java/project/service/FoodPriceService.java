@@ -7,6 +7,8 @@ import project.repo.FamilyFoodPriceRepo;
 import project.repo.FoodPriceRepo;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -32,8 +34,14 @@ public class FoodPriceService {
         this.familyFoodPriceRepo.saveAll(familyFoodPrices);
     }
 
-    public List<FamilyFoodPrice> getByMemberName(String memberName) {
-        return this.familyFoodPriceRepo.getByMemberName(memberName);
+    public List<FamilyFoodPrice> getByMemberNames(String memberName) {
+        String[] members = memberName.split(", ");
+        List<FamilyFoodPrice> combineFood = new ArrayList<>();
+                Arrays.stream(members).forEach(member -> {
+            List<FamilyFoodPrice> foodByMember = this.familyFoodPriceRepo.getByMemberName(member);
+            combineFood.addAll(foodByMember);
+        });
+        return combineFood;
     }
 
     public List<FamilyFoodPrice> getFamilyFoodPricesByOwner(String owner) {

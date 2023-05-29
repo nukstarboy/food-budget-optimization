@@ -40,6 +40,9 @@ import {MatRadioModule} from "@angular/material/radio";
 import {BankDetailsComponent} from './payment-method/payment-tax/bank-details/bank-details.component';
 import {FamilyPackageQuestionsComponent} from './family-package-questions/family-package-questions.component';
 import {FamilyQuestionsComponent} from './family-package-questions/family-questions/family-questions.component';
+import {PersonalFoodComponent} from './profile/personal-food/personal-food.component';
+import {FamilyFoodComponent} from './profile/family-food/family-food.component';
+import {FamilyFoodPriceComponent} from "./profile/family-food-price/family-food-price.component";
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import {FamilyQuestionsComponent} from './family-package-questions/family-questi
     PaymentTaxComponent,
     BankDetailsComponent,
     FamilyPackageQuestionsComponent,
-    FamilyQuestionsComponent
+    FamilyQuestionsComponent,
+    PersonalFoodComponent,
+    FamilyFoodComponent,
+    FamilyFoodPriceComponent
   ],
   imports: [
     BrowserModule,

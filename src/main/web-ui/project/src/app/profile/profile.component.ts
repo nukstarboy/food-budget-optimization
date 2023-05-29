@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {AdminService} from "../service/admin-service.service";
+import {AdminService} from "../service/admión-service.service";
 import {FoodPriceService} from "../service/food-price.service";
 import {FoodPrices} from "../models/food-prices";
 import {MatTableDataSource} from "@angular/material/table";
@@ -15,14 +15,13 @@ import {TaskDetails} from "../models/task-details";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public allFoodsWithPricesForLoginInOwner: FoodPrices[] = [];
-  public allNutrientsForLoginInOwner: NutrientsQuantity[] = [];
-  public taskDetailsForLoginInOwner: TaskDetails[] = [];
   public isStillTrialTime: boolean = false;
-  public foodPriceDataSource = new MatTableDataSource<FoodPrices>();
-  public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>();
-  public taskDetailsDataSource = new MatTableDataSource<TaskDetails>();
+  public foodPriceDataSource = new MatTableDataSource<FoodPrices>([]);
+  public familyFoodPriceDataSource = new MatTableDataSource<FoodPrices>([]);
+  public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>([]);
+  public taskDetailsDataSource = new MatTableDataSource<TaskDetails>([]);
   public dueOn: string;
+  public familyFood: any[] = [];
 
   public constructor(private readonly adminService: AdminService,
                      private readonly foodPriceService: FoodPriceService,
@@ -37,9 +36,10 @@ export class ProfileComponent implements OnInit {
       this.adminService.getLoggedInUser(emailId).subscribe((response) => {
         this.isStillTrialTime = new Date(response.dueOn) > new Date(Date.now());
         this.dueOn = response.dueOn;
-        this.buildFoodPrice(emailId);
+        this.buildPersonalFoodPrice(emailId);
         this.buildNutrientsQuantity(emailId);
         this.buildTaskSolver(emailId);
+        this.buildFamilyFoodPrice(response.familyMembers);
       });
     } else {
       this.router.navigate(['/login']);
@@ -50,24 +50,27 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/quiz/questions']);
   }
 
-  private buildFoodPrice(emailId: string) {
+  private buildPersonalFoodPrice(emailId: string) {
     this.foodPriceService.getFoodPrices(emailId).subscribe((foodPrices: FoodPrices[]) => {
-      this.allFoodsWithPricesForLoginInOwner = [...foodPrices];
-      this.foodPriceDataSource.data = this.allFoodsWithPricesForLoginInOwner;
+      this.foodPriceDataSource.data = [...foodPrices];
     });
   }
 
   private buildNutrientsQuantity(emailId: string) {
     this.nutrientsQuantityService.getNutrients(emailId).subscribe((nutrients) => {
-      this.allNutrientsForLoginInOwner = [...nutrients];
-      this.nutrientsQuantityDataSource.data = this.allNutrientsForLoginInOwner;
+      this.nutrientsQuantityDataSource.data = [...nutrients];
     });
   }
 
   private buildTaskSolver(emailId: string) {
     this.taskSolveService.getTaskSolve(emailId).subscribe((taskDetails) => {
-      this.taskDetailsForLoginInOwner = [...taskDetails];
-      this.taskDetailsDataSource.data = this.taskDetailsForLoginInOwner;
+      this.taskDetailsDataSource.data = [...taskDetails];
+    });
+  }
+
+  private buildFamilyFoodPrice(familyMembers: string) {
+    this.foodPriceService.getFamilyFoodPricesByMembers(familyMembers).subscribe((foodPrices) => {
+      this.familyFoodPriceDataSource.data = [...foodPrices];
     });
   }
 }

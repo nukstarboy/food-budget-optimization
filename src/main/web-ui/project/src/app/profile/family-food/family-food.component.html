@@ -1,0 +1,17 @@
+<div *ngIf="isStillTrialTime" style="text-align: right ; margin-right: 40px;">
+  <div *ngIf="foodPriceDataSource.filteredData.length">
+    <mat-tab-group>
+      <mat-tab label="Food Prices">
+        <ng-template matTabContent>
+          <app-family-food-price [dataSource]="foodPriceDataSource"></app-family-food-price>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Nutrients">
+        <ng-template matTabContent>
+          <app-nutrients [dataSource]="nutrientsQuantityDataSource"></app-nutrients>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+

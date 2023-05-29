@@ -1,29 +1,20 @@
 <div>
   Your trial mode is due on: {{dueOn}}
 </div>
-<div *ngIf="isStillTrialTime" style="text-align: right ; margin-right: 40px;">
-  <div *ngIf="allFoodsWithPricesForLoginInOwner.length">
-    <mat-tab-group>
-      <mat-tab label="Food Prices">
-        <ng-template matTabContent>
-          <app-food-price [dataSource]="foodPriceDataSource"></app-food-price>
-        </ng-template>
-      </mat-tab>
-      <mat-tab label="Nutrients">
-        <ng-template matTabContent>
-          <app-nutrients [dataSource]="nutrientsQuantityDataSource"></app-nutrients>
-        </ng-template>
-      </mat-tab>
-      <mat-tab label="Solve Time">
-        <ng-template matTabContent>
-          <app-solve-time [dataSource]="taskDetailsDataSource"></app-solve-time>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-  <h2>If you want to try new plan click on the button below!</h2>
-  <button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
-</div>
+<app-personal-food
+  [isStillTrialTime]="isStillTrialTime"
+  [foodPriceDataSource]="foodPriceDataSource"
+  [nutrientsQuantityDataSource]="nutrientsQuantityDataSource"
+  [taskDetailsDataSource]="taskDetailsDataSource">
+</app-personal-food>
+
+<app-family-food
+  [isStillTrialTime]="isStillTrialTime"
+  [foodPriceDataSource]="familyFoodPriceDataSource">
+</app-family-food>
+
+<h2>If you want to try new plan click on the button below!</h2>
+<button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
 
 <div *ngIf="!isStillTrialTime">
   <app-payment-method></app-payment-method>

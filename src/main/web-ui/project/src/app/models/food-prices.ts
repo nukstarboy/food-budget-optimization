@@ -3,5 +3,6 @@ export class FoodPrices {
   food: string;
   optimalPrice: number;
   planPeriod: string;
-  owner: string
+  memberName?: string;
+  owner?: string;
 }

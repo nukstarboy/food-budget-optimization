@@ -14,4 +14,9 @@ export class FoodPriceService {
   public getFoodPrices(owner: string): Observable<any> {
     return this.http.post(this.url, owner);
   }
+
+  public getFamilyFoodPricesByMembers(members: string): Observable<any> {
+    let url = this.url + "/getFamilyFoodPrices";
+    return this.http.post(url, members);
+  }
 }
