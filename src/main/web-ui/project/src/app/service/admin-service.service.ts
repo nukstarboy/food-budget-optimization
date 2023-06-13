@@ -56,7 +56,7 @@ export class AdminService {
       return false;
     } else if (token !== 'null') {
       // get the Expiration date of the token by calling getTokenExpirationDate(String) method of JwtHelper class. this method accepts a string value which is nothing but a token.
-      // let expirationDate = jwtHelper.getTokenExpirationDate(token);
+      let expirationDate = jwtHelper.getTokenExpirationDate(token);
 
       // check whether the token is expired or not by calling isTokenExpired() method of JwtHelper class.
       let isExpired = jwtHelper.isTokenExpired(token);

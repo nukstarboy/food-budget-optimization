@@ -3,8 +3,9 @@ package project.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import project.config.Config;
 import project.models.AdminDetail;
 import project.models.Token;
 import project.models.TrialMode;
@@ -18,11 +19,13 @@ import java.util.stream.StreamSupport;
 public class AdminService {
     private final AdminRepo adminRepo;
     private final TokenService tokenService;
+    private final Config config;
 
     @Autowired
-    public AdminService(AdminRepo adminRepo, TokenService tokenService) {
+    public AdminService(AdminRepo adminRepo, TokenService tokenService, Config config) {
         this.adminRepo = adminRepo;
         this.tokenService = tokenService;
+        this.config = config;
     }
 
     public AdminDetail get(String emailId) {
@@ -30,14 +33,24 @@ public class AdminService {
     }
 
     public AdminDetail saveAdminDetail(AdminDetail adminDetail) {
+        PasswordEncoder encodedPassword = config.encodedPassword();
+        adminDetail.setPassword(encodedPassword.encode(adminDetail.getPassword()));
         return adminRepo.save(adminDetail);
     }
 
     public AdminDetail adminLogin(String emailId, String password) {
-        return adminRepo.getAdminDetailByEmailIdAndPassword(emailId, password);
+        AdminDetail adminDetail = get(emailId);
+        PasswordEncoder encodedPassword = config.encodedPassword();
+        if (adminDetail != null) {
+            if (encodedPassword.matches(password, adminDetail.getPassword())) {
+                return adminDetail;
+            }
+        }
+
+        return null;
     }
 
-    public ResponseEntity<Integer> login(AdminDetail adminDetail) {
+    public Token login(AdminDetail adminDetail) {
         GenerateToken generateToken = new GenerateToken();
         HttpHeaders httpHeader = null;
 
@@ -47,27 +60,20 @@ public class AdminService {
             String tokenData[] = generateToken.createJWT(adminDetail.getEmailId(),
                     "JavaTpoint",
                     "JWT Token",
-                    43200000);
+                    300000);
             String token = tokenData[0];
 
-            // Create the Header Object
-            httpHeader = new HttpHeaders();
-            // Add token to the Header.
-            httpHeader.add("Authorization", token);
-
             boolean userEmailExists = tokenService.getTokenDetail(adminDetail.getEmailId());
-
+            Token buildToken = new Token(loginUser.getAdminID(), token, tokenData[1], loginUser.getEmailId(), HttpStatus.OK.toString());
             if (userEmailExists) {
                 tokenService.updateToken(adminDetail.getEmailId(), token, tokenData[1]);
+                return buildToken;
             } else {
-                Token buildToken =
-                        new Token(loginUser.getAdminID(), token, tokenData[1], loginUser.getEmailId());
                 tokenService.saveUserEmail(buildToken);
+                return buildToken;
             }
-            return ResponseEntity.ok().headers(httpHeader).body(1);
-//            return new ResponseEntity<Integer>(1, httpHeader, HttpStatus.OK);
         } else {
-            return new ResponseEntity<Integer>(-1, httpHeader, HttpStatus.NOT_FOUND);
+            return new Token(HttpStatus.NOT_FOUND.toString());
         }
     }
 

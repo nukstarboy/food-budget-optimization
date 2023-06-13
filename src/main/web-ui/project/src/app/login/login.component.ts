@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit {
 
     this.adminService.login(this.adminDetail).subscribe((response) => {
       if (response.status === 200) {
-        //TODO It's not working...
-        let token = response.headers.get("Authorization");
+        let token = response.body.authenticationToken;
         localStorage.setItem("token", token);
         localStorage.setItem("username", this.adminDetail?.emailId!);
 

@@ -55,30 +55,35 @@ export class ProfileComponent implements OnInit {
   private buildPersonalFoodPrice(emailId: string) {
     this.foodPriceService.getFoodPrices(emailId).subscribe((foodPrices: FoodPrices[]) => {
       this.foodPriceDataSource.data = [...foodPrices];
-    });
+    },
+      error => console.log('Something went wrong!', error));
   }
 
   private buildNutrientsQuantity(emailId: string) {
     this.nutrientsQuantityService.getNutrients(emailId).subscribe((nutrients) => {
       this.nutrientsQuantityDataSource.data = [...nutrients];
-    });
+    },
+      error => console.log('Something went wrong!', error));
   }
 
   private buildTaskSolver(emailId: string) {
     this.taskSolveService.getTaskSolve(emailId).subscribe((taskDetails) => {
       this.taskDetailsDataSource.data = [...taskDetails];
-    });
+    },
+      error => console.log('Something went wrong!', error));
   }
 
   private buildFamilyFoodPrice(familyMembers: string) {
     this.foodPriceService.getFamilyFoodPricesByMembers(familyMembers).subscribe((foodPrices) => {
       this.familyFoodPriceDataSource.data = [...foodPrices];
-    });
+    },
+      error => console.log('Something went wrong!', error));
   }
 
   private buildFamilyNutrientsQuantity(familyMembers: string) {
     this.nutrientsQuantityService.getFamilyNutrients(familyMembers).subscribe((nutrients) => {
       this.familyNutrientsQuantityDataSource.data = [...nutrients];
-    });
+    },
+      error => console.log('Something went wrong!', error));
   }
 }

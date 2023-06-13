@@ -14,8 +14,10 @@
   [nutrientsQuantityDataSource]="familyNutrientsQuantityDataSource">
 </app-family-food>
 
-<h2>If you want to try new plan click on the button below!</h2>
-<button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
+<div *ngIf="isStillTrialTime">
+  <h2>If you want to try new plan click on the button below!</h2>
+  <button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
+</div>
 
 <div *ngIf="!isStillTrialTime">
   <app-payment-method></app-payment-method>

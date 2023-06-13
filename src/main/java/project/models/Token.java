@@ -23,14 +23,22 @@ public class Token {
     @Column(name = "email_id")
     private String emailId;
 
+    @Column(name = "httpStatus")
+    private String httpStatus;
+
     public Token() {
     }
 
-    public Token(int userID, String authenticationToken, String secretKey, String emailId) {
+    public Token(int userID, String authenticationToken, String secretKey, String emailId, String httpStatus) {
         this.userID = userID;
         this.authenticationToken = authenticationToken;
         this.secretKey = secretKey;
         this.emailId = emailId;
+        this.httpStatus = httpStatus;
+    }
+
+    public Token(String httpStatus) {
+        this.httpStatus = httpStatus;
     }
 
     public int getTokenID() {
@@ -71,6 +79,14 @@ public class Token {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    public String getHttpStatus() {
+        return httpStatus;
+    }
+
+    public void setHttpStatus(String httpStatus) {
+        this.httpStatus = httpStatus;
     }
 
     @Override

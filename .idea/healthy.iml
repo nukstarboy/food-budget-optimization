@@ -37,7 +37,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.7.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.7.8" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.7.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.7.8" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.11" level="project" />
@@ -51,7 +50,6 @@
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.30" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.7.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.7.8" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.7" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.7.8" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:4.0.3" level="project" />
@@ -73,7 +71,6 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.7.7" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.25" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.28" level="project" />
@@ -123,7 +120,14 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.71" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.25" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.7.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.25" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.25" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.25" level="project" />
+    <orderEntry type="library" name="Maven: io.micrometer:micrometer-observation:1.10.7" level="project" />
+    <orderEntry type="library" name="Maven: io.micrometer:micrometer-commons:1.10.7" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents:httpclient:4.5.14" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents:httpcore:4.4.16" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-codec:commons-codec:1.15" level="project" />

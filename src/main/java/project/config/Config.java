@@ -2,6 +2,8 @@ package project.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableTransactionManagement
 public class Config {
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
@@ -21,6 +24,11 @@ public class Config {
                         .allowedHeaders("Content-Type", "X-Auth-Token", "Origin", "Authorization");
             }
         };
+    }
+
+    @Bean
+    public PasswordEncoder encodedPassword() {
+        return new BCryptPasswordEncoder();
     }
 
 }

@@ -1,9 +1,9 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.models.AdminDetail;
+import project.models.Token;
 import project.models.TrialMode;
 import project.service.AdminService;
 
@@ -34,7 +34,7 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Integer> login(@RequestBody AdminDetail adminDetail) {
+    public Token login(@RequestBody AdminDetail adminDetail) {
         return this.adminService.login(adminDetail);
     }
 
