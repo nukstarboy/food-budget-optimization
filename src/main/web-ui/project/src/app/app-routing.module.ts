@@ -11,6 +11,7 @@ import {HelpStaticComponent} from "./help-static/help-static.component";
 import {PaymentTaxComponent} from "./payment-method/payment-tax/payment-tax.component";
 import {FamilyPackageQuestionsComponent} from "./family-package-questions/family-package-questions.component";
 import {FamilyQuestionsComponent} from "./family-package-questions/family-questions/family-questions.component";
+import {PersonalMeatCreatorComponent} from "./personal-meat-creator/personal-meat-creator.component";
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'quiz/add-personal-meat',
+    component: PersonalMeatCreatorComponent
   },
   {
     path: '**',

@@ -13,7 +13,7 @@ import {HomeComponent} from "./home/home.component";
 import {QuizQuestionsComponent} from "./quiz-questions/quiz-questions.component";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {PersonalQuestionsComponent} from './personal-questions/personal-questions.component';
@@ -44,6 +44,9 @@ import {PersonalFoodComponent} from './profile/personal-food/personal-food.compo
 import {FamilyFoodComponent} from './profile/family-food/family-food.component';
 import {FamilyFoodPriceComponent} from "./profile/family-food-price/family-food-price.component";
 import {FamilyNutrientsComponent} from "./profile/family-nutrients/family-nutrients.component";
+import {PersonalMeatCreatorComponent} from './personal-meat-creator/personal-meat-creator.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {ArrowDivDirective} from "./personal-meat-creator/arrow-div.directive";
 
 @NgModule({
   declarations: [
@@ -67,7 +70,9 @@ import {FamilyNutrientsComponent} from "./profile/family-nutrients/family-nutrie
     PersonalFoodComponent,
     FamilyFoodComponent,
     FamilyFoodPriceComponent,
-    FamilyNutrientsComponent
+    FamilyNutrientsComponent,
+    PersonalMeatCreatorComponent,
+    ArrowDivDirective
   ],
   imports: [
     BrowserModule,
@@ -88,7 +93,9 @@ import {FamilyNutrientsComponent} from "./profile/family-nutrients/family-nutrie
     MatTableModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule,
+    FormsModule
   ],
   providers: [PlanService, PersonalQuestionsService, HomePageService, JwtHelperService],
   bootstrap: [AppComponent]

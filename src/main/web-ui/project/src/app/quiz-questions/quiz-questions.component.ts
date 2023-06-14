@@ -20,4 +20,8 @@ export class QuizQuestionsComponent implements OnInit {
   public onFamilyPackageButtonClick(): void {
     this.router.navigate(['/quiz/family-package']);
   }
+
+  public onAddFoodButtonClick(): void {
+    this.router.navigate(['/quiz/add-personal-meat']);
+  }
 }
