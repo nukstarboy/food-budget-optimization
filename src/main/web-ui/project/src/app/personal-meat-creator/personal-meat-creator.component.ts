@@ -3,6 +3,7 @@ import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatTable} from "@angular/material/table";
 import {ArrowDivDirective} from './arrow-div.directive';
 import {KeyBoardService} from './keyboard.service';
+import {FoodNutrientsService} from "../service/food-nutrients.service";
 
 @Component({
   selector: 'app-personal-meat-creator',
@@ -21,13 +22,22 @@ export class PersonalMeatCreatorComponent implements OnInit {
   foodFormArray = new FormArray([
       new FormGroup(
         {
-          foodName: new FormControl("uno"),
-          calories: new FormControl("one")
+          foodName: new FormControl("Pizza"),
+          calories: new FormControl(0),
+          protein: new FormControl(0),
+          calcium: new FormControl(0),
+          iron: new FormControl(0),
+          vitaminA: new FormControl(0),
+          thiamine: new FormControl(0),
+          riboflavin: new FormControl(0),
+          niacin: new FormControl(0),
+          ascorbicAcid: new FormControl(0)
         })
     ]
   )
 
-  public constructor(private readonly keyboardService: KeyBoardService) {
+  public constructor(private readonly keyboardService: KeyBoardService,
+                     private readonly foodNutrientsService: FoodNutrientsService) {
   }
 
   public ngOnInit(): void {
@@ -44,8 +54,15 @@ export class PersonalMeatCreatorComponent implements OnInit {
   public add(): void {
     this.foodFormArray.push(new FormGroup({
       foodName: new FormControl(""),
-      calories: new FormControl("")
-
+      calories: new FormControl(0),
+      protein: new FormControl(0),
+      calcium: new FormControl(0),
+      iron: new FormControl(0),
+      vitaminA: new FormControl(0),
+      thiamine: new FormControl(0),
+      riboflavin: new FormControl(0),
+      niacin: new FormControl(0),
+      ascorbicAcid: new FormControl(0)
     }))
     this.table.renderRows()
   }
@@ -88,4 +105,27 @@ export class PersonalMeatCreatorComponent implements OnInit {
     }
   }
 
+  public onSaveButtonClick(): void {
+    const buildFoodNutrients = this.buildFoodNutrients();
+    this.foodNutrientsService.saveFoodNutrients(buildFoodNutrients).subscribe(() => console.log('stana'));
+  }
+
+  private buildFoodNutrients(): any {
+    console.log(localStorage)
+    return this.foodFormArray.controls.map((formGroup) => {
+      return {
+        foodName: formGroup.controls['foodName'].value,
+        calories: formGroup.controls['calories'].value,
+        protein: formGroup.controls['protein'].value,
+        calcium: formGroup.controls['calcium'].value,
+        iron: formGroup.controls['iron'].value,
+        vitaminA: formGroup.controls['vitaminA'].value,
+        thiamine: formGroup.controls['thiamine'].value,
+        riboflavin: formGroup.controls['riboflavin'].value,
+        niacin: formGroup.controls['niacin'].value,
+        ascorbicAcid: formGroup.controls['ascorbicAcid'].value,
+        owner: localStorage.getItem('username')
+      };
+    });
+  }
 }
