@@ -1,3 +1,7 @@
+<div style="margin-bottom: 1rem">
+  <p>If you want to use your own food selection please slide toggle below!</p>
+  <mat-slide-toggle [(ngModel)]="isChecked" (change)="onToggleChange()">Personal food</mat-slide-toggle>
+</div>
 <mat-stepper class="stepper" orientation="vertical" [linear]="true" #stepper>
 
   <mat-step [stepControl]="personalQuestionsFormGroup">

@@ -12,6 +12,7 @@ import {PlanService} from "../service/plan.service";
 })
 export class PersonalQuestionsComponent implements OnInit {
   public personalQuestionsFormGroup: FormGroup = new FormGroup<any>({});
+  public isChecked: boolean = false;
 
   public constructor(private readonly personalQuestionsService: PersonalQuestionsService,
                      private readonly planService: PlanService,
@@ -28,6 +29,10 @@ export class PersonalQuestionsComponent implements OnInit {
       this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
       this.router.navigate(['/quiz/email']);
     });
+  }
+
+  public onToggleChange() {
+    console.log(this.isChecked)
   }
 
   private buildPersonalQuestions(): PersonalQuestions {

@@ -7,12 +7,18 @@ import {Router} from "@angular/router";
   styleUrls: ['./family-package-questions.component.scss']
 })
 export class FamilyPackageQuestionsComponent implements OnInit {
+  public isChecked: boolean;
+
   private selectedMembers: number;
 
   constructor(private readonly router: Router) {
   }
 
   public ngOnInit(): void {
+  }
+
+  public onToggleChange() {
+    console.log(this.isChecked)
   }
 
   public onValueChange(selectedMembers: number) {
