@@ -39,15 +39,15 @@
         <div class="body-measurements">
           <mat-form-field appearance="fill">
             <mat-label>Current weight(kg)</mat-label>
-            <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight" required>
+            <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight">
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Age(years)</mat-label>
-            <input type="number" max="80" matInput placeholder="0 years" formControlName="age" required>
+            <input type="number" max="80" matInput placeholder="0 years" formControlName="age">
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Height (cm)</mat-label>
-            <input type="number" max="240" matInput placeholder="0 cm" formControlName="height" required>
+            <input type="number" max="240" matInput placeholder="0 cm" formControlName="height">
           </mat-form-field>
         </div>
         <div>
@@ -116,24 +116,6 @@
 
     <mat-step [stepControl]="familyQuestionsFormGroup">
       <form [formGroup]="familyQuestionsFormGroup">
-        <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Select me</mat-label>
-          <mat-select formControlName="dietaryRestrictions">
-            <mat-option value="vegetarian">I'm vegetarian</mat-option>
-            <mat-option value="vegan">I'm vegan</mat-option>
-            <mat-option value="none">None of the above</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-
-    <mat-step [stepControl]="familyQuestionsFormGroup">
-      <form [formGroup]="familyQuestionsFormGroup">
         <ng-template matStepLabel>Plan period</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Select me</mat-label>
@@ -155,7 +137,7 @@
       <p>You successfully complete your personal quiz!</p>
       <p>You can continue with others or click on completed button!</p>
       <div>
-        <button mat-button type="submit" (click)="onDoneClick()">Done</button>
+        <button mat-button type="submit" (click)="onDoneClick(stepper)">Done</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>

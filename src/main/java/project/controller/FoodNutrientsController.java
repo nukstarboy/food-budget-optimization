@@ -26,4 +26,9 @@ public class FoodNutrientsController {
         this.foodNutrientsService.save(foodNutrients);
     }
 
+    @PostMapping("/exists")
+    public boolean exists(@RequestBody String owner) {
+        return this.foodNutrientsService.exists(owner);
+    }
+
 }

@@ -1,10 +1,7 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.models.FamilyQuestions;
 import project.models.PersonalQuestions;
 import project.service.PlanService;
@@ -21,13 +18,13 @@ public class PlanController {
         this.planService = planService;
     }
 
-    @PostMapping("/save-plan")
-    public void savePersonalPlan(@RequestBody PersonalQuestions personalQuestions) {
-        planService.savePersonalPlan(personalQuestions);
+    @PostMapping("/save-plan/{isToggleTriggered}")
+    public void savePersonalPlan(@RequestBody PersonalQuestions personalQuestions, @PathVariable boolean isToggleTriggered) throws Exception {
+        planService.savePersonalPlan(personalQuestions, isToggleTriggered);
     }
 
-    @PostMapping("/save-family-plan")
-    public void saveFamilyPlan(@RequestBody List<FamilyQuestions> familyQuestions) {
-        planService.saveFamilyPlan(familyQuestions);
+    @PostMapping("/save-family-plan/{isToggleTriggered}")
+    public void saveFamilyPlan(@RequestBody List<FamilyQuestions> familyQuestions, @PathVariable boolean isToggleTriggered) {
+        planService.saveFamilyPlan(familyQuestions, isToggleTriggered);
     }
 }

@@ -7,7 +7,6 @@ export class FamilyQuestions {
   bodyType: string;
   activity: string;
   workout: string;
-  dietaryRestrictions: string;
   planOwner: string | null;
   planPeriod: number;
 }

@@ -16,15 +16,8 @@ import java.util.List;
 
 @Service
 public class StiglerDiet {
-    private final FoodInfo foodInfo;
-
-    public StiglerDiet(FoodInfo foodInfo) {
-        this.foodInfo = foodInfo;
-    }
-
-    public List<FoodPrice> foodPrices(List<Nutrient> nutrients, int planPeriod, String planOwner) {
+    public List<FoodPrice> foodPrices(List<Nutrient> nutrients, int planPeriod, String planOwner, List<Food> food) throws Exception {
         Loader.loadNativeLibraries();
-        List<Food> food = foodInfo.addFoodInfo();
 
         // Create the linear solver with the GLOP backend.
         MPSolver solver = MPSolver.createSolver("GLOP");
@@ -66,6 +59,7 @@ public class StiglerDiet {
                 System.err.println("The solver could not solve the problem.");
                 return null;
             }
+            throw new Exception("The problem does not have an optimal solution!");
         }
 
         List<FoodPrice> foodPrices = new ArrayList<>();
@@ -89,10 +83,8 @@ public class StiglerDiet {
         return "Yearly";
     }
 
-    public List<NutrientsQuantity> nutrientsQuantities(List<Nutrient> nutrients, int planPeriod, String planOwner) {
+    public List<NutrientsQuantity> nutrientsQuantities(List<Nutrient> nutrients, int planPeriod, String planOwner, List<Food> food) throws Exception {
         Loader.loadNativeLibraries();
-        List<Food> food = foodInfo.addFoodInfo();
-
         // Create the linear solver with the GLOP backend.
         MPSolver solver = MPSolver.createSolver("GLOP");
         if (solver == null) {
@@ -133,6 +125,7 @@ public class StiglerDiet {
                 System.err.println("The solver could not solve the problem.");
                 return null;
             }
+            throw new Exception("The problem does not have an optimal solution!");
         }
 
         double[] nutrientsResult = new double[nutrients.size()];
@@ -158,10 +151,8 @@ public class StiglerDiet {
         return nutrientsQuantities;
     }
 
-    public double optimalPrice(List<Nutrient> nutrients, int planPeriod) {
+    public double optimalPrice(List<Nutrient> nutrients, int planPeriod, List<Food> food) throws Exception {
         Loader.loadNativeLibraries();
-        List<Food> food = foodInfo.addFoodInfo();
-
         // Create the linear solver with the GLOP backend.
         MPSolver solver = MPSolver.createSolver("GLOP");
         if (solver == null) {
@@ -202,6 +193,7 @@ public class StiglerDiet {
                 System.err.println("The solver could not solve the problem.");
                 return 0;
             }
+            throw new Exception("The problem does not have an optimal solution!");
         }
 
         double[] nutrientsResult = new double[nutrients.size()];
@@ -223,23 +215,22 @@ public class StiglerDiet {
         return planPeriod * objective.value();
     }
 
-    public double problemSolvedTime(List<Nutrient> nutrients) {
+    public double problemSolvedTime(List<Nutrient> nutrients, List<Food> food) throws Exception {
         System.out.println("\nAdvanced usage:");
-        MPSolver solver = problemSolved(nutrients);
+        MPSolver solver = problemSolved(nutrients, food);
         System.out.println("Problem solved in " + solver.wallTime() + " milliseconds");
         return solver.wallTime();
     }
 
-    public long problemSolvedIterations(List<Nutrient> nutrients) {
+    public long problemSolvedIterations(List<Nutrient> nutrients, List<Food> food) throws Exception {
         System.out.println("\nAdvanced usage:");
-        MPSolver solver = problemSolved(nutrients);
+        MPSolver solver = problemSolved(nutrients, food);
         System.out.println("Problem solved in " + solver.iterations() + " iterations");
         return solver.iterations();
     }
 
-    private MPSolver problemSolved(List<Nutrient> nutrients) {
+    private MPSolver problemSolved(List<Nutrient> nutrients, List<Food> food) throws Exception {
         Loader.loadNativeLibraries();
-        List<Food> food = foodInfo.addFoodInfo();
 
         // Create the linear solver with the GLOP backend.
         MPSolver solver = MPSolver.createSolver("GLOP");
@@ -281,6 +272,7 @@ public class StiglerDiet {
                 System.err.println("The solver could not solve the problem.");
                 return null;
             }
+            throw new Exception("The problem does not have an optimal solution!");
         }
 
         double[] nutrientsResult = new double[nutrients.size()];

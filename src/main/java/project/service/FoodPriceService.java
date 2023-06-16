@@ -37,7 +37,7 @@ public class FoodPriceService {
     public List<FamilyFoodPrice> getByMemberNames(String memberName) {
         String[] members = memberName.split(", ");
         List<FamilyFoodPrice> combineFood = new ArrayList<>();
-                Arrays.stream(members).forEach(member -> {
+        Arrays.stream(members).forEach(member -> {
             List<FamilyFoodPrice> foodByMember = this.familyFoodPriceRepo.getByMemberName(member);
             combineFood.addAll(foodByMember);
         });

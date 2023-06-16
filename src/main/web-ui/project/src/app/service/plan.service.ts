@@ -15,7 +15,7 @@ export class PlanService {
     return this.http.post(this.url + "/save-plan", personalQuestions);
   }
 
-  public saveFamilyPlan(personalQuestions: FamilyQuestions[]): Observable<any> {
-    return this.http.post(this.url + "/save-family-plan", personalQuestions);
+  public saveFamilyPlan(personalQuestions: FamilyQuestions[], isToggleTriggered: boolean): Observable<any> {
+    return this.http.post(this.url + "/save-family-plan/" + isToggleTriggered, personalQuestions);
   }
 }

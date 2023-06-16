@@ -25,4 +25,12 @@ public class FoodNutrientsService {
         foodNutrientsRepo.deleteAll(found);
         foodNutrientsRepo.saveAll(foodNutrients);
     }
+
+    public boolean exists(String owner) {
+        return foodNutrientsRepo.existsAllByOwner(owner);
+    }
+
+    public List<FoodNutrients> findAllByOwner(String owner) {
+        return foodNutrientsRepo.findAllByOwner(owner);
+    }
 }

@@ -4,6 +4,7 @@ import {MatTable} from "@angular/material/table";
 import {ArrowDivDirective} from './arrow-div.directive';
 import {KeyBoardService} from './keyboard.service';
 import {FoodNutrientsService} from "../service/food-nutrients.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-personal-meat-creator',
@@ -36,7 +37,8 @@ export class PersonalMeatCreatorComponent implements OnInit {
     ]
   )
 
-  public constructor(private readonly keyboardService: KeyBoardService,
+  public constructor(private router: Router,
+                     private readonly keyboardService: KeyBoardService,
                      private readonly foodNutrientsService: FoodNutrientsService) {
   }
 
@@ -107,11 +109,14 @@ export class PersonalMeatCreatorComponent implements OnInit {
 
   public onSaveButtonClick(): void {
     const buildFoodNutrients = this.buildFoodNutrients();
-    this.foodNutrientsService.saveFoodNutrients(buildFoodNutrients).subscribe(() => console.log('stana'));
+    console.log(buildFoodNutrients)
+    this.foodNutrientsService.saveFoodNutrients(buildFoodNutrients).subscribe(() => {
+      alert('Vous avez réussi à sauvegarder vos aliments !')
+      this.router.navigate(['/quiz/questions'])
+    });
   }
 
   private buildFoodNutrients(): any {
-    console.log(localStorage)
     return this.foodFormArray.controls.map((formGroup) => {
       return {
         foodName: formGroup.controls['foodName'].value,

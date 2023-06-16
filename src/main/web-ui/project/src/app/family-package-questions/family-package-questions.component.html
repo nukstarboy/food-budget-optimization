@@ -7,8 +7,8 @@
     <mat-option value="4">4 members</mat-option>
   </mat-select>
 </mat-form-field>
-<div style="display: contents;">
+<form *ngIf="doesUserHavePersonalFood" [formGroup]="formGroup" style="display: contents;">
   <p>If you want to use your own food selection please slide toggle below!</p>
-  <mat-slide-toggle [(ngModel)]="isChecked" (change)="onToggleChange()">Personal food</mat-slide-toggle>
-</div>
-<button style="margin-top: 1rem;" mat-raised-button type="submit" (click)="onDoneClick()">Continue</button>
+  <mat-slide-toggle formControlName="isToggleTriggered">Personal food</mat-slide-toggle>
+</form>
+<button style="margin-top: 1rem;" [disabled]="isButtonDisable" mat-raised-button type="submit" (click)="onDoneClick()">Continue</button>

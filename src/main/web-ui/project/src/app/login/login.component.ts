@@ -40,16 +40,14 @@ export class LoginComponent implements OnInit {
     };
 
     this.adminService.login(this.adminDetail).subscribe((response) => {
-      if (response.status === 200) {
+      if (response.body.httpStatus === '200 OK') {
         let token = response.body.authenticationToken;
         localStorage.setItem("token", token);
         localStorage.setItem("username", this.adminDetail?.emailId!);
 
         this.emitState.emitValue('login');
         this.router.navigate(['/profile']);
-      }
-    }, (error) => {
-      if (error.status === 404) {
+      } else if (response.body.httpStatus === '404 NOT_FOUND') {
         alert("please register before login Or Invalid combination of Email and password");
       } else {
         console.log("Error in authentication");

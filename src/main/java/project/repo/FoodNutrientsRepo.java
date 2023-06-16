@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface FoodNutrientsRepo extends CrudRepository<FoodNutrients, Integer> {
     List<FoodNutrients> findAllByOwner(String owner);
+
+    boolean existsAllByOwner(String owner);
 }

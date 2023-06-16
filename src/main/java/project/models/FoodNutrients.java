@@ -12,30 +12,30 @@ public class FoodNutrients {
 
     private String foodName;
 
-    private int calories;
+    private double calories;
 
-    private int protein;
+    private double protein;
 
-    private int calcium;
+    private double calcium;
 
-    private int iron;
+    private double iron;
 
-    private int vitaminA;
+    private double vitaminA;
 
-    private int thiamine;
+    private double thiamine;
 
-    private int riboflavin;
+    private double riboflavin;
 
-    private int niacin;
+    private double niacin;
 
-    private int ascorbicAcid;
+    private double ascorbicAcid;
 
     private String owner;
 
     public FoodNutrients() {
     }
 
-    public FoodNutrients(String foodName, int calories, int protein, int calcium, int iron, int vitaminA, int thiamine, int riboflavin, int niacin, int ascorbicAcid, String owner) {
+    public FoodNutrients(String foodName, double calories, double protein, double calcium, double iron, double vitaminA, double thiamine, double riboflavin, double niacin, double ascorbicAcid, String owner) {
         this.foodName = foodName;
         this.calories = calories;
         this.protein = protein;
@@ -65,75 +65,75 @@ public class FoodNutrients {
         this.foodName = foodName;
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 
-    public int getProtein() {
+    public double getProtein() {
         return protein;
     }
 
-    public void setProtein(int protein) {
+    public void setProtein(double protein) {
         this.protein = protein;
     }
 
-    public int getCalcium() {
+    public double getCalcium() {
         return calcium;
     }
 
-    public void setCalcium(int calcium) {
+    public void setCalcium(double calcium) {
         this.calcium = calcium;
     }
 
-    public int getIron() {
+    public double getIron() {
         return iron;
     }
 
-    public void setIron(int iron) {
+    public void setIron(double iron) {
         this.iron = iron;
     }
 
-    public int getVitaminA() {
+    public double getVitaminA() {
         return vitaminA;
     }
 
-    public void setVitaminA(int vitaminA) {
+    public void setVitaminA(double vitaminA) {
         this.vitaminA = vitaminA;
     }
 
-    public int getThiamine() {
+    public double getThiamine() {
         return thiamine;
     }
 
-    public void setThiamine(int thiamine) {
+    public void setThiamine(double thiamine) {
         this.thiamine = thiamine;
     }
 
-    public int getRiboflavin() {
+    public double getRiboflavin() {
         return riboflavin;
     }
 
-    public void setRiboflavin(int riboflavin) {
+    public void setRiboflavin(double riboflavin) {
         this.riboflavin = riboflavin;
     }
 
-    public int getNiacin() {
+    public double getNiacin() {
         return niacin;
     }
 
-    public void setNiacin(int niacin) {
+    public void setNiacin(double niacin) {
         this.niacin = niacin;
     }
 
-    public int getAscorbicAcid() {
+    public double getAscorbicAcid() {
         return ascorbicAcid;
     }
 
-    public void setAscorbicAcid(int ascorbicAcid) {
+    public void setAscorbicAcid(double ascorbicAcid) {
         this.ascorbicAcid = ascorbicAcid;
     }
 
