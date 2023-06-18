@@ -9,7 +9,6 @@ public class PersonalQuestions {
     public String bodyType;
     public String activity;
     public String workout;
-    public String dietaryRestrictions;
     public String planOwner;
     public int planPeriod;
 }

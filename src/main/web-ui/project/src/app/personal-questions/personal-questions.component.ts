@@ -25,14 +25,10 @@ export class PersonalQuestionsComponent implements OnInit {
 
   public onDoneClick(): void {
     const personalQuestions = this.buildPersonalQuestions();
-    this.planService.savePersonalPlan(personalQuestions).subscribe(() => {
+    this.planService.savePersonalPlan(personalQuestions, this.isChecked).subscribe(() => {
       this.personalQuestionsService.emitFormGroup(this.personalQuestionsFormGroup);
       this.router.navigate(['/quiz/email']);
     });
-  }
-
-  public onToggleChange() {
-    console.log(this.isChecked)
   }
 
   private buildPersonalQuestions(): PersonalQuestions {
@@ -45,7 +41,6 @@ export class PersonalQuestionsComponent implements OnInit {
       bodyType: this.personalQuestionsFormGroup.controls['bodyType'].value,
       activity: this.personalQuestionsFormGroup.controls['activity'].value,
       workout: this.personalQuestionsFormGroup.controls['workout'].value,
-      dietaryRestrictions: this.personalQuestionsFormGroup.controls['dietaryRestrictions'].value,
       planPeriod: this.personalQuestionsFormGroup.controls['planPeriod'].value,
       planOwner: emailId
     }
@@ -60,7 +55,6 @@ export class PersonalQuestionsComponent implements OnInit {
       bodyType: new FormControl(['', Validators.required]),
       activity: new FormControl(['', Validators.required]),
       workout: new FormControl(['', Validators.required]),
-      dietaryRestrictions: new FormControl(['', Validators.required]),
       planPeriod: new FormControl(['', Validators.required])
     });
   }

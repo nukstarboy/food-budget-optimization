@@ -1,13 +1,13 @@
 <div *ngIf="isStillTrialTime" style="text-align: right ; margin-right: 40px;">
   <div *ngIf="foodPriceDataSource.filteredData.length">
-    <p>That's your family plan: </p>
+    <p style="display: flex;">C'est votre plan familial: </p>
     <mat-tab-group>
-      <mat-tab label="Food Prices">
+      <mat-tab label="Les prix de la nourriture">
         <ng-template matTabContent>
           <app-family-food-price [dataSource]="foodPriceDataSource"></app-family-food-price>
         </ng-template>
       </mat-tab>
-      <mat-tab label="Nutrients">
+      <mat-tab label="Nutriments">
         <ng-template matTabContent>
           <app-family-nutrients [dataSource]="nutrientsQuantityDataSource"></app-family-nutrients>
         </ng-template>

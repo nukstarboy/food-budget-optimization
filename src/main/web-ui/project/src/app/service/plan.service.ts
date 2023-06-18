@@ -11,8 +11,8 @@ export class PlanService {
   public constructor(private readonly http: HttpClient) {
   }
 
-  public savePersonalPlan(personalQuestions: PersonalQuestions): Observable<any> {
-    return this.http.post(this.url + "/save-plan", personalQuestions);
+  public savePersonalPlan(personalQuestions: PersonalQuestions, isChecked: boolean): Observable<any> {
+    return this.http.post(this.url + "/save-plan/" + isChecked, personalQuestions);
   }
 
   public saveFamilyPlan(personalQuestions: FamilyQuestions[], isToggleTriggered: boolean): Observable<any> {

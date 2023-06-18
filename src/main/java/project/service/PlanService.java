@@ -70,7 +70,7 @@ public class PlanService {
         });
         AdminDetail adminDetail = adminService.get(familyQuestions.get(0).planOwner);
         adminDetail.setFamilyMembers(String.join(", ", familyMembers));
-        adminService.saveAdminDetail(adminDetail);
+        adminService.save(adminDetail);
     }
 
     private void saveFamilyNutrientsQuantities(FamilyQuestions familyQuestions, List<Nutrient> nutrients, boolean isToggleTriggered) throws Exception {
@@ -157,7 +157,8 @@ public class PlanService {
     private void saveFoodPrices(PersonalQuestions personalQuestions, List<Nutrient> nutrients, boolean isToggleTriggered) throws Exception {
         List<FoodPrice> foodPrices = new ArrayList<>();
         if (isToggleTriggered) {
-            List<Food> food = new ArrayList<>();
+            List<FoodNutrients> allByOwner = this.foodNutrientsService.findAllByOwner(personalQuestions.planOwner);
+            List<Food> food = mapToFood(allByOwner);
             foodPrices = this.stiglerDiet.foodPrices(nutrients, personalQuestions.planPeriod, personalQuestions.planOwner, food);
         } else {
             foodPrices = this.stiglerDiet.foodPrices(nutrients, personalQuestions.planPeriod, personalQuestions.planOwner, foodInfo.addFoodInfo());
@@ -168,7 +169,8 @@ public class PlanService {
     private void saveNutrientsQuantities(PersonalQuestions personalQuestions, List<Nutrient> nutrients, boolean isToggleTriggered) throws Exception {
         List<NutrientsQuantity> nutrientsQuantities = new ArrayList<>();
         if (isToggleTriggered) {
-            List<Food> food = new ArrayList<>();
+            List<FoodNutrients> allByOwner = this.foodNutrientsService.findAllByOwner(personalQuestions.planOwner);
+            List<Food> food = mapToFood(allByOwner);
             nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, personalQuestions.planPeriod, personalQuestions.planOwner, food);
         } else {
             nutrientsQuantities = this.stiglerDiet.nutrientsQuantities(nutrients, personalQuestions.planPeriod, personalQuestions.planOwner, foodInfo.addFoodInfo());
@@ -181,7 +183,8 @@ public class PlanService {
         double problemSolvedTime;
         long problemSolvedIterations;
         if (isToggleTriggered) {
-            List<Food> personalFood = new ArrayList<>();
+            List<FoodNutrients> allByOwner = this.foodNutrientsService.findAllByOwner(personalQuestions.planOwner);
+            List<Food> personalFood = mapToFood(allByOwner);
             optimalAnnualPrice = this.stiglerDiet.optimalPrice(nutrients, personalQuestions.planPeriod, personalFood);
             problemSolvedTime = this.stiglerDiet.problemSolvedTime(nutrients, personalFood);
             problemSolvedIterations = this.stiglerDiet.problemSolvedIterations(nutrients, personalFood);

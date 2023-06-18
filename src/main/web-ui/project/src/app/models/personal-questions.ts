@@ -6,7 +6,6 @@ export class PersonalQuestions {
   bodyType: string;
   activity: string;
   workout: string;
-  dietaryRestrictions: string;
   planOwner: string | null;
   planPeriod: number;
 }

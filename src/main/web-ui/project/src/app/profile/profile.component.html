@@ -1,5 +1,5 @@
 <div>
-  Your trial mode is due on: {{dueOn}}
+  Votre mode d'essai est dû le: {{dueOn}}
 </div>
 <app-personal-food
   [isStillTrialTime]="isStillTrialTime"
@@ -15,8 +15,8 @@
 </app-family-food>
 
 <div *ngIf="isStillTrialTime">
-  <h2>If you want to try new plan click on the button below!</h2>
-  <button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Create New Meal Diet</button>
+  <h2>Si vous voulez essayer un nouveau plan, cliquez sur le bouton ci-dessous!</h2>
+  <button mat-raised-button color="primary" (click)="onNewMealDietButtonClick()">Créer</button>
 </div>
 
 <div *ngIf="!isStillTrialTime">

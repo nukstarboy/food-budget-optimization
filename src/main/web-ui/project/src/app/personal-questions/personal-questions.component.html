@@ -1,6 +1,6 @@
 <div style="margin-bottom: 1rem">
   <p>If you want to use your own food selection please slide toggle below!</p>
-  <mat-slide-toggle [(ngModel)]="isChecked" (change)="onToggleChange()">Personal food</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="isChecked">Personal food</mat-slide-toggle>
 </div>
 <mat-stepper class="stepper" orientation="vertical" [linear]="true" #stepper>
 
@@ -92,24 +92,6 @@
           <mat-option value="1-2">1-2 times a week</mat-option>
           <mat-option value="3-5">3-5 times a week</mat-option>
           <mat-option value="more than 5">More than 5 times a week</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="personalQuestionsFormGroup">
-    <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>Do you have any dietary restrictions?</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
-        <mat-select formControlName="dietaryRestrictions">
-          <mat-option value="vegetarian">I'm vegetarian</mat-option>
-          <mat-option value="vegan">I'm vegan</mat-option>
-          <mat-option value="none">None of the above</mat-option>
         </mat-select>
       </mat-form-field>
       <div>

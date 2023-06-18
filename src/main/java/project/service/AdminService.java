@@ -38,6 +38,10 @@ public class AdminService {
         return adminRepo.save(adminDetail);
     }
 
+    public AdminDetail save(AdminDetail adminDetail) {
+        return adminRepo.save(adminDetail);
+    }
+
     public AdminDetail adminLogin(String emailId, String password) {
         AdminDetail adminDetail = get(emailId);
         PasswordEncoder encodedPassword = config.encodedPassword();
@@ -60,7 +64,7 @@ public class AdminService {
             String tokenData[] = generateToken.createJWT(adminDetail.getEmailId(),
                     "JavaTpoint",
                     "JWT Token",
-                    300000);
+                    43200000);
             String token = tokenData[0];
 
             boolean userEmailExists = tokenService.getTokenDetail(adminDetail.getEmailId());
