@@ -12,6 +12,11 @@
           <app-family-nutrients [dataSource]="nutrientsQuantityDataSource"></app-family-nutrients>
         </ng-template>
       </mat-tab>
+      <mat-tab label="Optimisation budgétaire">
+        <ng-template matTabContent>
+          <app-optimal-budget [dataSource]="taskDetailsDataSource"></app-optimal-budget>
+        </ng-template>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>

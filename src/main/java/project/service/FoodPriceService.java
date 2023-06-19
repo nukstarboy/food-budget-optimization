@@ -34,11 +34,11 @@ public class FoodPriceService {
         this.familyFoodPriceRepo.saveAll(familyFoodPrices);
     }
 
-    public List<FamilyFoodPrice> getByMemberNames(String memberName) {
+    public List<FamilyFoodPrice> getByMemberNames(String owner, String memberName) {
         String[] members = memberName.split(", ");
         List<FamilyFoodPrice> combineFood = new ArrayList<>();
         Arrays.stream(members).forEach(member -> {
-            List<FamilyFoodPrice> foodByMember = this.familyFoodPriceRepo.getByMemberName(member);
+            List<FamilyFoodPrice> foodByMember = this.familyFoodPriceRepo.getByOwnerAndMemberName(owner, member);
             combineFood.addAll(foodByMember);
         });
         return combineFood;

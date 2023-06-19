@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FamilyFoodPriceRepo extends CrudRepository<FamilyFoodPrice, Integer> {
 
-    List<FamilyFoodPrice> getByMemberName(String memberName);
+    List<FamilyFoodPrice> getByOwnerAndMemberName(String owner, String memberName);
 
     List<FamilyFoodPrice> getFamilyFoodPricesByOwner(String owner);
 

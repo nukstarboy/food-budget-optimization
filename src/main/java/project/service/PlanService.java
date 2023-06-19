@@ -67,6 +67,11 @@ public class PlanService {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            try {
+                saveFamilyOptimalBudget(questions, nutrients, isToggleTriggered);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
         AdminDetail adminDetail = adminService.get(familyQuestions.get(0).planOwner);
         adminDetail.setFamilyMembers(String.join(", ", familyMembers));
@@ -137,9 +142,9 @@ public class PlanService {
         if (allNutrientsQuantityByOwner.size() > 0) {
             this.nutrientsQuantityService.deleteAll(planOwner);
         }
-        List<TaskSolveDetails> taskSolveDetails = this.taskSolveDetailsService.getTaskSolveDetails(planOwner);
+        List<TaskSolveDetails> taskSolveDetails = this.taskSolveDetailsService.getTaskSolveDetails(planOwner, "Personal");
         if (taskSolveDetails.size() > 0) {
-            this.taskSolveDetailsService.delete(planOwner);
+            this.taskSolveDetailsService.deleteAll(taskSolveDetails);
         }
     }
 
@@ -151,6 +156,10 @@ public class PlanService {
         List<FamilyNutrientsQuantity> allNutrientsQuantityByOwner = this.nutrientsQuantityService.getFamilyNutrientsQuantityByOwner(planOwner);
         if (allNutrientsQuantityByOwner.size() > 0) {
             this.nutrientsQuantityService.deleteFamilyNutrientsQuantity(planOwner);
+        }
+        List<TaskSolveDetails> taskSolveDetails = this.taskSolveDetailsService.getTaskSolveDetails(planOwner, "Family");
+        if (taskSolveDetails.size() > 0) {
+            this.taskSolveDetailsService.deleteAll(taskSolveDetails);
         }
     }
 
@@ -194,7 +203,21 @@ public class PlanService {
             problemSolvedIterations = this.stiglerDiet.problemSolvedIterations(nutrients, foodInfo.addFoodInfo());
         }
         String planPeriod = this.stiglerDiet.setPlanPeriod(personalQuestions.planPeriod);
-        TaskSolveDetails taskSolveDetails = new TaskSolveDetails(optimalAnnualPrice, problemSolvedTime, problemSolvedIterations, personalQuestions.planOwner, planPeriod);
+        TaskSolveDetails taskSolveDetails = new TaskSolveDetails(optimalAnnualPrice, problemSolvedTime, problemSolvedIterations, personalQuestions.planOwner, planPeriod, "Personal", null);
+        this.taskSolveDetailsService.save(taskSolveDetails);
+    }
+
+    private void saveFamilyOptimalBudget(FamilyQuestions questions, List<Nutrient> nutrients, boolean isToggleTriggered) throws Exception {
+        double optimalAnnualPrice;
+        if (isToggleTriggered) {
+            List<FoodNutrients> allByOwner = this.foodNutrientsService.findAllByOwner(questions.planOwner);
+            List<Food> personalFood = mapToFood(allByOwner);
+            optimalAnnualPrice = this.stiglerDiet.optimalPrice(nutrients, questions.planPeriod, personalFood);
+        } else {
+            optimalAnnualPrice = this.stiglerDiet.optimalPrice(nutrients, questions.planPeriod, foodInfo.addFoodInfo());
+        }
+        String planPeriod = this.stiglerDiet.setPlanPeriod(questions.planPeriod);
+        TaskSolveDetails taskSolveDetails = new TaskSolveDetails(optimalAnnualPrice, null, null, questions.planOwner, planPeriod, "Family", questions.memberName);
         this.taskSolveDetailsService.save(taskSolveDetails);
     }
 }

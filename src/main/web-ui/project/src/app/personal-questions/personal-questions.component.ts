@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {PersonalQuestions} from '../models/personal-questions';
 import {PersonalQuestionsService} from "../service/personal-questions.service";
@@ -48,14 +48,14 @@ export class PersonalQuestionsComponent implements OnInit {
 
   private initializeFormGroup(): void {
     this.personalQuestionsFormGroup = new FormGroup<any>({
-      gender: new FormControl(['', Validators.required]),
-      weight: new FormControl(['', Validators.required]),
-      age: new FormControl(['', Validators.required]),
-      height: new FormControl(['', Validators.required]),
-      bodyType: new FormControl(['', Validators.required]),
-      activity: new FormControl(['', Validators.required]),
-      workout: new FormControl(['', Validators.required]),
-      planPeriod: new FormControl(['', Validators.required])
+      gender: new FormControl(['']),
+      weight: new FormControl(['']),
+      age: new FormControl(['']),
+      height: new FormControl(['']),
+      bodyType: new FormControl(['']),
+      activity: new FormControl(['']),
+      workout: new FormControl(['']),
+      planPeriod: new FormControl([''])
     });
   }
 }

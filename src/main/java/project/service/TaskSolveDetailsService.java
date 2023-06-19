@@ -15,8 +15,8 @@ public class TaskSolveDetailsService {
         this.taskSolveDetailsRepo = taskSolveDetailsRepo;
     }
 
-    public List<TaskSolveDetails> getTaskSolveDetails(String owner) {
-        return this.taskSolveDetailsRepo.getAllByOwner(owner);
+    public List<TaskSolveDetails> getTaskSolveDetails(String owner, String planType) {
+        return this.taskSolveDetailsRepo.getAllByOwnerAndPlanType(owner, planType);
     }
 
     public void save(TaskSolveDetails taskSolveDetails) {
@@ -24,7 +24,7 @@ public class TaskSolveDetailsService {
     }
 
     @Transactional
-    public void delete(String owner) {
-        this.taskSolveDetailsRepo.deleteAllByOwner(owner);
+    public void deleteAll(List<TaskSolveDetails> taskSolves) {
+        this.taskSolveDetailsRepo.deleteAll(taskSolves);
     }
 }

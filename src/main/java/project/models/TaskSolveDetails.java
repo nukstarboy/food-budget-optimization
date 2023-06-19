@@ -12,22 +12,28 @@ public class TaskSolveDetails {
     @Column(name = "optimalPrice")
     public double optimalPrice;
     @Column(name = "problemSolvedTime")
-    public double problemSolvedTime;
+    public Double problemSolvedTime;
     @Column(name = "problemSolvedIterations")
-    public long problemSolvedIterations;
+    public Long problemSolvedIterations;
     @Column(name = "owner")
     public String owner;
     @Column(name = "planPeriod")
     public String planPeriod;
+    @Column(name = "planType")
+    public String planType;
+    @Column(name = "memberName")
+    public String memberName;
 
     public TaskSolveDetails() {
     }
 
-    public TaskSolveDetails(double optimalPrice, double problemSolvedTime, long problemSolvedIterations, String owner, String planPeriod) {
+    public TaskSolveDetails(double optimalPrice, Double problemSolvedTime, Long problemSolvedIterations, String owner, String planPeriod, String planType, String memberName) {
         this.optimalPrice = optimalPrice;
         this.problemSolvedTime = problemSolvedTime;
         this.problemSolvedIterations = problemSolvedIterations;
         this.owner = owner;
         this.planPeriod = planPeriod;
+        this.planType = planType;
+        this.memberName = memberName;
     }
 }

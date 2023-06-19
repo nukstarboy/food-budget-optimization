@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {FoodPrices} from "../../models/food-prices";
 import {FamilyNutrientsQuantity} from "../../models/family-nutrients-quantity";
+import {TaskDetails} from "../../models/task-details";
 
 @Component({
   selector: 'app-family-food',
@@ -18,5 +19,8 @@ export class FamilyFoodComponent {
 
   @Input()
   public nutrientsQuantityDataSource = new MatTableDataSource<FamilyNutrientsQuantity>();
+
+  @Input()
+  public taskDetailsDataSource = new MatTableDataSource<TaskDetails>();
 
 }

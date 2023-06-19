@@ -1,63 +1,63 @@
 <div style="margin-bottom: 1rem">
-  <p>If you want to use your own food selection please slide toggle below!</p>
-  <mat-slide-toggle [(ngModel)]="isChecked">Personal food</mat-slide-toggle>
+  <p>Si vous souhaitez utiliser votre propre sélection d'aliments, veuillez faire glisser le bouton ci-dessous !</p>
+  <mat-slide-toggle [(ngModel)]="isChecked">Nourriture personnelle</mat-slide-toggle>
 </div>
 <mat-stepper class="stepper" orientation="vertical" [linear]="true" #stepper>
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>Select your gender</ng-template>
+      <ng-template matStepLabel>Indiquez votre sexe</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
+        <mat-label>Sélectionnez-moi</mat-label>
         <mat-select formControlName="gender">
-          <mat-option value="female">Female</mat-option>
-          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Femme</mat-option>
+          <mat-option value="male">Homme</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>Let's check your body measurements</ng-template>
+      <ng-template matStepLabel>Quel votre état physique</ng-template>
       <div class="body-measurements">
         <mat-form-field appearance="fill">
-          <mat-label>Current weight(kg)</mat-label>
-          <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight" required>
+          <mat-label>Poids actuel (kg)</mat-label>
+          <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight">
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Age(years)</mat-label>
-          <input type="number" max="80" matInput placeholder="0 years" formControlName="age" required>
+          <mat-label>Âge (ans)</mat-label>
+          <input type="number" max="80" matInput placeholder="0 years" formControlName="age">
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Height (cm)</mat-label>
-          <input type="number" max="240" matInput placeholder="0 cm" formControlName="height" required>
+          <mat-label>Hauteur (cm)</mat-label>
+          <input type="number" max="240" matInput placeholder="0 cm" formControlName="height">
         </mat-form-field>
       </div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Retourner à l'arrier</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>What is your body type?</ng-template>
+      <ng-template matStepLabel>Quel est votre type de corps?</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
+        <mat-label>Sélectionnez-moi</mat-label>
         <mat-select formControlName="bodyType">
-          <mat-option value="lean and long">Lean and long, fast metabolism</mat-option>
-          <mat-option value="muscular">Muscular and well-built, average metabolism</mat-option>
-          <mat-option value="soft">Soft and round, slow metabolism</mat-option>
+          <mat-option value="lean and long">Mince et long, bon métabolisme</mat-option>
+          <mat-option value="muscular">Musclé, métabolisme moyen</mat-option>
+          <mat-option value="soft">Doux et rond, métabolisme lent</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Retourner à l'arrier</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
@@ -75,8 +75,8 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Retourner à l'arrier</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
@@ -95,8 +95,8 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Retourner à l'arrier</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
@@ -113,8 +113,8 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Retourner à l'arrier</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
@@ -123,9 +123,9 @@
     <ng-template matStepLabel>We're done!</ng-template>
     <p>You successfully complete your personal quiz!</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="onDoneClick()">Done</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious>Retourner à l'arrier</button>
+      <button mat-button (click)="onDoneClick()">Еnregistrer</button>
+      <button mat-button (click)="stepper.reset()">Réinitialiser</button>
     </div>
   </mat-step>
 </mat-stepper>

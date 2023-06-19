@@ -18,8 +18,13 @@ public class TaskSolveController {
         this.taskSolveDetailsService = taskSolveDetailsService;
     }
 
-    @PostMapping
-    public List<TaskSolveDetails> getTaskSolveDetailsByOwner(@RequestBody String owner) {
-        return this.taskSolveDetailsService.getTaskSolveDetails(owner);
+    @PostMapping("/personal")
+    public List<TaskSolveDetails> getTaskSolveDetails(@RequestBody String owner) {
+        return this.taskSolveDetailsService.getTaskSolveDetails(owner, "Personal");
+    }
+
+    @PostMapping("/family")
+    public List<TaskSolveDetails> getFamilyTaskSolveDetails(@RequestBody String owner) {
+        return this.taskSolveDetailsService.getTaskSolveDetails(owner, "Family");
     }
 }

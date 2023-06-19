@@ -47,6 +47,7 @@ import {FamilyNutrientsComponent} from "./profile/family-nutrients/family-nutrie
 import {PersonalMeatCreatorComponent} from './personal-meat-creator/personal-meat-creator.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {ArrowDivDirective} from "./personal-meat-creator/arrow-div.directive";
+import {OptimalBudgetComponent} from "./profile/optimal-budget/optimal-budget.component";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {ArrowDivDirective} from "./personal-meat-creator/arrow-div.directive";
     FamilyFoodPriceComponent,
     FamilyNutrientsComponent,
     PersonalMeatCreatorComponent,
-    ArrowDivDirective
+    ArrowDivDirective,
+    OptimalBudgetComponent
   ],
   imports: [
     BrowserModule,

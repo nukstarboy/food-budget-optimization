@@ -1,14 +1,14 @@
-<h2>Select your family members (2-4)</h2>
+<h2>Sélectionnez les membres de votre famille (2-4)</h2>
 <mat-form-field class="input" appearance="fill">
-  <mat-label>Select an option</mat-label>
+  <mat-label>Choisir une option</mat-label>
   <mat-select (valueChange)="onValueChange($event)">
-    <mat-option value="2">2 members</mat-option>
-    <mat-option value="3">3 members</mat-option>
-    <mat-option value="4">4 members</mat-option>
+    <mat-option value="2">2 membres</mat-option>
+    <mat-option value="3">3 membres</mat-option>
+    <mat-option value="4">4 membres</mat-option>
   </mat-select>
 </mat-form-field>
 <form *ngIf="doesUserHavePersonalFood" [formGroup]="formGroup" style="display: contents;">
-  <p>If you want to use your own food selection please slide toggle below!</p>
-  <mat-slide-toggle formControlName="isToggleTriggered">Personal food</mat-slide-toggle>
+  <p>Si vous souhaitez utiliser votre propre sélection d'aliments, veuillez faire glisser le bouton ci-dessous!</p>
+  <mat-slide-toggle formControlName="isToggleTriggered">Nourriture personnelle</mat-slide-toggle>
 </form>
-<button style="margin-top: 1rem;" [disabled]="isButtonDisable" mat-raised-button type="submit" (click)="onDoneClick()">Continue</button>
+<button style="margin-top: 1rem;" [disabled]="isButtonDisable" mat-raised-button type="submit" (click)="onDoneClick()">Continuer</button>

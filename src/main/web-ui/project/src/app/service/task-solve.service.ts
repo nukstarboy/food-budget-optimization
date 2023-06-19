@@ -12,6 +12,10 @@ export class TaskSolveService {
   }
 
   public getTaskSolve(owner: string): Observable<any> {
-    return this.http.post(this.url, owner);
+    return this.http.post(this.url + "/personal", owner);
+  }
+
+  public getFamilyTaskSolve(owner: string): Observable<any> {
+    return this.http.post(this.url + "/family", owner);
   }
 }

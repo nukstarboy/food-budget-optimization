@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   public nutrientsQuantityDataSource = new MatTableDataSource<NutrientsQuantity>([]);
   public familyNutrientsQuantityDataSource = new MatTableDataSource<FamilyNutrientsQuantity>([]);
   public taskDetailsDataSource = new MatTableDataSource<TaskDetails>([]);
+  public familyTaskDetailsDataSource = new MatTableDataSource<TaskDetails>([]);
   public dueOn: string;
 
   public constructor(private readonly adminService: AdminService,
@@ -40,8 +41,9 @@ export class ProfileComponent implements OnInit {
         this.buildPersonalFoodPrice(emailId);
         this.buildNutrientsQuantity(emailId);
         this.buildTaskSolver(emailId);
-        this.buildFamilyFoodPrice(response.familyMembers);
+        this.buildFamilyFoodPrice(emailId, response.familyMembers);
         this.buildFamilyNutrientsQuantity(response.familyMembers);
+        this.buildFamilyTaskSolver(emailId);
       });
     } else {
       this.router.navigate(['/login']);
@@ -73,8 +75,8 @@ export class ProfileComponent implements OnInit {
       error => console.log('Something went wrong!', error));
   }
 
-  private buildFamilyFoodPrice(familyMembers: string) {
-    this.foodPriceService.getFamilyFoodPricesByMembers(familyMembers).subscribe((foodPrices) => {
+  private buildFamilyFoodPrice(owner: string, familyMembers: string) {
+    this.foodPriceService.getFamilyFoodPricesByMembers(owner, familyMembers).subscribe((foodPrices) => {
       this.familyFoodPriceDataSource.data = [...foodPrices];
     },
       error => console.log('Something went wrong!', error));
@@ -84,6 +86,13 @@ export class ProfileComponent implements OnInit {
     this.nutrientsQuantityService.getFamilyNutrients(familyMembers).subscribe((nutrients) => {
       this.familyNutrientsQuantityDataSource.data = [...nutrients];
     },
+      error => console.log('Something went wrong!', error));
+  }
+
+  private buildFamilyTaskSolver(emailId: string) {
+    this.taskSolveService.getFamilyTaskSolve(emailId).subscribe((taskDetails) => {
+        this.familyTaskDetailsDataSource.data = [...taskDetails];
+      },
       error => console.log('Something went wrong!', error));
   }
 }
