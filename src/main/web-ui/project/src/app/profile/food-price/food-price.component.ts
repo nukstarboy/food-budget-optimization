@@ -30,10 +30,10 @@ export class FoodPriceComponent implements OnInit, AfterViewInit {
   private getPlanPeriod(): string {
     const planPeriod = this.dataSource.data[0].planPeriod;
     if (planPeriod == 'Daily') {
-      return  'Optimal Daily Price';
+      return  'Budget quotidien';
     } else if (planPeriod == 'Weekly') {
-      return  'Optimal Weekly Price';
+      return  'Budget hebdomadaire';
     }
-    return  'Optimal Yearly Price';
+    return  'Budget annuel';
   }
 }

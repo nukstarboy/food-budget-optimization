@@ -26,15 +26,15 @@
       <div class="body-measurements">
         <mat-form-field appearance="fill">
           <mat-label>Poids actuel (kg)</mat-label>
-          <input type="number" max="180" matInput placeholder="0 kg" formControlName="weight">
+          <input type="number" max="180" matInput placeholder="75 kg" formControlName="weight">
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Âge (ans)</mat-label>
-          <input type="number" max="80" matInput placeholder="0 years" formControlName="age">
+          <input type="number" max="80" matInput placeholder="18 Âges" formControlName="age">
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Hauteur (cm)</mat-label>
-          <input type="number" max="240" matInput placeholder="0 cm" formControlName="height">
+          <input type="number" max="240" matInput placeholder="180 cm" formControlName="height">
         </mat-form-field>
       </div>
       <div>
@@ -64,14 +64,14 @@
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>What is your baseline activity level?</ng-template>
+      <ng-template matStepLabel>Quel est votre niveau d'activité de base?</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
+        <mat-label>Sélectionnez-moi</mat-label>
         <mat-select formControlName="activity">
-          <mat-option value="1">Not Active(more sitting)</mat-option>
-          <mat-option value="2">Lightly Active(spend some time on your feet)</mat-option>
-          <mat-option value="3">Active(doing some physical activity)</mat-option>
-          <mat-option value="4">Very Active(doing heavy physical activity)</mat-option>
+          <mat-option value="1">Non actif (plus assis)</mat-option>
+          <mat-option value="2">Légèrement actif (passez du temps debout)</mat-option>
+          <mat-option value="3">Actif (faire de l'activité physique)</mat-option>
+          <mat-option value="4">Très actif (faire de l'activité physique intense)</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
@@ -83,15 +83,15 @@
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>Do you workout?</ng-template>
+      <ng-template matStepLabel>Est-ce que tu fais du sport?</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
+        <mat-label>Sélectionnez-moi</mat-label>
         <mat-select formControlName="workout">
-          <mat-option value="no">No, I don't</mat-option>
-          <mat-option value="walks">Only walks</mat-option>
-          <mat-option value="1-2">1-2 times a week</mat-option>
-          <mat-option value="3-5">3-5 times a week</mat-option>
-          <mat-option value="more than 5">More than 5 times a week</mat-option>
+          <mat-option value="no">Non</mat-option>
+          <mat-option value="walks">Seulement des promenades</mat-option>
+          <mat-option value="1-2">1 à 2 fois par semaine</mat-option>
+          <mat-option value="3-5">3 à 5 fois par semaine</mat-option>
+          <mat-option value="more than 5">Plus de 5 fois par semaine</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
@@ -103,13 +103,13 @@
 
   <mat-step [stepControl]="personalQuestionsFormGroup">
     <form [formGroup]="personalQuestionsFormGroup">
-      <ng-template matStepLabel>Plan period</ng-template>
+      <ng-template matStepLabel>Période du régime</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Select me</mat-label>
+        <mat-label>Sélectionnez-moi</mat-label>
         <mat-select formControlName="planPeriod">
-          <mat-option value=1>Daily</mat-option>
-          <mat-option value=7>Weekly</mat-option>
-          <mat-option value=365>Yearly</mat-option>
+          <mat-option value=1>Quotidien</mat-option>
+          <mat-option value=7>Hebdomadaire</mat-option>
+          <mat-option value=365>Annuel</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
@@ -120,8 +120,8 @@
   </mat-step>
 
   <mat-step>
-    <ng-template matStepLabel>We're done!</ng-template>
-    <p>You successfully complete your personal quiz!</p>
+    <ng-template matStepLabel>D'accord!</ng-template>
+    <p>Vous réussissez votre quiz personnel!</p>
     <div>
       <button mat-button matStepperPrevious>Retourner à l'arrier</button>
       <button mat-button (click)="onDoneClick()">Еnregistrer</button>

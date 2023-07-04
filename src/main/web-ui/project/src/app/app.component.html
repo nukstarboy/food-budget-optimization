@@ -3,11 +3,11 @@
     <a href="">HealthyEating</a>
   </div>
   <div class="toolbar-buttons">
-    <button mat-stroked-button (click)="onHomeAnchorClick()">Home</button>
-    <button *ngIf="!isUserLoggedIn" mat-stroked-button (click)="onLoginAnchorClick()">Login</button>
-    <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onProfileAnchorClick()">Profile</button>
-    <button mat-stroked-button (click)="onHelpAnchorClick()">Help</button>
-    <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onLogoutAnchorClick()">Logout</button>
+    <button mat-stroked-button (click)="onHomeAnchorClick()">Page d'accueil</button>
+    <button *ngIf="!isUserLoggedIn" mat-stroked-button (click)="onLoginAnchorClick()">Accéder</button>
+    <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onProfileAnchorClick()">Profil</button>
+    <button mat-stroked-button (click)="onHelpAnchorClick()">Aide</button>
+    <button *ngIf="isUserLoggedIn" mat-stroked-button (click)="onLogoutAnchorClick()">Se déconnecter</button>
   </div>
 </div>
 

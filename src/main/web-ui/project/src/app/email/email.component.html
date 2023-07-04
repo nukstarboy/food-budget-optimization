@@ -1,13 +1,13 @@
-<h2>Your personal meal with optimized budget is prepared and ready to be visualize!</h2>
-<h2>Do you want to receive it on email?</h2>
-<h2>Enter it below!</h2>
+<h2>Votre repas personnel au budget optimisé est préparé et prêt à être visualisé !</h2>
+<h2>Voulez-vous le recevoir par e-mail ?</h2>
+<h2>Entrez-le ci-dessous:</h2>
 <form [formGroup]="emailFormGroup">
   <mat-form-field appearance="fill">
-    <mat-label>Your email</mat-label>
+    <mat-label>Votre e-mail</mat-label>
     <input formControlName="email" matInput placeholder="Email" required>
   </mat-form-field>
 </form>
-<button [disabled]="emailFormGroup.invalid" mat-raised-button color="primary" (click)="onButtonClick()">Submit</button>
-<h2>... but if you want to continue to your profile</h2>
-<h2>to see your personal plan click on the button below!</h2>
-<button mat-raised-button color="primary" (click)="onProfileButtonClick()">To your profile</button>
+<button [disabled]="emailFormGroup.invalid" mat-raised-button color="primary" (click)="onButtonClick()">Enregistrer</button>
+<h2>... mais si vous voulez continuer sur votre profil</h2>
+<h2>pour voir votre plan personnel, cliquez sur le bouton ci-dessous !</h2>
+<button mat-raised-button color="primary" (click)="onProfileButtonClick()">Vers votre profil</button>

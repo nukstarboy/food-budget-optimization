@@ -1,14 +1,14 @@
-<h2>Now you should login in your account</h2>
+<h2>Connectez-vous à votre profil</h2>
 
 <form [formGroup]="formGroup">
   <div class="example-container">
     <mat-form-field appearance="fill" floatLabel="always">
-      <mat-label>Enter your email</mat-label>
-      <input type="text" formControlName="email" matInput placeholder="example@">
+      <mat-label>Entrer votre Email</mat-label>
+      <input type="text" formControlName="email" matInput placeholder="exemple@">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Enter your password</mat-label>
+      <mat-label>Entrer votre mot de passe</mat-label>
       <input formControlName="password" matInput [type]="isPasswordVisible ? 'password' : 'text'">
       <button mat-icon-button matSuffix (click)="isPasswordVisible = !isPasswordVisible"
               [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordVisible">
@@ -18,8 +18,8 @@
   </div>
 
   <div style="display: flex; justify-content: space-around">
-    <button [disabled]="formGroup.invalid" mat-raised-button (click)="onLoginButtonClick()">Login</button>
-    <button mat-raised-button (click)="onSignupButtonClick()">Signup for free</button>
+    <button [disabled]="formGroup.invalid" mat-raised-button (click)="onLoginButtonClick()">Connexion</button>
+    <button mat-raised-button (click)="onSignupButtonClick()">Inscription gratuite</button>
   </div>
 
 </form>

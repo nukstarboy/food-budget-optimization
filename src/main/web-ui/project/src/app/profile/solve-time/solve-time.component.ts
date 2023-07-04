@@ -27,10 +27,10 @@ export class SolveTimeComponent implements OnInit, AfterViewInit {
   private getPlanPeriod(): string {
     const planPeriod = this.dataSource.data[0].planPeriod;
     if (planPeriod == 'Daily') {
-      return  'Optimal Daily Price';
+      return  'Prix journalier optimal';
     } else if (planPeriod == 'Weekly') {
-      return  'Optimal Weekly Price';
+      return  'Prix hebdomadaire optimal';
     }
-    return  'Optimal Yearly Price';
+    return  'Prix annuel optimal';
   }
 }
