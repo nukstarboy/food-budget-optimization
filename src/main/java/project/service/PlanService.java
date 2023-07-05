@@ -50,12 +50,17 @@ public class PlanService {
         clearFamilyPlanIfExists(familyQuestions.get(0).planOwner);
         List<String> familyMembers = new ArrayList<>();
         familyQuestions.forEach(questions -> {
-            List<Nutrient> nutrients = nutrientCalculator.addNutrients(questions.age,
-                    questions.gender,
-                    questions.weight,
-                    questions.height,
-                    questions.activity,
-                    questions.bodyType);
+            List<Nutrient> nutrients = null;
+            try {
+                nutrients = nutrientCalculator.addNutrients(questions.age,
+                        questions.gender,
+                        questions.weight,
+                        questions.height,
+                        questions.activity,
+                        questions.bodyType);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             familyMembers.add(questions.memberName);
             try {
                 saveFamilyFoodPrices(questions, nutrients, isToggleTriggered);

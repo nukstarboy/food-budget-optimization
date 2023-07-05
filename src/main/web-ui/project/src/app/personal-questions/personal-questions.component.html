@@ -1,4 +1,4 @@
-<div style="margin-bottom: 1rem">
+<div *ngIf="doesUserHavePersonalFood" style="margin-bottom: 1rem">
   <p>Si vous souhaitez utiliser votre propre sélection d'aliments, veuillez faire glisser le bouton ci-dessous !</p>
   <mat-slide-toggle [(ngModel)]="isChecked">Nourriture personnelle</mat-slide-toggle>
 </div>

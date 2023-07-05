@@ -37,13 +37,7 @@
       <input formControlName="role" matInput placeholder="User">
     </mat-form-field>
   </div>
-  <div>
-    <div>
-    <mat-checkbox class="example-margin" (change)="onCheckboxStateChange($event)">J'ai lu et j'accepte les conditions d'utilisation, l'avis de confidentialité et les détails de l'offre</mat-checkbox>
-    <p>Si vous n'êtes pas au courant des conditions, allez à ...</p>
-    </div>
-    <button mat-raised-button [disabled]="formGroup.invalid || !isCheckboxChecked" (click)="onSaveButtonClick()"
-            class="btn btn-md btn-primary btn-style">Sauvegarder</button>
-  </div>
-
+  <button mat-raised-button [disabled]="formGroup.invalid" (click)="onSaveButtonClick()"
+          class="btn btn-md btn-primary btn-style">Sauvegarder
+  </button>
 </form>

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {PersonalQuestions} from '../models/personal-questions';
 import {PersonalQuestionsService} from "../service/personal-questions.service";
 import {PlanService} from "../service/plan.service";
+import {FoodNutrientsService} from "../service/food-nutrients.service";
 
 @Component({
   selector: 'app-personal-questions',
@@ -13,14 +14,17 @@ import {PlanService} from "../service/plan.service";
 export class PersonalQuestionsComponent implements OnInit {
   public personalQuestionsFormGroup: FormGroup = new FormGroup<any>({});
   public isChecked: boolean = false;
+  public doesUserHavePersonalFood: boolean = false;
 
   public constructor(private readonly personalQuestionsService: PersonalQuestionsService,
                      private readonly planService: PlanService,
-                     private readonly router: Router) {
+                     private readonly router: Router,
+                     private readonly foodNutrientsService: FoodNutrientsService) {
   }
 
   public ngOnInit(): void {
     this.initializeFormGroup();
+    this.foodNutrientsService.existByOwner(localStorage.getItem('username')).subscribe((exists: boolean) => this.doesUserHavePersonalFood = exists)
   }
 
   public onDoneClick(): void {

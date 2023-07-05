@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class NutrientCalculator {
-    public List<Nutrient> addNutrients(int age, String gender, double weight, double height, String activity, String bodyType) {
+    public List<Nutrient> addNutrients(int age, String gender, double weight, double height, String activity, String bodyType) throws Exception {
         List<Nutrient> nutrients = new ArrayList<>();
         double calculateCalories = getCalories(age, gender, weight, height, activity);
         double calculateFat = getFat(calculateCalories, bodyType);
@@ -77,9 +77,9 @@ public class NutrientCalculator {
         return (calculateCalories * 0.35) / 10;
     }
 
-    private static double getCalories(int age, String gender, double weight, double height, String activity) {
-        if (age == 0 || weight == 0 || height == 0 || 80 < age || age < 15) {
-            return 0;
+    private static double getCalories(int age, String gender, double weight, double height, String activity) throws Exception {
+        if (age <= 0 || weight <= 0 || height <= 0) {
+            throw new Exception("Incorrect person information passed!");
         }
 
         if (gender.equals("male") && activity.equals("1")) {
